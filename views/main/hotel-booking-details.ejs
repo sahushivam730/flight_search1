@@ -1,0 +1,269 @@
+<%-include('includes/header');%>
+<style>
+    .banner {
+        height: 200px;
+        background-size: 100%;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+    
+    .list-box-sidebar .booking-cost h3 {
+        margin-bottom: 5px;
+        font-size: 22px;
+        font-weight: 600;
+    }
+    
+    .list-box-sidebar .booking-cost h4 {
+        font-size: 1.5rem;
+    }
+    
+    .list-box-sidebar .hotel-title h2 {
+        font-size: 1.8em;
+    }
+    
+    .list-booking-details li span {
+        font-size: .8em;
+    }
+    
+    #tearms_conditions {
+        width: 14px;
+        float: left;
+        margin: 0px;
+        height: 13px;
+        padding: 0px;
+        margin-right: 10px;
+        margin-top: 6px;
+    }
+    
+    .form-group label {
+        cursor: pointer;
+    }
+    
+    .block-content-2 {
+        padding: 1px 30px;
+    }
+    
+    #form-hotel-booking fieldset {
+        display: none !important;
+    }
+    
+    #form-hotel-booking fieldset.active {
+        display: block !important;
+    }
+    
+    #form-hotel-booking .prev-step {
+        width: 100px;
+        display: inline-block;
+        background: transparent;
+        border: 2px solid #4141A5;
+        margin-right: 10px;
+    }
+    
+    #overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 995;
+        display: none;
+    }
+    
+    #overlay-back {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #000;
+        opacity: 0.6;
+        filter: alpha(opacity=60);
+        z-index: 990;
+        display: none;
+    }
+    
+    #dvLoading {
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 10px;
+        height: 250px;
+        width: 400px;
+        position: relative;
+        z-index: 1000;
+        left: 42%;
+        top: 50%;
+        margin: -125px 0 0 -125px;
+        text-align: center;
+        display: none;
+    }
+</style>
+<section id="content">
+
+    <div id="content-wrap">
+
+        <!-- === Section Flat =========== -->
+        <div class="section-flat">
+
+            <div class="section-content">
+
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            
+                            <ul class="breadcrumb">
+                                <li><a href="<%=base_url%>"><i class="fa fa-home"></i></a></li>
+                                <li><a href="<%=base_url%>myaccount?tb=3">Hotel Booings</a></li>
+                                <li class="active"><%=hotel_data.hotel.name%></li>
+                            </ul><!-- .breadcrumb end -->
+                            
+                        </div><!-- .col-md-12 end -->
+                        <div class="col-md-12">
+                            
+                            <div class="page-single-content sidebar-left">
+                                
+                                <div class="row">
+                                    <div class="col-lg-8 col-md-12 col-lg-push-4">
+                                
+                                        <div class="content-main">
+                                            <div class="block-content-2 style-3">
+                                                    <div class="block-title" style="padding-bottom: 0px;padding-top: 10px;
+                                                    ">
+                                                       
+                                                        <h6>
+                                                            Booking Date: <strong><%=moment(booking.created_at).format('lll')%></strong>
+                                                        </h6>
+                                                    </div>
+                                                    <h3>Customer Info </h3>
+                                                    <ul class="list-traveller-info" style="margin-bottom: 20px;">
+                                                        <li>
+                                                            <span class="title">Booking Number:</span>
+                                                            <%=booking.hb_id%>
+                                                        </li>
+                                                        <li>
+                                                            <span class="title">Rooms:</span>
+                                                            <%=booking.num_of_rooms%>
+                                                        </li>
+                                                        <li>
+                                                            <span class="title">Adults:</span>
+                                                            <%=booking.num_of_adults%>
+                                                        </li>
+                                                        <li>
+                                                            <span class="title">First Name:</span>
+                                                            <%=booking.first_name%>
+                                                        </li>
+                                                        <li>
+                                                            <span class="title">Last Name:</span>
+                                                            <%=booking.last_name%>
+                                                        </li>
+                                                        <li>
+                                                            <span class="title">Email Address:</span>
+                                                            <%=booking.email%>
+                                                        </li>
+                                                        <li>
+                                                            <span class="title">Mobile:</span>
+                                                            <%=booking.mobile_number%>
+                                                        </li>
+                                                        <li>
+                                                            <span class="title">Address:</span>
+                                                            <%=booking.street%>, <%=booking.city%>
+                                                        </li>
+                                                        <li>
+                                                            <span class="title">zip_code:</span>
+                                                            <%=booking.zip_code%>
+                                                        </li>
+                                                    </ul>
+                                                <!-- .list-traveller-info end -->
+                                                
+                                                <div class="divider-40 text-center"><a class="btn small colorful hover-dark" href="<%=base_url%>myaccount?tb=3">Back</a></div>
+                                                
+                                              
+                                            </div><!-- .block-content-2 end -->
+                                        </div><!-- .content-main end -->
+                                
+                                    </div><!-- .col-lg-8 end -->
+                                    <div class="col-lg-4 col-md-12 col-lg-pull-8">
+
+                                        <div class="sidebar style-2">
+                                            <ul class="list-box-sidebar" id="hotel-details">
+                                                <li>
+                                                    <div class="hotel-title">
+                                                            <h3><%=hotel_data.hotel.name%></h3>
+                                                            <span class="location"><%=hotel_data.hotel.address.postalCode%> <%=hotel_data.hotel.address.cityName%>, <%=hotel_data.hotel.address.countryCode%></span>
+                                                            <div class="hotel-rating">
+                                                                <div class="rating">
+                                                               <% let ratings = hotel_data.hotel.rating%>
+                                                                
+                                                                  <%  for (let index = 0; index < 5; index++) {%>
+                                                                    <% if (index < ratings) { %>
+                                                                            <i class="fa fa-star"></i>
+                                                                    <%} else {%>
+                                                                            <i class="fa fa-star-o"></i>    
+                                                                   <%  } } %>
+                                                            </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <ul class="list-booking-details">
+                                                            <li>
+                                                                <strong>- Rooms</strong>
+                                                                <span><%=hotel_data.offers[0].room.description.text%></span>
+                                                            </li>
+                                                            <li>
+                                                                <strong>- Room Description</strong>
+                                                                <span><%=hotel_data.hotel.description.text%></span>
+                                                            </li>
+                                                            <li>
+                                                                <strong>- Check-In Date</strong>
+                                                                <span><%=hotel_data.offers[0].checkInDate%></span>
+                                                            </li>
+                                                            <li>
+                                                                <strong>- Check-Out Date</strong>
+                                                                <span><%=hotel_data.offers[0].checkOutDate%></span>
+                                                            </li>
+                                                            <li>
+                                                                <strong>- Adults</strong>
+                                                                <span><%=adults%> people</span>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                    <li>
+                                                        <div class="booking-cost">
+                                                            <h3>Total Price: <span class="colored"><%=price%></span></h3>
+                                                            <h4>VAT Include</h4>
+                                                        </div>
+                                                    </li>`
+                                            </ul>
+
+                                            <ul class="list-box-sidebar">
+                                                <li>
+                                                    <div class="booking-help">
+                                                        <h3 class="box-title">Need Help Booking</h3>
+                                                        <p>Call our customer services team on the number below to speak to ..</p>
+                                                        <span class="phone-number"><i class="fas fa-phone-alt"></i>1- 555 - 555 - 555</span>
+                                                    </div>
+                                                    <!-- .booking-help end -->
+                                                </li>
+                                            </ul>
+                                            <!-- .list-box-sidebar end -->
+                                        </div>
+                                        <!-- .sidebar end -->
+                                    </div>
+                                </div><!-- .row end -->
+
+                            </div><!-- .page-single-content end -->
+                            
+                        </div><!-- .col-md-12 end -->
+                    </div><!-- .row end -->
+                </div><!-- .container end -->
+
+            </div><!-- .section-content end -->
+
+        </div><!-- .section-flat end -->
+
+    </div><!-- #content-wrap -->
+
+</section>
+  
+<%-include('includes/footer');%>

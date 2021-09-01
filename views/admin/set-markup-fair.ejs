@@ -1,0 +1,69 @@
+<%-include('./inc/header');%>
+<div class="row">
+    <div class="col-xl-12 order-xl-1">
+        <div class="card">
+            <div class="card-header">
+              <div class="row align-items-center">
+                <div class="col-8">
+                  <h3 class="mb-0">Set markup fair</h3>
+                </div>
+              </div>
+            </div>
+            <div class="card-body">
+                <div class="alert alert-success" style="display: <%=(msg=='')?'none':'block'%>;"><%=msg%></div>
+                <form action="<%=base_url%>admin/set-markup-fair" id="set-fair" method="POST">
+                    <div class="pl-lg-4">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label class="form-control-label" for="input-email">Air markup fair</label>
+                                    <input type="number" id="val1" name="val1" class="form-control" value="<%=fairs[0].air%>">
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label class="form-control-label" for="input-email">Hotel markup fair</label>
+                                    <input type="number" id="val2" name="val2" class="form-control" value="<%=fairs[0].hotel%>">
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn  btn-info">Update</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+  </div>
+  <%-include('./inc/footer');%>
+<script src="<%=base_url%>assets/js/jquery.validate.min.js"></script>
+  <script>
+      $.validator.addMethod('minStrict', function (value, el, param) {
+        return value >= param;
+    });
+
+    $('#set-fair').validate({
+        rules : {        
+            val1 : {
+                required  : true,
+                minStrict: 0,
+                number: true
+            },
+            val2 : {
+                required  : true,
+                minStrict: 0,
+                number: true
+            },
+        },
+        messages : {
+            val1 : {
+                minStrict: 'invalid fair'
+            },
+            val2 : {
+                minStrict: 'invalid fair'
+            },
+        },
+        submitHandler: function(form) {
+            form.submit();
+        }
+    });
+</script>

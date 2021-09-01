@@ -1,0 +1,37 @@
+{
+  "name": "amadeus_api_call",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "amadeus": "^5.7.0",
+    "bcrypt": "^5.0.1",
+    "body-parser": "^1.19.0",
+    "connect-flash": "^0.1.1",
+    "date-and-time": "^1.0.1",
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "express-session": "^1.17.2",
+    "flash": "^1.1.0",
+    "fs": "0.0.1-security",
+    "ip": "^1.1.5",
+    "jsonwebtoken": "^8.5.1",
+    "log": "^6.0.0",
+    "moment": "^2.29.1",
+    "mysql": "^2.18.1",
+    "named-placeholders": "^1.1.2",
+    "nodejs-currency-converter": "^1.0.2",
+    "nodemailer": "^6.6.2",
+    "nodemon": "^2.0.7",
+    "passport": "^0.4.1",
+    "passport-google-oauth": "^2.0.0",
+    "requests": "^0.3.0",
+    "striptags": "^3.2.0"
+  }
+}

@@ -1,0 +1,263 @@
+<%-include('includes/header');%>
+
+<section id="content">
+
+    <div id="content-wrap">
+
+        <!-- === Section Flat =========== -->
+        <div class="section-flat">
+
+            <div class="section-content">
+
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            
+                            <ul class="breadcrumb">
+                                <li><a href="<%=base_url%>"><i class="fa fa-home"></i></a></li>
+                                <li><a href="javascript:;">Flights</a></li>
+                                <li class="active"><%=bigb[0].search%></li>
+                            </ul><!-- .breadcrumb end -->
+                            
+                        </div><!-- .col-md-12 end -->
+                        <div class="col-md-12">
+                            
+                            <div class="page-single-content sidebar-left">
+                                
+                                <div class="row">
+                                    <div class="col-lg-8 col-md-12 col-lg-push-4">
+                                
+                                        <div class="content-main">
+                                            <div class="block-content-2 style-3">
+                                                <div class="block-title">
+                                                    <h3><span class="colored">03</span> Confirmation <img src="<%=base_url%>assets/img/check-mark.png" style="width: 25px;float: right;" alt=""></h3>
+                                                    <p>
+                                                        Booking Id: <strong>#<%=travellers[0].booking_id%></strong>
+                                                    </p>
+                                                </div><!-- .block-title end -->
+                                                
+                                                <div class="booking-msg-confirm" style="color: green;font-weight: 600;">
+                                                    Thank you! Your booking is now confirmed.
+                                                    <!-- <a class="btn small colorful hover-dark" href="javascript:;">Print Booking</a> -->
+                                                </div><!-- .booking-msg-confirm end -->
+                                                <%
+                                                let i=1
+                                                travellers.forEach(function(traveller){%>
+                                                    <h3>0<%=i%> Traveller Info </h3>
+                                                    <ul class="list-traveller-info" style="margin-bottom: 20px;">
+                                                        <li>
+                                                            <span class="title">Booking Number:</span>
+                                                            <%=traveller.booking_id%>
+                                                        </li>
+                                                        <li>
+                                                            <span class="title">First Name:</span>
+                                                            <%=traveller.f_name%>
+                                                        </li>
+                                                        <li>
+                                                            <span class="title">Last Name:</span>
+                                                            <%=traveller.l_name%>
+                                                        </li>
+                                                        <li style="display: <%=(traveller.nationality=='')?'none':'flex'%>;">
+                                                            <span class="title">Nationality:</span>
+                                                            <%=traveller.nationality%>
+                                                        </li>
+                                                        <li style="display: <%=(traveller.ppno=='')?'none':'flex'%>;">
+                                                            <span class="title">Passport Number :</span>
+                                                            <%=traveller.ppno%>
+                                                        </li>
+                                                       
+                                                        <li style="display: <%=(traveller.ppexp=='')?'none':'flex'%>;">
+                                                            <span class="title">Passport Exp. Date:</span>
+                                                            <%=traveller.ppexp%>
+                                                        </li>
+                                                        <li style="display: <%=(traveller.ppicountry=='')?'none':'flex'%>;">
+                                                            <span class="title">Passport Country:</span>
+                                                            <%=traveller.ppicountry%>
+                                                        </li>
+                                                        <li style="display: <%=(traveller.ktrvno=='')?'none':'flex'%>;">
+                                                            <span class="title">Known Traveller Number :</span>
+                                                            <%=traveller.ktrvno%>
+                                                        </li>
+                                                        <li style="display: <%=(traveller.address=='')?'none':'flex'%>;">
+                                                            <span class="title">Address:</span>
+                                                            <%=traveller.address%>
+                                                        </li>
+                                                        <li style="display: <%=(traveller.flyerno=='')?'none':'flex'%>;">
+                                                            <span class="title">Flyer Number:</span>
+                                                            <%=traveller.flyerno%> 
+                                                        </li>
+                                                        <li style="display: <%=(traveller.wheelchair=='')?'none':'flex'%>;">
+                                                            <span class="title">WheelChair</span>
+                                                            <%=traveller.wheelchair%> 
+                                                        </li>
+                                                    </ul>
+                                                <% i++})%>
+                                                <!-- .list-traveller-info end -->
+                                                <hr>
+                                                <%contactInfo.forEach(function(info){%>
+                                                    <h3>Contact Info </h3>
+                                                    <ul class="list-traveller-info" style="margin-bottom: 20px;">
+                                                        <li>
+                                                            <span class="title">First Name:</span>
+                                                            <%=info.f_name%>
+                                                        </li>
+                                                        <li>
+                                                            <span class="title">Last Name:</span>
+                                                            <%=info.l_name%>
+                                                        </li>
+                                                        <li>
+                                                            <span class="title">Email:</span>
+                                                            <%=info.email%>
+                                                        </li>
+                                                        <li>
+                                                            <span class="title">Mobile:</span>
+                                                            +<%=info.code%> <%=info.mobile%>
+                                                        </li>
+                                                        <li>
+                                                            <span class="title">Address:</span>
+                                                            <%=info.address%>
+                                                        </li>
+                                                        <li>
+                                                            <span class="title">City:</span>
+                                                            <%=info.city%>
+                                                        </li>
+                                                        <li>
+                                                            <span class="title">State:</span>
+                                                            <%=info.state%>
+                                                        </li>
+                                                        <li>
+                                                            <span class="title">Zip/Postal Code:</span>
+                                                            <%=info.zip%>
+                                                        </li>
+                                                        <li>
+                                                            <span class="title">Country:</span>
+                                                            <%=info.country%>
+                                                        </li>
+                                                    </ul>
+                                                <% i++})%>
+                                                
+                                                <div class="divider-40 text-center"><a class="btn small colorful hover-dark" href="<%=base_url%>myaccount?tb=2">View Account</a></div>
+                                                
+                                              
+                                            </div><!-- .block-content-2 end -->
+                                        </div><!-- .content-main end -->
+                                
+                                    </div><!-- .col-lg-8 end -->
+                                    <div class="col-lg-4 col-md-12 col-lg-pull-8">
+                                
+                                        <div class="sidebar style-2">
+                                            <ul class="list-box-sidebar">
+                                                <li>
+                                                    <div class="hotel-title">
+                                                        <h6 style="font-size: 15px;font-weight: 600;"><%=bigb[0].search%></h6>
+                                                        <%if(bigb[0].type == 'round'){%>
+                                                            <span class="location"><b>Depart: </b><%=moment(bigb[0].itineraries[0].segments[0].departure.at).format('ll')%></span>
+                                                            <span class="location"><b>Return: </b><%=moment(bigb[0].itineraries[1].segments[0].departure.at).format('ll')%></span>
+                                                        <%}%>
+                                                        <%if(bigb[0].type == 'multicity'){%>
+                                                            <span class="location"><b>Depart: </b><%=moment(bigb[0].itineraries[0].segments[0].departure.at).format('ll')%></span>
+                                                            <span class="location"><b>Return: </b><%=moment(bigb[0].itineraries[1].segments[0].departure.at).format('ll')%></span>
+                                                        <%}%>
+                                                        <%if(bigb[0].type == 'oneway'){%>
+                                                            <span class="location"><b>Depart: </b><%=moment(bigb[0].itineraries[0].segments[0].departure.at).format('ll')%></span>
+                                                            <%}%>
+                                                        <span>
+                                                            Travelers : <%=trv_count%>
+                                                        </span>
+                                                    </div><!-- .hotel-title end -->
+                                                </li>
+                                                <li>
+                                                    <ul class="list-booking-details">
+                                                        <% bigb[0].itineraries.forEach(function(item,index){%>
+                                                            <%if(bigb[0].type=='oneway'){%>
+                                                            <h3><b>Depart: </b><%=moment(item.segments[0].departure.at).format('ll')%></h3>
+                                                                <%item.segments.forEach(function(segment){%>
+                                                                    <li>
+                                                                        <p><%=segment.departure.iataCode%> ---------> <%=segment.arrival.iataCode%></p>
+                                                                        <span><%=segment.carrierCode%> | <%=segment.aircraft.code%></span>
+                                                                        <span>Operated by <%=segment.operating.carrierCode%></span>
+                                                                    </li>
+                                                                <%})%>
+                                                            <%}%>
+
+                                                            <%if(bigb[0].type=='multicity'){%>
+                                                                <h3><b>Depart: </b><%=moment(item.segments[0].departure.at).format('ll')%></h3>
+                                                                    <%item.segments.forEach(function(segment,index){%>
+                                                                        <li>
+                                                                            <p><%=segment.departure.iataCode%> ---------> <%=segment.arrival.iataCode%></p>
+                                                                            <span><%=segment.carrierCode%> | <%=segment.aircraft.code%></span>
+                                                                            <%if(segment.operating!=null){%>
+                                                                                <span>Operated by <%=segment.operating.carrierCode%></span>
+                                                                                <%}else{%>
+                                                                                    
+                                                                                <%}%>
+                                                                            
+                                                                        </li>
+                                                                    <%})%>
+                                                                <%}%>
+                                                            
+                                                            <%if(bigb[0].type=='round'){%>
+                                                                <%if(index==0){%>
+                                                                    <h3><b>Depart: </b><%=moment(item.segments[1].departure.at).format('ll')%></h3>
+                                                                <%}%>
+                                                                <%if(index==1){%>
+                                                                    <h3><b>Return: </b><%=moment(item.segments[1].departure.at).format('ll')%></h3>
+                                                                <%}%>
+                                                               
+                                                                <%item.segments.forEach(function(segment){%>
+                                                                    <li>
+                                                                        <p><%=segment.departure.iataCode%> ---------> <%=segment.arrival.iataCode%></p>
+                                                                        <span><%=segment.carrierCode%> | <%=segment.aircraft.code%></span>
+                                                                        <span>Operated by <%=segment.operating.carrierCode%></span>
+                                                                    </li>
+                                                                <%})%>
+                                                            <%}%>
+                                                           
+                                                            <%})%>
+                                                        
+                                                        
+                                                    </ul><!-- .list-booking-details end -->
+                                                </li>
+                                                <li>
+                                                    <div class="booking-cost">
+                                                        <%let price=parseFloat(bigb[0].price.grandTotal)+parseFloat((bigb[0].price.grandTotal*air_markup_fair)/100)%>
+                                                       
+                                                        <h3>Total Price: <span class="colored right">$<%=price.toFixed(2) %></span></h3>
+                                                        <!-- <h4>VAT (<%=air_markup_fair%>%)Include</h4> -->
+                                                        <p style="color: #ccc;
+                                                        line-height: 1;
+                                                        font-size: small;">
+                                                        VAT (<%=air_markup_fair%>%)Include<br>
+                                                        This Price includes all taxes and fees.
+                                                            Currency is USD.</p>
+                                                    </div><!-- .booking-cost end -->
+                                                </li>
+                                            </ul><!-- .list-box-sidebar end -->
+                                            <ul class="list-box-sidebar">
+                                                <li>
+                                                    <div class="booking-help">
+                                                        <h3 class="box-title">Need Help Booking</h3>
+                                                        <p>Call our customer services team on the number below to speak to ..</p>
+                                                        <span class="phone-number"><i class="fas fa-phone-alt"></i>1- 555 - 555 - 555</span>
+                                                    </div><!-- .booking-help end -->
+                                                </li>
+                                            </ul><!-- .list-box-sidebar end -->
+                                        </div><!-- .sidebar end -->
+                                
+                                    </div><!-- .col-lg-4 end -->
+                                </div><!-- .row end -->
+
+                            </div><!-- .page-single-content end -->
+                            
+                        </div><!-- .col-md-12 end -->
+                    </div><!-- .row end -->
+                </div><!-- .container end -->
+
+            </div><!-- .section-content end -->
+
+        </div><!-- .section-flat end -->
+
+    </div><!-- #content-wrap -->
+
+</section>
+<%-include('includes/footer');%>

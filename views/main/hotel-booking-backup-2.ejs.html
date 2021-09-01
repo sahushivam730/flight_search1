@@ -1,0 +1,289 @@
+<%-include('includes/header')%>
+<style>
+	.list-room-specs{
+		justify-content: middle;
+		flex: 0 0 180px;
+	}
+</style>
+	<!-- Content ============================================= -->
+	<section id="content">
+
+		<div id="content-wrap">
+
+			<!-- === Section Flat =========== -->
+			<div class="section-flat">
+
+				<div class="section-content">
+
+					<div class="container">
+						<div class="row">
+							<div class="col-md-12">
+								<%=params.c_url%>
+								<ul class="breadcrumb">
+									<li><a href="javascript:void(0)"><i class="fa fa-home"></i></a></li>
+									<li><a href="javascript:;">Hotels</a></li>
+									<li class="active"><%=hotel_details.hotel.name%></li>
+								</ul><!-- .breadcrumb end -->
+								
+							</div><!-- .col-md-12 end -->
+							<div class="col-md-12">
+								
+								<div class="page-single-content">
+									
+									<div class="row">
+										<div class="col-lg-8 col-md-12">
+									
+											<div class="content-main">
+												<div class="slider-hotel-preview">
+													<ul class="slick-slider">
+														<%  hotel_details.hotel.media.forEach(function(item){ %>
+															<li>
+																<div class="img-bg">
+																	<img src="<%=item.uri%>" alt="<%=hotel_details.hotel.name%>" />
+																</div>
+															</li>
+														<% }); %>
+														
+
+													</ul><!-- .slick-slider end -->
+													<div class="slick-arrows"></div>
+												</div><!-- .slider-hotel-preview end -->
+												<div class="slider-hotel-preview-thumbs">
+													<ul class="slick-slider">
+														<%  hotel_details.hotel.media.forEach(function(item){ %>
+															<li>
+																<div class="img-bg">
+																	<img src="<%=item.uri%>" alt="<%=hotel_details.hotel.name%>" />
+																</div>
+															</li>
+														<% }); %>
+													</ul><!-- .slick-slider end -->
+												</div><!-- .slider-hotel-preview-thumbs end -->
+												
+											</div><!-- .content-main end -->
+									
+										</div><!-- .col-lg-8 end -->
+										<div class="col-lg-4 col-md-12">
+									
+											<div class="sidebar style-2">
+												<ul class="list-box-sidebar">
+													<li>
+														<div class="hotel-title">
+															<h2><%=hotel_details.hotel.name%></h2>
+															<span class="location">
+																<% hotel_details.hotel.address.lines.forEach(function(addItem){ %>
+																	<%=addItem%>,
+																<% }); %>
+																<%=hotel_details.hotel.address.postalCode%>,
+																<%=hotel_details.hotel.address.cityName%>
+															</span>
+															<div class="hotel-rating">
+																<div class="rating">
+																	<% for(var i=0; i < 5; i++) { 
+																		if(i < hotel_details.hotel.rating){ %>
+																		<i class="fa fa-star"></i>
+																	<% }else{ %>
+																		<i class="fa fa-star-o"></i>
+																	<% } } %>
+																</div>
+															</div>
+														</div><!-- .hotel-title end -->
+													</li>
+													<li>
+														<p class="font-size-18">
+															The Best Ipsum hotel features over 1,000 luxuriously appointed, individually styled rooms, suites and apartments, each containing unique works of art.
+														</p>
+													</li>
+													
+												</ul><!-- .list-box-sidebar end -->
+												<div class="testimonial-single-2 mtb-40">
+													<div class="content">
+													"Loved the staff and the location was just amazing... Perfect!”
+													</div><!-- .content end -->
+													<h5>- Jane Doe, Solo Traveller</h5>
+												</div><!-- .testimonial-single-2 end -->
+												
+											</div><!-- .sidebar end -->
+										</div><!-- .col-lg-4 end -->
+									</div><!-- .row end -->
+								</div><!-- .page-single-content end -->
+							</div><!-- .col-md-12 end -->
+						</div><!-- .row end -->
+					</div><!-- .container end -->
+
+					<div class="container">
+						<div class="row">
+							<div class="col-md-12">
+								<div class="page-single-content">
+									<div class="row">
+										<div class="col-lg-12 col-md-12">
+											<div class="content-main">
+												<div class="hotel-info-tabs">
+													<ul class="hi-tabs">
+														<li class="active">
+															<a href="javascript:;">
+																<i class="far fa-calendar-alt"></i>
+																Offers
+															</a>
+														</li>
+														<li>
+															<a href="javascript:;">
+																<i class="fas fa-info-circle"></i>
+																Description
+															</a>
+														</li>
+														<li>
+															<a href="javascript:;">
+																<i class="far fa-compass"></i>
+																Facilities
+															</a>
+														</li>
+														<li>
+															<a href="javascript:;">
+																<i class="fas fa-map-marker-alt"></i>
+																Location
+															</a>
+														</li>
+														<!-- <li>
+															<a href="javascript:;">
+																<i class="far fa-thumbs-up"></i>
+																Reviews
+															</a>
+														</li>
+														<li>
+															<a href="javascript:;">
+																<i class="far fa-star"></i>
+																Things to do
+															</a>
+														</li> -->
+													</ul><!-- .hi-tabs end -->
+													<ul class="hi-tabs-content">
+														<li class="active">
+															<div class="block-content-2 style-3">
+																<div class="block-title">
+																	<h3>Offer Types</h3>
+																</div><!-- .block-title end -->
+																<ul class="list-room-types">
+																	<% hotel_offers.forEach(function(offer_items){
+																		%>
+																		<%=JSON.stringify(offer_items);%>
+																		<%  if(offer_items.status){ %>
+																			<%=offer_items.res_of_data%>
+
+																		<li>
+																			<div class="box-room">
+																				
+																				<div class="content">
+																					<h5><a href="javascript:;">
+																							<%= offer_items.res_of_data.offers[0].description.text%>
+																						</a>
+																					</h5>
+
+																					<p style="font-size:12px;" >
+																						<%= offer_items.res_of_data.offers[0].room.description.text%>
+																					</p>
+																				</div><!-- .content end -->
+																			</div><!-- .box-room end -->
+																			<ul class="list-room-specs">
+																				<li>
+																					<span>Max:</span>
+																					<%= offer_items.res_of_data.offers[0].guests.adults%>
+																					X &nbsp;
+																					<i class="fas fa-user-alt"></i>
+																				</li>
+																				<li>
+																					<span>Price:</span>
+																					<span class="color-dark">
+																						<%= offer_items.res_of_data.offers[0].price.currency%>
+																						<%= offer_items.res_of_data.offers[0].price.total%>
+																					</span>
+																				</li>
+																				<li>
+																					<span>Rooms:</span>
+																					<span class="color-dark">01</span>
+																				</li>
+																				<li>
+																					<a class="btn x-small colorful hover-dark mt-10 hotel-book-now" href="javascript:void(0)" data-hotel-id="<%=offer_items.hotel.hotelId%>" data-offer-id="<%=offer_items.res_of_data.offers[0].id%>"  >
+																						Book Now
+																					</a>
+																				</li>
+																			</ul><!-- .list-room-specs end -->
+																		</li>
+																	<% } }); %>
+																</ul>
+																
+																<!-- .list-room-types end -->
+															</div><!-- .block-content-2 end -->
+														</li>
+														<li>
+															<div class="block-content-2 style-3">
+																<div class="block-title">
+																	<h3>General</h3>
+																</div>
+																<%=hotel_details.hotel.description.text%>
+															</div>
+														</li>
+														<li>
+															<div class="block-content-2 style-3">
+																<div class="block-title">
+																	<h3>Facilities</h3>
+																</div><!-- .block-title end -->
+																<ul class="list dottes row-3">
+																	<% hotel_details.hotel.amenities.forEach((amniItem)=>{ %>
+																		<li>
+																			<% let  amnit_item = amniItem.replace(/_/g,' ');%>
+																			<%=amnit_item%>
+																		</li>
+																	<% }); %>
+																</ul>
+															</div>
+														</li>
+														<li>
+															<div id="" class="block-content-2 style-3" >
+																<span class="location">
+																	<% hotel_details.hotel.address.lines.forEach(function(addItem){ %>
+																		<%=addItem%>,
+																	<% }); %>
+																	<%=hotel_details.hotel.address.postalCode%>,
+																	<%=hotel_details.hotel.address.cityName%>
+																</span>
+															</div>
+														</li>
+													</ul><!-- .hi-tabs-content end -->
+												</div><!-- .hotel-info-tabs end -->
+											</div><!-- .content-main end -->
+										</div><!-- .col-lg-8 end -->
+									</div><!-- .row end -->
+								</div><!-- .page-single-content end -->
+							</div><!-- .col-md-12 end -->
+						</div><!-- .row end -->
+					</div><!-- .container end -->
+				</div><!-- .section-content end -->
+			</div><!-- .section-flat end -->
+		</div><!-- #content-wrap -->
+	</section><!-- #content end -->
+
+<%-include('includes/footer')%>
+
+<script>
+	$(function(){
+		$('.hotel-book-now').on('click',function(){
+			let offer_id = $(this).attr('data-offer-id');
+			alert(offer_id)
+			if('<%=session%>'!='')
+			{
+				let url = '';
+				window.location.href = url;
+			
+			}else{
+				// alert('Make Login');
+				swal({
+					title: "Make Login!",
+					text: "You clicked the button!",
+					icon: "warning",
+				});
+			}
+		});
+	});
+</script>
+

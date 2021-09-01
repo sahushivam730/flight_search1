@@ -1,0 +1,929 @@
+</div>
+<!-- Modals -->
+<style>
+    /* #login-div{
+    background: url('<%=base_url%>assets/img/l-1.png') ;
+  } */
+    
+    #login-div {
+        background: url('<%=base_url%>assets/img/l-1.png');
+        position: relative;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+    
+    #signup-div {
+        background: url('<%=base_url%>assets/img/l-1.png');
+        position: relative;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+    
+    #login-div .overlay {
+        background-color: rgb(255 255 255 / 70%);
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+    
+    #signup-div .overlay {
+        background-color: rgb(255 255 255 / 70%);
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+    
+     ::placeholder {
+        color: red;
+        opacity: 1;
+        /* Firefox */
+    }
+    
+     :-ms-input-placeholder {
+        /* Internet Explorer 10-11 */
+        color: red;
+    }
+    
+     ::-ms-input-placeholder {
+        /* Microsoft Edge */
+        color: red;
+    }
+</style>
+<!-- Login Modal -->
+
+
+<!-- Modals End -->
+
+<footer class="footer-area">
+    <div class="container">
+        <div class="footer-top pt-100 pb-70">
+            <div class="row">
+                <div class="col-lg-3 col-md-5 col-sm-6 col-12">
+                    <div class="footer-widget">
+                        <div class="navbar-brand">
+                            <a href="<%=base_url%>">
+                                <img src="<%=base_url%>assets/img/footer-logo.png" alt="Logo" />
+                            </a>
+                        </div>
+                        <p>You can dream, create, design, and build the most wonderful place.</p>
+                        <div class="contact-info">
+                            <div class="content">
+                                <a href="tel:+0123456987"><i class='bx bx-phone'></i>+0123 456 987</a>
+                            </div>
+                            <div class="content">
+                                <a href="javascript:void(0)"><i class='bx bx-envelope'></i><span class="" data-cfemail="066e636a6a69466c677368722865696b">info@yourdomain.com</span></a>
+                            </div>
+                            <div class="content">
+                                <a href="javascript:void(0)"><i class='bx bx-map'></i>Mon-Fri: 8 AM – 7 PM</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-5 col-sm-6 col-12">
+                    <div class="footer-widget">
+                        <h5>Top Destinations</h5>
+                        <ul class="footer-links">
+                            <li>
+                                <a href="javascript:void(0)">Las Vegas</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)">Atlantic City</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)">Toronto</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)">Banff</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)">Perth</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-5 col-sm-6 col-12">
+                    <div class="footer-widget">
+                        <h5>Quick Links</h5>
+                        <ul class="footer-links">
+                            <li>
+                                <a href="<%=base_url%>about-us">About Us</a>
+                            </li>
+                            <li>
+                                <a href="<%=base_url%>hotel">Hotel</a>
+                            </li>
+                            <li>
+                                <a href="<%=base_url%>">Flight</a>
+                            </li>
+                            <li>
+                                <a href="<%=base_url%>contact">Contact Us</a>
+                            </li>
+                            <li>
+                                <a href="<%=base_url%>faq">FAQ</a>
+                            </li>
+                            <li>
+                                <a href="<%=base_url%>terms-and-cond">Terms & Conditions</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-5 col-sm-6 col-12">
+                    <div class="footer-widget">
+                        <h5>Press Articles</h5>
+                        <ul class="footer-links">
+                            <li>
+                                <a href="javascript:void(0)">VentureBeat</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)">CNBC</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)">Bloomberg</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)">Forbes</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="copy-right-area">
+            <div class="container">
+                <div class="copy-right-content">
+                    <p>
+                        Copyright @2021 XYZ Designed By
+                        <a href="javascript:void(0);" target="_blank">
+                      WESK
+                  </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Car rental Popup -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close d-flex align-items-center justify-content-center" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true" class="ion-ios-close"></span>
+              </button>
+            </div>
+            <div class="row no-gutters">
+                <div class="col-md-12 d-flex">
+                    <div class="modal-body p-5 img d-flex align-items-center color-2">
+                        <div class="text w-100 py-0 py-md-5">
+                            <h3 class="mb-4"><i class='bx bxs-car'></i> Book Your Car</h3>
+                            <form action="<%=base_url%>bookcar" method="post" id="bookCarForm">
+                                <div id="err-div" style="margin-bottom: 15px;"></div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group mb-3">
+                                            <label class="label" for="from">From</label>
+                                            <input type="text" class="form-control" name="from" id="from" placeholder="Pickup Location">
+                                        </div>
+                                        <div class="form-group mb-3">
+                                            <label class="label" for="pdate">Pickup Date</label>
+                                            <input type="text" class="form-control date-select" name="pdate" placeholder="select date" onfocus="(this.type='date')" onblur="(this.type='text')" id="pdate">
+                                        </div>
+                                        <div class="form-group mb-3">
+                                            <label class="label" for="ptime">Pickup Time</label>
+                                            <input type="text" class="form-control" name="ptime" placeholder="Select Time" onfocus="(this.type='time')" onblur="(this.type='text')" id="ptime">
+                                        </div>
+                                        <div class="form-group mb-3">
+                                            <label class="label" for="fname">First Name</label>
+                                            <input type="text" class="form-control" name="fname" id="fname" placeholder="First Name">
+                                        </div>
+                                        <div class="form-group mb-3">
+                                            <label class="label" for="email">Email</label>
+                                            <input type="email" class="form-control" name="email" id="email" placeholder="Email">
+                                        </div>
+
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group mb-3">
+                                            <label class="label" for="to">To</label>
+                                            <input type="text" class="form-control" name="to" id="to" placeholder="Destination Location">
+                                        </div>
+                                        <div class="form-group mb-3">
+                                            <label class="label" for="rdate">Return Date</label>
+                                            <input type="text" class="form-control date-select" name="rdate" placeholder="Select Date" onfocus="(this.type='date')" onblur="(this.type='text')" id="rdate">
+                                        </div>
+                                        <div class="form-group mb-3">
+                                            <label class="label" for="rtime">Return Time</label>
+                                            <input type="text" class="form-control" name="rtime" placeholder="Select Time" onfocus="(this.type='time')" onblur="(this.type='text')" id="rtime">
+                                        </div>
+                                        <div class="form-group mb-3">
+                                            <label class="label" for="lname">Last Name</label>
+                                            <input type="text" class="form-control" name="lname" id="lname" placeholder="Last Name">
+                                        </div>
+                                        <div class="form-group mb-3">
+                                            <label class="label" for="mobile">Mobile</label>
+                                            <input type="text" class="form-control" name="mobile" id="mobile" placeholder="Mobile No.">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mt-15">
+                                    <div class="col-md-12">
+                                        <div class="form-group mb-4">
+                                            <button type="submit" class="form-control btn btn-primary rounded submit px-3" id="btn-bookcar-submit"><b>Submit</b></button>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End car rental popup -->
+
+
+<script data-cfasync="false" src="<%=base_url%>assets/js/email-decode.min.js"></script>
+<script src="<%=base_url%>assets/js/jquery.min.js"></script>
+<script src="<%=base_url%>assets/js/popper.min.js"></script>
+<script src="<%=base_url%>assets/js/bootstrap.min.js"></script>
+<script src="<%=base_url%>assets/js/sweet-alert.js"></script>
+<script type="text/javascript" src="<%=base_url%>assets/js/moment.min.js"></script>
+<script type="text/javascript" src="<%=base_url%>assets/js/datepicker.min.js"></script>
+<script type="text/javascript" src="<%=base_url%>assets/js/bootstrap-datepicker.min.js"></script>
+<!-- <script src="<%=base_url%>assets/js/jquery.nice-select.min.js"></script> -->
+<script src="<%=base_url%>assets/js/jquery.magnific-popup.min.js"></script>
+<script src="<%=base_url%>assets/js/owl.carousel.min.js"></script>
+<script src="<%=base_url%>assets/js/meanmenu.min.js"></script>
+<script src="<%=base_url%>assets/js/form-validator.min.js"></script>
+<script src="<%=base_url%>assets/js/contact-form-script.js"></script>
+<script src="<%=base_url%>assets/js/jquery.ajaxchimp.min.js"></script>
+<!-- <script src="<%=base_url%>assets/js/search-nice-select.js"></script> -->
+<script src="<%=base_url%>assets/js/script.js"></script>
+<!-- <script src="<%=base_url%>assets/js/js1/jquery.js"></script> -->
+<script src="<%=base_url%>assets/js/js1/jRespond.min.js"></script>
+<script src="<%=base_url%>assets/js/js1/jquery.fitvids.js"></script>
+<script src="<%=base_url%>assets/js/js1/superfish.js"></script>
+<script src="<%=base_url%>assets/js/js1/slick.min.js"></script>
+<script src="<%=base_url%>assets/js/js1/jquery.magnific-popup.min.js"></script>
+<script src="<%=base_url%>assets/js/js1/scrollIt.min.js"></script>
+<script src="<%=base_url%>assets/js/js1/isotope.pkgd.min.js"></script>
+<script src="<%=base_url%>assets/js/js1/jquery-ui.min.js"></script>
+<script src="<%=base_url%>assets/js/js1/select2.min.js"></script>
+<script src="<%=base_url%>assets/js/js1/countrySelect.min.js"></script>
+<script src='<%=base_url%>assets/js/js1/functions.js'></script>
+<script src="<%=base_url%>assets/js/jquery.validate.min.js"></script>
+
+<script>
+    function show_login_modal() {
+        $(function() {
+            $('#login').modal('show')
+        })
+    }
+
+    $(function() {
+
+
+        
+        let first_time = 0;  
+
+             $(document).click(function(e){
+                if($('.list-dropdown-passengers').hasClass('is-active')==true && first_time==1)
+                {
+                    $(".list-dropdown-passengers").removeClass('is-active');
+                }else{
+                    e.stopPropagation();
+                }
+            });
+
+        
+
+
+         $(".list-dropdown-passengers").click(function(e){
+            e.stopPropagation();
+        });
+         
+        $('.show-dropdown-passengers').on('click',function(e){
+            e.stopPropagation();
+            if($('.list-dropdown-passengers').hasClass('is-active')==true){
+                $('.list-dropdown-passengers').removeClass('is-active');
+                first_time=0;
+            }else{
+                $('.list-dropdown-passengers').addClass('is-active')
+                first_time=1;
+            }
+        });
+
+        $(".btn-reservation-passengers").on("click", function () {
+		    $(".list-dropdown-passengers").removeClass("is-active");
+		});
+
+
+        
+        // $(document).on("click", function(e) {
+        //     if ($(e.target).is(".list-dropdown-passengers, .search-form-passengers__input") === false) {
+        //         $(".list-dropdown-passengers").removeClass("is-active");
+        //     }
+        // });
+
+        
+        // $(".increase-btn").on("click", function (e) {
+        //     e.preventDefault();
+        //     var inputField = $(this).prev("input");
+        //     var currentInputValue = parseInt(inputField.val());
+        //     var cInpVal = parseInt($(this).parents('.col-lg-3').find('.adult').val()) + parseInt($(this).parents('.col-lg-3').find('.child').val()) + parseInt($(this).parents('.col-lg-3').find('.infants').val());
+        //     if(currentInputValue!=9 && cInpVal != 9){
+        //         inputField.val(currentInputValue + 1);
+        //         var totTV = parseInt($(this).parents('.col-lg-3').find('.adult').val()) + parseInt($(this).parents('.col-lg-3').find('.child').val()) + parseInt($(this).parents('.col-lg-3').find('.infants').val());
+        //         if(totTV==1){
+        //             $(this).parents('.col-lg-3').find('.noofpassenger').text(totTV+" passenger")
+        //             $(this).parents('.col-lg-3').find('.nooftarvellers').text(totTV+" Adult")
+        //         }else{
+        //             $(this).parents('.col-lg-3').find('.noofpassenger').text(totTV+" passengers")
+        //             $(this).parents('.col-lg-3').find('.nooftarvellers').text(totTV+" Travellers")
+        //         }
+        //     }
+        // });
+
+        $(".increase-btn").on("click", function (e) {
+            e.preventDefault();
+            var inputField = $(this).prev("input");
+            var currentInputValue = parseInt(inputField.val());
+            var cInpVal = parseInt($(this).parents('.col-lg-3').find('.adult').val()) + parseInt($(this).parents('.col-lg-3').find('.child').val()) + parseInt($(this).parents('.col-lg-3').find('.infants').val());
+            if(currentInputValue!=9 && cInpVal != 9){
+                inputField.val(currentInputValue + 1);
+                var totTV = parseInt($(this).parents('.col-lg-3').find('.adult').val()) + parseInt($(this).parents('.col-lg-3').find('.child').val()) + parseInt($(this).parents('.col-lg-3').find('.infants').val());
+                if(totTV==1){
+                    $(this).parents('.col-lg-3').find('.noofpassenger').text(totTV+" passenger")
+                    $(this).parents('.col-lg-3').find('.nooftarvellers').text(totTV+" Adult")
+                }else{
+                    $(this).parents('.col-lg-3').find('.noofpassenger').text(totTV+" passengers")
+                    $(this).parents('.col-lg-3').find('.nooftarvellers').text(totTV+" Travellers")
+                }
+            }
+        });
+
+        $(".decrease-btn").on("click", function (e) {
+            e.preventDefault();
+            var inputField = $(this).next("input");
+            var currentInputValue = parseInt(inputField.val());
+            // alert(currentInputValue);
+            if(inputField.hasClass('child')==true){
+                if(currentInputValue>0){
+                    inputField.val(currentInputValue - 1);
+                    var totTV = parseInt($('.adult').val()) + parseInt($('.child').val()) + parseInt($('.infants').val())
+                    if(totTV==1){
+                        $('.noofpassenger').text(totTV+" passenger")
+                        $('.nooftarvellers').text(totTV+" Adult")
+                    }else{
+                        $('.noofpassenger').text(totTV+" passengers")
+                        $('.nooftarvellers').text(totTV+" Travellers")
+                    }
+                }
+            }else{
+                if(currentInputValue > 0){
+                    inputField.val(currentInputValue - 1);
+                    var totTV = parseInt($('.adult').val()) + parseInt($('.child').val()) + parseInt($('.infants').val())
+                    if(totTV==1){
+                        $('.noofpassenger').text(totTV+" passenger")
+                        $('.nooftarvellers').text(totTV+" Adult")
+                    }else{
+                        $('.noofpassenger').text(totTV+" passengers")
+                        $('.nooftarvellers').text(totTV+" Travellers")
+                    }
+                }
+            }
+            // if (currentInputValue < 1) {
+            //     inputField.val("0");
+            // }
+        });
+
+        $('input[name="class"]').on('click',function () {
+            if($(this).val()=="PREMIUM_ECONOMY"){
+                $('.flightclass').text('PREMIUM ECONOMY')
+            }else{
+                $('.flightclass').text($(this).val())
+            }
+            
+        })
+
+        $('#searchForm').validate({
+            rules: {
+                city: {
+                    required: true,
+                },
+                checks_date: {
+                    required: true,
+                },
+                num_of_adults: {
+                    required: true,
+                },
+                num_of_rooms: {
+                    required: true,
+                },
+                submitHandler: function(form) {
+                    form.submit();
+                }
+            }
+        });
+    });
+</script>
+<script>
+    // CHAT BOOT MESSENGER////////////////////////
+
+
+    $(document).ready(function() {
+        $(".chat_on").click(function() {
+            $(".Layout").toggle();
+            $(".chat_on").hide(300);
+        });
+
+        $(".chat_close_icon").click(function() {
+            $(".Layout").hide();
+            $(".chat_on").show(300);
+        });
+    });
+
+    jQuery(function($) {
+        var path = window.location.href;
+        $('#main-navbar li a').each(function() {
+            if (this.href === path) {
+                $(this).addClass('active');
+            }
+        });
+    });
+   
+</script>
+
+<%if(session){%>
+
+
+    <% }else{ %>
+        <div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close d-flex align-items-center justify-content-center" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true" class="ion-ios-close"></span>
+                        </button>
+                    </div>
+                    <div class="row no-gutters">
+                        <div class="col-md-12" id="login-div">
+                            <div class="modal-body p-5 img d-flex align-items-center color-2">
+                                <div class="text w-100 py-0 py-md-5">
+                                    <form action="<%=base_url%>Login" method="post" id="LoginForm">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <h3 class="mb-4"><i class='bx bx-user'></i> Sign In</h3>
+                                                <div id="err-div"></div>
+                                                <div class="form-group mb-3">
+                                                    <label class="label" for="l_email">Email</label>
+                                                    <input type="email" id="l_email" name="l_email" class="form-control mb-1" placeholder="someone@something.domain" required />
+                                                </div>
+                                                <label class="forgot">Forgot password ?</label>
+                                                <div class="form-group mb-3">
+                                                    <label class="label" for="l_password">Password</label>
+                                                    <input type="password" id="l_password" name="l_password" class="form-control mb-1" placeholder="***********" required>
+                                                </div>
+                                                <div class="form-group mb-4">
+                                                    <button type="submit" class="form-control btn btn-primary rounded submit px-3" id="btn-css-sign"><b>Sign In</b></button>
+                                                </div>
+                                                <div class="form-group mb-4">
+                                                    <button type="button" class="form-control btn btn-info rounded submit px-3" id="btn-guest-signin"><b>Sign In as Guest</b></button>
+                                                </div>
+                                                <div class="form-group mb-4" style="display: none;">
+                                                    <div class="google-btn" onclick="gotologin()">
+                                                        <div class="google-icon-wrapper">
+                                                            <img class="google-icon" src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" />
+                                                        </div>
+                                                        <p class="btn-text"><b>Sign in with google</b></p>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group mb-4">
+                                                    <p class="dark-color text-center" style="width: 96%; float: right;">
+                                                        <span class="dark-color d-inline-block  line-height-2">Don't have an account ? <a href="javascript:void(0)" id="btn-gotosignup">Sign up</a></span>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <input type="hidden" id="id">
+                                    <input type="hidden" id="adc">
+                                    <input type="hidden" id="item">
+                                    <input type="hidden" id="search">
+                                    <input type="hidden" id="type">
+                                    <input type="hidden" id="url">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12" id="signup-div">
+                            <div class="modal-body p-5 img d-flex align-items-center color-2">
+                                <div class="text w-100 py-0 py-md-5">
+                                    <form action="<%=base_url%>Signup" method="post" id="SignupForm">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <h3 class="mb-4"><i class='bx bx-user'></i> Sign Up</h3>
+                                                <div id="err-div"></div>
+                                                <div class="form-group mb-3">
+                                                    <label class="label" for="username">Username</label>
+                                                    <input type="text" id="username" name="username" class="form-control mb-1" placeholder="Enter username" required />
+                                                </div>
+                                                <div class="form-group mb-3">
+                                                    <label class="label" for="email">Email</label>
+                                                    <input type="email" name="email" class="form-control mb-1" placeholder="Enter email" required />
+                                                </div>
+                                                <div class="form-group mb-3">
+                                                    <label class="label" for="password">Password</label>
+                                                    <input type="password" id="password" name="password" class="form-control mb-1" placeholder="***********" required>
+                                                </div>
+                                                <div class="form-group mb-3">
+                                                    <label class="label" for="confirmpassword">Confirm Password</label>
+                                                    <input type="password" id="confirmpassword" name="confirmpassword" class="form-control mb-1" placeholder="************" required>
+                                                </div>
+                                                <div class="form-group mb-4">
+                                                    <button type="submit" class="form-control btn btn-primary rounded submit px-3" id="btn-css-signup"><b>Sign Up</b></button>
+                                                </div>
+                                                <div class="form-group mb-4">
+                                                    <p class="text-center" style="width: 96%; float: right;">
+                                                        <span class="d-inline-block line-height-2">Have an account ? <a href="javascript:void(0)" id="btn-gotosignin">Sign in</a></span>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12" id="forgot-div" style="display: none;">
+                            <div class="modal-body p-5 img d-flex align-items-center color-2">
+                                <div class="text w-100 py-0 py-md-5">
+                                    <form action="<%=base_url%>forgot" method="post" id="ForgotForm">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <h3 class="mb-4"><i class='bx bx-user'></i> Forgot Password</h3>
+                                                <div id="err-div"></div>
+                                                <div class="form-group mb-3">
+                                                    <label class="label" for="email">Email</label>
+                                                    <input type="email" name="email" class="form-control mb-1" placeholder="Enter email" required />
+                                                </div>
+                                                <div class="form-group mb-4">
+                                                    <button type="submit" class="form-control btn btn-primary rounded submit px-3" style="width: 100%;color:#fff;"><b>Send</b></button>
+                                                </div>
+                                                <div class="form-group mb-4">
+                                                    <p class="dark-color text-center" style="width: 96%; float: right;">
+                                                        <span class="dark-color d-inline-block  line-height-2">Have an account ? <a href="javascript:void(0)" class="btn-gotosignin">Sign in</a></span>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            (function($) {
+  var selector = ".section";
+
+  var $slides = $(selector);
+
+  var currentSlide = 0;
+  var isAnimating = false;
+
+  var stopAnimation = function() {
+    setTimeout(function() {
+      isAnimating = false;
+    }, 300);
+  };
+
+  var bottomIsReached = function($elem) {
+    var rect = $elem[0].getBoundingClientRect();
+    return rect.bottom <= $(window).height();
+  };
+
+  var topIsReached = function($elem) {
+    var rect = $elem[0].getBoundingClientRect();
+    return rect.top >= 0;
+  };
+
+  document.addEventListener(
+    "wheel",
+    function(event) {
+      var $currentSlide = $($slides[currentSlide]);
+
+      if (isAnimating) {
+        event.preventDefault();
+        return;
+      }
+
+      var direction = -event.deltaY;
+
+      if (direction < 0) {
+        // next
+        if (currentSlide + 1 >= $slides.length) return;
+        if (!bottomIsReached($currentSlide)) return;
+        event.preventDefault();
+        currentSlide++;
+        var $slide = $($slides[currentSlide]);
+        var offsetTop = $slide.offset().top;
+        isAnimating = true;
+        $("html, body").animate(
+          {
+            scrollTop: offsetTop
+          },
+          1000,
+          stopAnimation
+        );
+      } else {
+        // back
+        if (currentSlide - 1 < 0) return;
+        if (!topIsReached($currentSlide)) return;
+        event.preventDefault();
+        currentSlide--;
+        var $slide = $($slides[currentSlide]);
+        var offsetTop = $slide.offset().top;
+        isAnimating = true;
+        $("html, body").animate(
+          {
+            scrollTop: offsetTop
+          },
+          1000,
+          stopAnimation
+        );
+      }
+    },
+    { passive: false }
+  );
+})(jQuery);
+
+        </script>
+
+
+        <script>
+            $(function() {
+
+                $('#btn-gotosignup').on('click', function() {
+                    $('#login-div').css("display", "none")
+                    $('#signup-div').css("display", "block")
+                })
+                $('#btn-gotosignin').on('click', function() {
+                    $('#signup-div').css("display", "none")
+                    $('#login-div').css("display", "block")
+                })
+                $('.forgot').on('click', function() {
+                    $('#login-div').css("display", "none")
+                    $('#forgot-div').css("display", "block")
+                })
+                $('.btn-gotosignin').on('click', function() {
+                    $('#forgot-div').css("display", "none")
+                    $('#login-div').css("display", "block")
+                })
+                $('#SignupForm').validate({
+                        rules: {
+                            username: {
+                                required: true,
+                            },
+                            email: {
+                                required: true
+                            },
+                            password: {
+                                required: true
+                            },
+                            confirmpassword: {
+                                required: true,
+                                equalTo: "#password"
+                            }
+                        },
+                        messages: {
+                            confirmpassword: {
+                                equalTo: "password din't match"
+                            }
+                        }
+                    })
+                    // SignupForm
+                $('#SignupForm').on('submit', function(event) {
+                    event.preventDefault();
+                    $('#err-div').html(``);
+                    if ($('#SignupForm').valid() == true) {
+
+                        $('#btn-css-signup').text('Loading...')
+                        $.ajax({
+                            url: base_url + 'Signup',
+                            type: 'POST',
+                            data: $('#SignupForm').serialize(),
+                            success: function(response) {
+                                $('#btn-css-signup').text('Sign Up')
+                                if (response.status == true) {
+                                    $('#SignupForm #err-div').html(`<p class=" text-success text-center">${response.msg}</p>`);
+                                    $('#SignupForm').trigger("reset");
+                                } else {
+                                    $('#SignupForm #err-div').html(`<p class="text-error text-danger text-center">${response.msg}</p>`);
+                                }
+
+                            },
+                            error: function(error) {
+                                console.log(error);
+                            }
+                        });
+                    }
+                });
+
+                $('#LoginForm').validate({
+                        rules: {
+                            l_email: {
+                                required: true,
+                            },
+                            l_password: {
+                                required: true
+                            }
+                        }
+                    })
+                    // LoginForm
+
+                $('#btn-guest-signin').on('click',function(){
+                    $('#btn-guest-signin').text('Loading...')
+                    $.ajax({
+                        url: base_url + 'Login',
+                        type: 'POST',
+                        data: {'utype':'guest'},
+                        success: function(response) {
+                            // location.reload();
+                            location.href = $('#url').val()
+                        },
+                        error: function(error) {
+                            console.log(error);
+                        }
+                    });
+                })
+
+                $('#LoginForm').on('submit', function(event) {
+                    event.preventDefault();
+                    if ($('#LoginForm').valid() == true) {
+                        $('#err-div').html(``);
+                        $('#btn-css-sign').text('Loading...')
+                        $.ajax({
+                            url: base_url + 'Login',
+                            type: 'POST',
+                            data: $('#LoginForm').serialize(),
+                            success: function(response) {
+                                if (response.status == true) {
+                                    if ($('#id').val() != '') {
+                                        saveFlight($('#item').val(), $('#id').val(), $('#adc').val(), $('#search').val(), $('#type').val())
+                                    } else {
+                                        if($('#url').val()==''){
+                                            location.reload();
+                                        }else{
+                                            window.location.href = $('#url').val()
+                                        }
+                                    }
+                                } else {
+                                    $('#LoginForm #err-div').html(`<p class="text-error text-danger text-center">${response.msg}</p>`);
+                                }
+                                $('#btn-css-sign').text('Sign In')
+                            },
+                            error: function(error) {
+                                console.log(error);
+                            }
+                        });
+                    }
+                });
+
+                $('#ForgotForm').validate({
+                        rules: {
+                            email: {
+                                required: true,
+                            }
+                        }
+                    })
+                    // LoginForm
+                $('#ForgotForm').on('submit', function(event) {
+                    event.preventDefault();
+                    if ($('#ForgotForm').valid() == true) {
+                        $('#err-div').html(``);
+                        $('#btn-css-sign').text('Loading...')
+                        $.ajax({
+                            url: base_url + 'forgotpassword',
+                            type: 'POST',
+                            data: $('#ForgotForm').serialize(),
+                            success: function(response) {
+                                if (response.res == true) {
+                                    $('#ForgotForm #err-div').html(`<p class="text-error text-success text-center">${response.msg}</p>`);
+                                    $('#ForgotForm').trigger("reset");
+                                } else {
+                                    $('#ForgotForm #err-div').html(`<p class="text-error text-danger text-center">${response.msg}</p>`);
+                                }
+                                $('#btn-css-sign').text('Send')
+                            },
+                            error: function(error) {
+                                console.log(error);
+                            }
+                        });
+                    }
+                });
+
+
+
+            });
+
+            function ShowPassword(id) {
+                var x = document.getElementById(id);
+                if (x.type === "password") {
+                    x.type = "text";
+                } else {
+                    x.type = "password";
+                }
+            }
+
+            function gotologin() {
+                window.location.href = "<%=base_url%>google"
+            }
+        </script>
+        <% } %>
+            <script>
+                $(function() {
+                    $('#bookCarForm').validate({
+                            rules: {
+                                from: {
+                                    required: true
+                                },
+                                to: {
+                                    required: true
+                                },
+                                pdate: {
+                                    required: true
+                                },
+                                ptime: {
+                                    required: true
+                                },
+                                fname: {
+                                    required: true,
+                                    minlength: 3
+                                },
+                                lname: {
+                                    required: true,
+                                    minlength: 3
+                                },
+                                mobile: {
+                                    required: true,
+                                    min: 10000
+                                },
+                                email: {
+                                    required: true
+                                },
+                                rdate: {
+                                    required: true
+                                },
+                                rtime: {
+                                    required: true
+                                }
+                            },
+                            messages:{
+                                fname: {
+                                    minlength: "First Name is invalid"
+                                },
+                                lname: {
+                                    minlength: "Last name is invalid"
+                                },
+                                mobile: {
+                                    min: "invalid mobile number"
+                                }
+                            }
+                        })
+                        // SignupForm
+                    $('#bookCarForm').on('submit', function(event) {
+                        event.preventDefault();
+                        $('#err-div').html(``);
+                        if ($('#bookCarForm').valid() == true) {
+
+                            $('#btn-bookcar-submit').text('Loading...')
+                            $.ajax({
+                                url: base_url + 'bookcar',
+                                type: 'POST',
+                                data: $('#bookCarForm').serialize(),
+                                success: function(response) {
+                                    $('#btn-bookcar-submit').text('Submit')
+                                    $('#bookCarForm #err-div').html(`<p class=" text-success text-center">${response.msg}</p>`);
+                                    $('#bookCarForm').trigger("reset");
+                                },
+                                error: function(error) {
+                                    console.log(error);
+                                }
+                            });
+                        }
+                    });
+                })
+            </script>
+            </body>
+
+            </html>

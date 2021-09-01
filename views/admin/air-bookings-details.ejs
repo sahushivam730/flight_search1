@@ -1,0 +1,159 @@
+<%-include('./inc/header');%>
+<%let blob = JSON.parse(data[0].flight_blob)%>
+
+<div class="row">
+  <div class="col-md-10 ml-auto mr-auto">
+    <div class="card bg-default shadow">
+      <div class="card-header bg-transparent border-0">
+        <div class="row">
+          <div class="col-lg-6 col-sm-6 col-xs-6 text-left">
+            <h5 class="text-white">Ticketing Date: <%=blob[0].lastTicketingDate%></h5>
+            <h5 class="text-white"><%let stops=blob[0].itineraries[0].segments.length-1%><%=(stops!=0)?stops+' stops':'nonstop'%></h5>
+            <h5 class="text-white">Price: <%=blob[0].price.currency%> <%=blob[0].price.grandTotal%> / p</h5>
+            <h5 class="text-white">Type: <%=blob[0].type%></h5>
+          </div>
+          <div class="col-lg-6 col-sm-6 col-xs-6" style="    text-align: end;">
+            <h3 class="text-white"><%=blob[0].search%></h3>
+            <a class="btn btn-success" href="<%=base_url%>admin/air-billing/billing-<%=booking_id%>">Billing</a>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table  align-items-center table-dark table-flush">
+            <thead class="thead-dark">
+              <tr style="font-weight: 700;">
+                <th>Departure</th>
+                <th></th>
+                <th  class="text-center">Arrival | at</th>
+                <th  class="text-center">Duration | Class</th>
+              </tr>
+            </thead>
+            <tbody class="list">
+              <%blob[0].itineraries.forEach(function(itinerarie){
+                let countSegs = itinerarie.segments.length
+                let Time = itinerarie.duration.substring(2,8)
+                let aa_1 = Time.split('H')
+                let aa_2 = aa_1[0]
+                let aa_3 = aa_1[1].substring(0, aa_1[1].length - 1);
+                let duration = ''
+                if(aa_2.length>0){duration=aa_2+"h"}
+                if(aa_3.length>0){duration=duration+" "+aa_3+"m"}
+                %>
+                <tr>
+                  <td><%=itinerarie.segments[0].departure.iataCode%>  | <%=moment(itinerarie.segments[0].departure.at).format('HH:mm A')%></td>
+                  <td><i class="ni ni-fat-delete"></i><i class="ni ni-fat-delete"></i><i class="ni ni-fat-delete"></i><i class="ni ni-fat-delete"></i><i class="ni ni-fat-delete"></i><i class="ni ni-fat-delete"></i><i class="ni ni-button-play"></i></td>
+                  <td class="text-center"><%=itinerarie.segments[countSegs-1].arrival.iataCode%>   | <%=moment(itinerarie.segments[countSegs-1].arrival.at).format('HH:mm A')%></td>
+                  <td class="text-center"><%=duration%></td>
+                </tr>
+                <%itinerarie.segments.forEach(function(segment,index){
+                      let Time = segment.duration.substring(2,8)
+                      let aa_1 = Time.split('H')
+                      let aa_2 = aa_1[0]
+                      let aa_3 = aa_1[1].substring(0, aa_1[1].length - 1);
+                      let duration = ''
+                      if(aa_2.length>0){duration=aa_2+"h"}
+                      if(aa_3.length>0){duration=duration+" "+aa_3+"m"}
+                  %>
+                  <tr style="background-color: #5e6d86;">
+                    <td><%=segment.departure.iataCode%> | <%=moment(segment.departure.at).format('HH:mm A')%></td>
+                    <td><i class="ni ni-fat-delete"></i><i class="ni ni-fat-delete"></i><i class="ni ni-fat-delete"></i><i class="ni ni-fat-delete"></i><i class="ni ni-fat-delete"></i><i class="ni ni-fat-delete"></i><i class="ni ni-button-play"></i></td>
+                    <td class="text-center"><%=segment.arrival.iataCode%> | <%=moment(segment.arrival.at).format('HH:mm A')%></td>
+  
+                  <td class="text-center"><%=duration%> | <%=blob[0].travelerPricings[0].fareDetailsBySegment[index].cabin%></td>
+                  </tr>
+                <%})%>
+              <%})%>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <h3 class="text-white">Travellers Info</h3>
+          <table class="table  align-items-center table-dark table-flush  ">
+            <thead class="thead-dark">
+              <tr style="font-weight: 700;">
+                <th>Sr.</th>
+                <th>Name</th>
+                <th>DOB</th>
+                <th>Type</th>
+                <th>Wheelchair</th>
+                <th>Address</th>
+                <th>Nationality</th>
+                <th>Passport No.</th>
+                <th>Passport Exp.</th>
+                <th>Passport Country</th>
+                <th>Passport Issued Country</th>
+                <th>Known Traveller No.</th>
+                
+              </tr>
+            </thead>
+            <tbody class="list">
+              <%travellers.forEach(function(trvl,index){index++%>
+              <tr>
+                <td><%=index%></td>
+                <td><%=trvl.f_name%> <%=trvl.l_name%></td>
+                <td><%=moment(trvl.dob).format('Y-MM-DD')%>(<%=moment().diff(trvl.dob, 'years')%>)</td>
+                <td><%age=moment().diff(trvl.dob, 'years')%><%=(age>12)?'Adult':'Child'%></td>
+                <td><%=trvl.wheelchair%></td>
+                <td><%=trvl.address%></td>
+                <td><%=trvl.nationality%></td>
+                <td><%=trvl.ppno%></td>
+                <td><%=trvl.ppexp%></td>
+                <td><%=trvl.ppicountry%></td>
+                <td><%=trvl.ktrvno%></td>
+                <td><%=trvl.flyerno%></td>
+                
+              </tr>
+              <%})%>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <h3 class="text-white">Contact Info</h3>
+          <table class="table  align-items-center table-dark table-flush  ">
+            <thead class="thead-dark">
+              <tr style="font-weight: 700;">
+                <th>Name</th>
+                <th>Email</th>
+                <th>Mobile</th>
+                <th>Address</th>
+                <th>City</th>
+                <th>State</th>
+                <th>Zip/Postal Code</th>
+                <th>Country</th>
+              </tr>
+            </thead>
+            <tbody class="list">
+              <%contact_info.forEach(function(info){%>
+              <tr>
+                <td><%=info.f_name%> <%=info.l_name%></td>
+                <td><%=info.email%></td>
+                <td>+<%=info.code%> <%=info.mobile%></td>
+                <td><%=info.address%></td>
+                <td><%=info.city%></td>
+                <td><%=info.state%></td>
+                <td><%=info.zip%></td>
+                <td><%=info.country%></td>
+              </tr>
+              <%})%>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%-include('./inc/footer');%>
+<script>
+  function findDOB(dob){
+    dob = new Date(dob);
+    var today = new Date();
+    var age = Math.floor((today-dob) / (365.25 * 24 * 60 * 60 * 1000));
+    $('#age').html(age+' years old');
+  }
+</script>

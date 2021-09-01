@@ -1,0 +1,658 @@
+<%-include('includes/header')%>
+
+    <style>
+        #hotel_loader {
+            width: 300px;
+            display: block;
+            margin: 0px auto;
+        }
+        
+        .hotel-list-img {
+            width: 100%;
+            height: 250px;
+        }
+        
+        .top-destination-section .item-single .content h3 a {
+            font-size: 16px;
+        }
+        
+        .long-str {
+            display: block;
+            white-space: nowrap;
+            width: 20em;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .box-result1 img {
+            width: 220px;
+        }
+        
+        .limheight {
+            height: auto;
+            /*your fixed height*/
+            -webkit-column-count: 3;
+            -moz-column-count: 3;
+            column-count: 3;
+            /*3 in those rules is just placeholder -- can be anything*/
+        }
+        
+        .limheight li {
+            display: inline-block;
+            /*necessary*/
+            text-overflow: ellipsis;
+            max-width: 110px;
+            overflow: hidden;
+            line-height: 1;
+            white-space: nowrap;
+            font-size: 9px;
+            ;
+        }
+        
+        .description {
+            display: inline-block;
+            /*necessary*/
+            text-overflow: ellipsis;
+            max-width: 420px;
+            overflow: hidden;
+            line-height: 1;
+            white-space: nowrap;
+        }
+        
+        .page-search .section-content {
+            background-color: #f9f8fe;
+        }
+        
+        #distance_in_km {
+            padding: 0px !important;
+        }
+    </style>
+
+    <div id="home" class="home-banner-area home-style-three" style="background-image: url(<%=base_url%>/assets/img/banner/map4.png);    background-position: center;">
+        <div class="container-fluid p-0">
+            <div class="search-form" style="bottom:0px;">
+                <%-include('includes/hotel-search-form')%>
+            </div>
+        </div>
+    </div>
+
+
+
+    <section id="top-destination" class="top-destination-section  pb-70 bg-light">
+
+        <div id="content-wrap">
+
+            <!-- === Section Flat =========== -->
+            <div class="section-flat">
+
+                <div class="section-content" style="padding-top: 0px !important;">
+
+
+                    <div class="container">
+                        <div class="row">
+
+                            <div class="col-md-12">
+
+                                <ul class="breadcrumb">
+                                    <li><a href="<%=base_url%>"><i class="fa fa-home"></i></a></li>
+                                    <li><a href="<%=base_url%>hotel">Hotels</a></li>
+                                    <li>
+                                        <a href="javascript:;">
+                                            <%=params.city%>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- .col-md-12 end -->
+                            <div class="col-md-12">
+
+                                <div class="page-single-content sidebar-left">
+                                    <div class="row">
+                                        <div class="col-lg-9 col-md-12 col-lg-push-3" id="main-hotel-search-content">
+
+                                        </div>
+                                        <!-- .col-lg-8 end -->
+
+                                        <div class="col-lg-3 col-md-12 col-lg-pull-9">
+                                            <div class="sidebar style-1">
+                                                <div class="box-widget">
+                                                    <h5 class="box-title">Price Range</h5>
+                                                    <div class="box-content">
+                                                        <div class="slider-dragable-range slider-range-price">
+                                                            <input type="text" class="price" id="price_range" value="50-500" />
+                                                            <div class="slider-range" data-slider-min-value="0" data-slider-max-value="1000" data-range-start-value="50" data-range-end-value="550" data-slider-value-sign="&#8364;"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="box-widget">
+                                                    <h5 class="box-title">Stops</h5>
+                                                    <div class="box-content">
+                                                        <ul class="check-boxes-custom list-checkboxes">
+
+                                                            <li>
+                                                                <label class="label-container checkbox-default">5 Star
+                                                                <input type="checkbox" onclick="hotel_filter()" name="star_rate" value="5">
+                                                                <span class="checkmark"></span>
+                                                            </label>
+                                                            </li>
+                                                            <li>
+                                                                <label class="label-container checkbox-default">4 Star
+                                                                <input type="checkbox" onclick="hotel_filter()" name="star_rate" value="4" />
+                                                                <span class="checkmark"></span>
+                                                            </label>
+                                                            </li>
+
+                                                            <li>
+                                                                <label class="label-container checkbox-default">3 Star
+                                                                <input type="checkbox" onclick="hotel_filter()" name="star_rate" value="3" />
+                                                                <span class="checkmark"></span>
+                                                            </label>
+                                                            </li>
+
+                                                            <li>
+                                                                <label class="label-container checkbox-default">2 Star
+                                                                <input type="checkbox" onclick="hotel_filter()" name="star_rate" value="2" />
+                                                                <span class="checkmark"></span>
+                                                            </label>
+                                                            </li>
+
+                                                            <li>
+                                                                <label class="label-container checkbox-default">1 Star
+                                                                    <input type="checkbox" onclick="hotel_filter()" name="star_rate" value="1" />
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </li>
+
+                                                        </ul>
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="box-widget">
+                                                    <h5 class="box-title">Distance In KM</h5>
+                                                    <div class="box-content">
+                                                        <span>
+                                                            Distance: <b id="distance_km">5</b> <b>KM</b>
+                                                        </span>
+                                                        <input type="range" min="5" max="100" value="5" class="slider" id="distance_in_km" name="distance_in_km" onchange="ShowNumRooms(this,'distance_km')" />
+                                                    </div>
+                                                </div>
+
+
+                                                <!-- radiusUnit radius -->
+                                                <div class="box-widget">
+                                                    <h5 class="box-title">Amenities</h5>
+                                                    <ul class="check-boxes-custom list-checkboxes">
+                                                        <li>
+                                                            <label class="label-container checkbox-default">WIFI
+                                                            <input type="checkbox" onclick="hotel_filter()" name="amini_data" value="WIFI" />
+                                                            <span class="checkmark"></span>
+                                                        </label>
+                                                        </li>
+
+                                                        <li>
+                                                            <label class="label-container checkbox-default">FITNESS CENTER
+                                                            <input type="checkbox" onclick="hotel_filter()" name="amini_data" value="FITNESS_CENTER" />
+                                                            <span class="checkmark"></span>
+                                                        </label>
+                                                        </li>
+                                                        <li>
+                                                            <label class="label-container checkbox-default">SWIMMING POOL
+                                                            <input type="checkbox" onclick="hotel_filter()" name="amini_data" value="SWIMMING_POOL" />
+                                                            <span class="checkmark"></span>
+                                                        </label>
+                                                        </li>
+                                                        <li>
+                                                            <label class="label-container checkbox-default">AIRPORT SHUTTLE
+                                                            <input type="checkbox" onclick="hotel_filter()" name="amini_data" value="AIRPORT_SHUTTLE" />
+                                                            <span class="checkmark"></span>
+                                                        </label>
+                                                        </li>
+                                                        <li>
+                                                            <label class="label-container checkbox-default">RESTAURANT
+                                                            <input type="checkbox" onclick="hotel_filter()" name="amini_data" value="RESTAURANT" />
+                                                            <span class="checkmark"></span>
+                                                        </label>
+                                                        </li>
+                                                        <li>
+                                                            <label class="label-container checkbox-default">PARKING
+                                                            <input type="checkbox" onclick="hotel_filter()" name="amini_data" value="PARKING" />
+                                                            <span class="checkmark"></span>
+                                                        </label>
+                                                        </li>
+                                                        <li>
+                                                            <label class="label-container checkbox-default">SPA
+                                                            <input type="checkbox" onclick="hotel_filter()" name="amini_data" value="SPA" />
+                                                            <span class="checkmark"></span>
+                                                        </label>
+                                                        </li>
+                                                        <li>
+                                                            <label class="label-container checkbox-default">AIR CONDITIONING
+                                                            <input type="checkbox" onclick="hotel_filter()" name="amini_data" value="AIR_CONDITIONING" />
+                                                            <span class="checkmark"></span>
+                                                        </label>
+                                                        </li>
+                                                        <li>
+                                                            <label class="label-container checkbox-default">PETS ALLOWED
+                                                            <input type="checkbox" onclick="hotel_filter()" name="amini_data" value="PETS_ALLOWED" />
+                                                            <span class="checkmark"></span>
+                                                        </label>
+                                                        </li>
+                                                        <li>
+                                                            <label class="label-container checkbox-default">BUSINESS CENTER
+                                                            <input type="checkbox" onclick="hotel_filter()" name="amini_data" value="BUSINESS_CENTER" />
+                                                            <span class="checkmark"></span>
+                                                        </label>
+                                                        </li>
+                                                        <li>
+                                                            <label class="label-container checkbox-default">DISABLED FACILITIES
+                                                            <input type="checkbox" onclick="hotel_filter()" name="amini_data" value="DISABLED_FACILITIES" />
+                                                            <span class="checkmark"></span>
+                                                        </label>
+                                                        </li>
+                                                        <li>
+                                                            <label class="label-container checkbox-default">MEETING ROOMS
+                                                            <input type="checkbox" onclick="hotel_filter()" name="amini_data" value="MEETING_ROOMS" />
+                                                            <span class="checkmark"></span>
+                                                        </label>
+                                                        </li>
+                                                        <li>
+                                                            <label class="label-container checkbox-default">NO KID LLOWED
+                                                            <input type="checkbox" onclick="hotel_filter()" name="amini_data" value="NO_KID_ALLOWED" />
+                                                            <span class="checkmark"></span>
+                                                        </label>
+                                                        </li>
+                                                        <li>
+                                                            <label class="label-container checkbox-default">TENNIS
+                                                            <input type="checkbox" onclick="hotel_filter()" name="amini_data" value="TENNIS" />
+                                                            <span class="checkmark"></span>
+                                                        </label>
+                                                        </li>
+
+                                                        <li>
+                                                            <label class="label-container checkbox-default">GOLF
+                                                            <input type="checkbox" onclick="hotel_filter()" name="amini_data" value="GOLF" />
+                                                            <span class="checkmark"></span>
+                                                        </label>
+                                                        </li>
+                                                        <li>
+                                                            <label class="label-container checkbox-default">KITCHEN
+                                                            <input type="checkbox" onclick="hotel_filter()" name="amini_data" value="KITCHEN" />
+                                                            <span class="checkmark"></span>
+                                                        </label>
+                                                        </li>
+                                                        <li>
+                                                            <label class="label-container checkbox-default">ANIMAL WATCHING
+                                                            <input type="checkbox" onclick="hotel_filter()" name="amini_data" value="ANIMAL_WATCHING"/>
+                                                            <span class="checkmark"></span>
+                                                        </label>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <!-- .box-widget end -->
+                                            </div>
+                                            <!-- .sidebar end -->
+                                        </div>
+                                        <!-- .col-lg-4 end -->
+                                    </div>
+                                    <!-- .row end -->
+                                </div>
+                                <!-- .page-single-content end -->
+                            </div>
+                            <!-- .col-md-12 end -->
+                        </div>
+                        <!-- .row end -->
+                    </div>
+                </div>
+                <!-- .section-content end -->
+            </div>
+            <!-- .section-flat end -->
+        </div>
+        <!-- #content-wrap -->
+    </section>
+
+    <section id="team" class="team-section ptb-100">
+        <div class="container">
+            <div class="section-title">
+                <h2>Featured In</h2>
+            </div>
+            <div class="row">
+                <div class=" col-lg-3 col-sm-6 col-md-6">
+                    <div class="item-single mb-30">
+                        <div class="image">
+                            <img src="<%=base_url%>assets/img/featured/f2.webp" alt="Demo Image">
+                        </div>
+                        <div class="content">
+                            <div class="title">
+                                <h3>
+                                    <a href="javascript:void(0)">"Snaptravel closes its series A at $21.2MM"</a>
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class=" col-lg-3 col-sm-6 col-md-6">
+                    <div class="item-single mb-30">
+                        <div class="image">
+                            <img src="<%=base_url%>assets/img/featured/f1.png" alt="Demo Image">
+                        </div>
+                        <div class="content">
+                            <div class="title">
+                                <h3>
+                                    <a href="javascript:void(0)">"See super-low hotel deals, in private, with snaptravel.com"</a>
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class=" col-lg-3 col-sm-6 col-md-6">
+                    <div class="item-single mb-30">
+                        <div class="image" style="text-align: center;">
+                            <img src="<%=base_url%>assets/img/featured/f3.png" alt="Demo Image">
+                        </div>
+                        <div class="content">
+                            <div class="title">
+                                <h3>
+                                    <a href="javascript:void(0)">"Better rates than you'd find on sites like Kayak or Expedia"</a>
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class=" col-lg-3 col-sm-6 col-md-6">
+                    <div class="item-single mb-30">
+                        <div class="image">
+                            <img src="<%=base_url%>assets/img/featured/forbs.png" alt="Demo Image">
+                        </div>
+                        <div class="content">
+                            <div class="title">
+                                <h3>
+                                    <a href="javascript:void(0)">"Snaptravel closes its series A at $21.2MM"</a>
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-12 col-md-12 text-center">
+                    <div class="about-btn">
+                        <a href="#" class="btn-primary">View all Press</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <%-include('includes/footer')%>
+
+        <script>
+            function ShowNumRooms(range, id) {
+                let r_v = range.value;
+                $('#' + id).html(r_v);
+                hotel_filter();
+            }
+
+            // hotel search functionality
+            $("#hotel-search-cities").select2({
+                tags: false,
+                multiple: false,
+                tokenSeparators: [',', ' '],
+                minimumInputLength: 1,
+                minimumResultsForSearch: 20,
+
+                ajax: {
+                    url: base_url + 'search-IATA',
+                    dataType: "json",
+                    type: "POST",
+                    data: function(params) {
+                        var queryParameters = {
+                            keyword: params.term
+                        }
+                        return queryParameters;
+                    },
+                    processResults: function(data) {
+                        return {
+                            results: $.map(data.data, function(item) {
+                                return {
+                                    text: `(${item.code}), ${item.cityName} ${item.countryName}`,
+                                    id: item.code
+                                }
+                            })
+                        };
+                    }
+                }
+            });
+
+
+            // $(function(){
+            //     var rurl      = window.location.href;
+            //     var arr_url   = rurl.split("?");
+            //     $.ajax({
+            //         url: base_url+'search-hotel-ajax?'+arr_url[1],
+            //         dataType:'JSON',
+            //         beforeSend: function(){
+            //             $('#hotel_loader').show();
+            //         },
+            //         complete: function(){
+            //             $('#hotel_loader').hide();
+            //         },
+            //         success:function(response)
+            //         {
+            //             print_hotels(response);
+            //         },
+            //         error:function(error)
+            //         {
+            //             console.log(error);
+            //         }
+            //     });
+            // });
+
+
+
+            // let check = 1;
+            function hotel_filter(start_rate = '', end_rate = '') {
+
+                // console.log('Hello gautam ='+check);
+                // check++;
+                var rurl = window.location.href;
+                var arr_url = rurl.split("?");
+                let city = $('#hotel-search-cities').val();
+                let checks_date = $('#hote_range_datepicker').val();
+                let amenities = '';
+
+                let price_range = $('#price_range').val();
+
+                if (start_rate != '' && end_rate != '') {
+                    price_range = start_rate + '-' + end_rate;
+                }
+
+                console.log({
+                    start_rate: start_rate,
+                    end_rate: end_rate
+                });
+
+                // amini_data
+                $('[name="amini_data"]:checked').each(function() {
+                    amenities += $(this).val() + ',';
+                });
+
+                // star_rate
+                let ratings = '';
+                $('[name="star_rate"]:checked').each(function() {
+                    ratings += $(this).val() + ',';
+                });
+
+                let adults = $('#num_of_adults').val();
+                let num_rooms = $('#num_of_rooms').val();
+                let radius = $('#distance_in_km').val();
+                let sort = 'price';
+                let currency = 'USD';
+
+
+                ratings = ratings.replace(/,\s*$/, "");
+                amenities = amenities.replace(/,\s*$/, "");
+
+
+                console.log({
+                    city: city,
+                    checks_date: checks_date,
+                    amenities: amenities,
+                    ratings: ratings,
+                    adults: adults,
+                    radius: radius,
+                    sort: sort,
+                    price_range: price_range,
+                    currency: currency,
+                });
+
+
+
+                $.ajax({
+                    url: base_url + 'hotel-filter-search',
+                    data: {
+                        city: city,
+                        num_rooms: num_rooms,
+                        checks_date: checks_date,
+                        amenities: amenities,
+                        ratings: ratings,
+                        adults: adults,
+                        radius: radius,
+                        sort: sort,
+                        price_range: price_range,
+                        currency: currency
+                    },
+                    dataType: 'JSON',
+                    type: 'GET',
+                    beforeSend: function() {
+                        $('#main-hotel-search-content').html('<img src="https://cdn.dribbble.com/users/722246/screenshots/4400319/loading_crescor_dribbble.gif" alt="hotel-loader" id="hotel_loader" />');
+                    },
+                    complete: function() {
+                        // $('#main-hotel-search-content').html('<img src="https://cdn.dribbble.com/users/722246/screenshots/4400319/loading_crescor_dribbble.gif" alt="hotel-loader" id="hotel_loader" />');
+                    },
+                    success: function(response) {
+                        print_hotels(response);
+                    },
+                    error: function(error) {
+                        console.log(error);
+                    }
+                });
+            }
+
+
+
+            $(function() {
+                hotel_filter()
+            });
+
+            $('.slider-range-price').on('slidestop', function(event, ui) {
+                let startPos = ui.values[0]
+                let endPos = ui.values[1]
+                    // alert(startPos)
+                hotel_filter(startPos, endPos);
+            });
+
+
+
+            function print_hotels(response) {
+                var rurl = window.location.href;
+                var arr_url = rurl.split("?");
+
+                let hotel = ``;
+
+                // console.log(response.hotel_data[0].status);
+                if (response.hotel_data[0].status == true && response.hotel_data[0].search_data.length != 0) {
+
+                    // console.log(response.hotel_data[0].search_data.length);
+
+                    $.each(response.hotel_data[0].search_data, function(key, value) {
+                        let amenities = ``;
+                        if (value.hotel.amenities) {
+                            for (let index = 0; index < value.hotel.amenities.length; index++) {
+                                if (index < 12) {
+                                    let amni = value.hotel.amenities[index].replace(/_/g, ' ');
+                                    amenities += `<li><i class="bx bx-check-circle" ></i> ${amni}</li>`;
+                                }
+                            }
+                        }
+
+                        let h_img = 'http://uat.multimediarepository.testing.amadeus.com/cmr/retrieve/hotel/BA4D02DA97504F1CA3AE1D7916F1CB8E';
+
+                        if (typeof value.hotel.media !== 'undefined' && value.hotel.media !== null) {
+                            h_img = value.hotel.media[0].uri;
+                        }
+
+                        let star = ``;
+                        for (let index = 0; index < 5; index++) {
+                            if (index < value.hotel.rating) {
+                                star += `<i class='bx bxs-star'></i>`;
+                            } else {
+                                star += `<i class='fa fa-star-o'></i>`;
+                            }
+                        }
+
+                        let h_url = `/hotel-details/?${arr_url[1]}&hotel_id=${value.hotel.hotelId}`;
+
+                        let pp_price = value.offers[0].price.total;
+                        let pp_comi = response.commission;
+                        // console.log(response.commission);
+                        pp_comi = parseInt(pp_comi);
+                        pp_price = parseInt(pp_price);
+                        let percent_amount = ((pp_price / 100) * pp_comi);
+                        pp_price = (pp_price + percent_amount).toFixed(2);
+
+                        hotel += `
+                    <div class="mb-5" data-hotel-id="${value.hotel.hotelId}"  >
+                            <div class="content-main">
+                                <div class="block-content-3">
+                                    <div class="box-result1">
+                                        <img src="${h_img}" alt="hotel-list-img" />
+                                        <ul class="list-search-result">
+                                            <li>
+                                                <ul class="result-single1" >
+                                                    <li>                   
+                                                        <span class="date">    
+                                                            <a href="${h_url}"  class="long-str">${value.hotel.name}</a>
+                                                        </span>
+                                                        <span>
+                                                            <i class='bx bx-map'> </i> 
+                                                            ${value.hotel.address.lines[0]}, ${value.hotel.address.cityName}
+                                                        </span>
+                                                        <div class="review mt-5 mb-10">
+                                                            <span>Review :</span> ${star}
+                                                        </div>
+                                                        <div class="acomodation">
+                                                            <ul class="limheight" >${amenities}</ul>
+                                                        </div>
+                                                        <div class="detail mt-15">
+                                                            <span class="description">
+                                                                ${value.offers[0].room.description.text}
+                                                            </span>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                        <div class="result-price1">
+                                            <div class="price">
+                                                <span class="value">
+                                                    ${value.offers[0].price.currency +' '+ pp_price}
+                                                </span>
+                                            </div>
+                                            <a class="btn small colorful-transparent hover-colorful" href="${h_url}" >Info</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    });
+                    $('#main-hotel-search-content').html(hotel);
+                } else {
+                    $('#main-hotel-search-content').html(`
+                        <div class="error-div" >
+                            <p><b>No Results Found Please Try Again</b></p>    
+                        </div>
+                    `);
+                }
+            }
+        </script>

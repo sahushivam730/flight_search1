@@ -1,0 +1,619 @@
+<%-include('includes/header')%>
+<link rel='stylesheet' href='https://k1ngzed.com/dist/swiper/swiper.min.css'>
+<link rel='stylesheet' href='https://k1ngzed.com/dist/EasyZoom/easyzoom.css'>
+  
+<style>
+h1 {
+  margin-bottom: 0;
+  line-height: 1;
+}
+h2 {
+  color: grey;
+}
+
+.product__carousel {
+  display: block;
+  max-width: 700px;
+  margin: 1em auto 3em;
+}
+.product__carousel a {
+  display: block;
+  margin-bottom: 15px;
+}
+
+.product__carousel .gallery-top {
+	border: 1px solid #ebebeb;
+	border-radius: 3px;
+	margin-bottom: 5px;
+}
+.product__carousel .gallery-top .swiper-slide {
+	position: relative;
+	overflow: hidden;
+}
+.product__carousel .gallery-top .swiper-slide a {
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 100%;
+}
+.product__carousel .gallery-top .swiper-slide a img {
+	width: 100%;
+	height: 100%;
+	-o-object-fit: contain;
+	   object-fit: contain;
+}
+.product__carousel .gallery-top .swiper-slide .easyzoom-flyout img {
+	min-width: 100%;
+	min-height: 100%;
+}
+.product__carousel .swiper-button-next.swiper-button-white,
+.product__carousel .swiper-button-prev.swiper-button-white {
+	color: #ff3720;
+}
+.product__carousel .gallery-thumbs .swiper-slide {
+	position: relative;
+	transition: border .15s linear;
+	border: 1px solid #ebebeb;
+	border-radius: 3px;
+	cursor: pointer;
+	overflow: hidden;
+  height: calc(100% - 8px);
+}
+.product__carousel .gallery-thumbs .swiper-slide.swiper-slide-thumb-active {
+	border-color: #000;
+}
+.product__carousel .gallery-thumbs .swiper-slide img {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%,-50%);
+	max-width: 100%;
+}
+
+.swiper-container, .content-main, .product__carousel{
+    max-height:500px;
+}
+.gallery-thumbs{
+    height: 147.25px !important;
+}
+</style>
+
+  <script>
+  window.console = window.console || function(t) {};
+</script>
+
+  
+  
+  <script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+    <style>
+        .list-room-specs {
+            justify-content: middle;
+            flex: 0 0 180px;
+        }
+        
+        .call-btn {
+            padding: 10px 15px;
+            margin: 10px 10px;
+            border: 1px solid #fff;
+            color: #fff;
+            background: transparent;
+            margin-top: 12px;
+            text-align: center;
+            display: block;
+        }
+        
+        .call-btn:hover,
+        .call-btn:focus,
+        .call-btn:active {
+            color: #ccc;
+            border-color: #ccc;
+        }
+        
+        .testimonial-single-2 {
+            text-align: center;
+        }
+    </style>
+    <!-- Content ============================================= -->
+    <section id="content">
+
+        <div id="content-wrap">
+
+            <!-- === Section Flat =========== -->
+            <div class="section-flat">
+
+                <div class="section-content">
+
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+
+                                <ul class="breadcrumb">
+                                    <li><a href="<%=base_url%>"><i class="fa fa-home"></i></a></li>
+                                    <li><a href="<%=base_url%>hotel">Hotels</a></li>
+                                    <li class="active">
+                                        <%=hotel_details.hotel.name%>
+                                    </li>
+                                </ul>
+                                <!-- .breadcrumb end -->
+
+                            </div>
+                            <!-- .col-md-12 end -->
+                            <div class="col-md-12">
+
+                                <div class="page-single-content">
+
+                                    <div class="row">
+                                        <div class="col-lg-8 col-md-12">
+
+                                            <div class="content-main">
+                                                <div class="slider-hotel-preview">
+                                                    
+                                                    
+                                                    
+                                                    <div class="product__carousel">
+                                                        <div class="swiper-container gallery-top">
+                                                          <div class="swiper-wrapper">
+                                                            <%  hotel_details.hotel.media.forEach(function(item){ %>
+                                                                <div class="swiper-slide easyzoom easyzoom--overlay">
+                                                                <a href="<%=item.uri%>">
+                                                                    <img src="<%=item.uri%>" alt=""/>
+                                                                </a>
+                                                                </div>
+                                                            <% }); %>
+                                                          </div>
+                                                          <!-- Add Arrows -->
+                                                          <div class="swiper-button-next swiper-button-white"></div>
+                                                          <div class="swiper-button-prev swiper-button-white"></div>
+                                                        </div>
+                                                        <div class="swiper-container gallery-thumbs">
+                                                          <div class="swiper-wrapper">
+                                                            <%  hotel_details.hotel.media.forEach(function(item){ %>
+                                                                <div class="swiper-slide">
+                                                                <img src="<%=item.uri%>" alt="">
+                                                                </div>
+                                                            <% }); %>
+                                                          </div>
+                                                        </div>
+                                                      </div>
+                                                </div>
+                                                <!-- .slider-hotel-preview end -->
+                                               
+                                                <!-- .slider-hotel-preview-thumbs end -->
+
+                                            </div>
+                                            <!-- .content-main end -->
+
+                                        </div>
+                                        <!-- .col-lg-8 end -->
+                                        <div class="col-lg-4 col-md-12">
+
+                                            <div class="sidebar style-2">
+                                                <ul class="list-box-sidebar">
+                                                    <li>
+                                                        <div class="hotel-title">
+                                                            <h2>
+                                                                <%=hotel_details.hotel.name%>
+                                                            </h2>
+                                                            <span class="location">
+																<% hotel_details.hotel.address.lines.forEach(function(addItem){ %>
+																	<%=addItem%>,
+																<% }); %>
+																<%=hotel_details.hotel.address.postalCode%>,
+																<%=hotel_details.hotel.address.cityName%>
+															</span>
+                                                            <div class="hotel-rating">
+                                                                <div class="rating">
+                                                                    <% for(var i=0; i < 5; i++) { 
+																		if(i < hotel_details.hotel.rating){ %>
+                                                                        <i class="fa fa-star"></i>
+                                                                        <% }else{ %>
+                                                                            <i class="fa fa-star-o"></i>
+                                                                            <% } } %>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!-- .hotel-title end -->
+                                                    </li>
+                                                    <li>
+                                                        <p class="font-size-18">
+                                                            The Best Ipsum hotel features over 1,000 luxuriously appointed, individually styled rooms, suites and apartments, each containing unique works of art.
+                                                        </p>
+                                                    </li>
+
+                                                </ul>
+                                                <!-- .list-box-sidebar end -->
+                                                <div class="testimonial-single-2 mtb-40">
+                                                    <div class="content">
+                                                        "<span>Book</span> by phone"
+                                                    </div>
+                                                    <!-- .content end -->
+                                                    <h5>-Monday to Saturday 9.00am-6:00pm
+                                                        <a href="tel://004542344599" class="call-btn">
+                                                            <i class="bx bx-phone"></i> &nbsp; +45 423 445 99</a>
+                                                    </h5>
+                                                </div>
+
+                                                <!-- .testimonial-single-2 end -->
+
+                                            </div>
+                                            <!-- .sidebar end -->
+
+                                        </div>
+                                        <!-- .col-lg-4 end -->
+                                    </div>
+                                    <!-- .row end -->
+
+                                </div>
+                                <!-- .page-single-content end -->
+
+                            </div>
+                            <!-- .col-md-12 end -->
+                        </div>
+                        <!-- .row end -->
+                    </div>
+                    <!-- .container end -->
+
+                    <div class="container">
+                        <div class="row">
+
+                            <div class="col-md-12">
+
+                                <div class="page-single-content">
+
+                                    <div class="row">
+                                        <div class="col-lg-12 col-md-12">
+
+                                           
+
+                                                <div class="hotel-info-tabs">
+                                                    <div class="row">
+                                                        <div class="col-3">
+                                                            <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical" style="    background-color: #fff;padding: 5px;">
+                                                                <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true"><i class="far fa-calendar-alt"></i> Offers</a>
+                                                                <a class="nav-link " id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false"><i class="fas fa-info-circle"></i> Description</a>
+                                                                <a class="nav-link " id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false"><i class="far fa-compass"></i> Facilities</a>
+                                                                <a class="nav-link " id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false"><i class="fas fa-map-marker-alt"></i> Location</a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-9">
+                                                            <div class="tab-content" id="v-pills-tabContent">
+                                                                <div class="tab-pane fade active show" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+                                                                    
+                                                                        <div class="block-content-2 style-3">
+                                                                            <div class="block-title">
+                                                                                <h3>Offer Types</h3>
+                                                                            </div>
+                                                                            <!-- .block-title end -->
+                                                                            <ul class="list-room-types">
+                                                                                <% hotel_offers.forEach(function(offer_items){  %>
+                                                                                    <li>
+                                                                                        <div class="box-room">
+            
+                                                                                            <div class="content">
+                                                                                                <h5>
+                                                                                                    <a href="javascript:;">
+                                                                                                        <%= offer_items.offers[0].description.text%>
+                                                                                                    </a>
+                                                                                                </h5>
+            
+                                                                                                <p style="font-size:12px;">
+                                                                                                    <%= offer_items.offers[0].room.description.text%>
+                                                                                                </p>
+                                                                                            </div>
+                                                                                            <!-- .content end -->
+                                                                                        </div>
+                                                                                        <!-- .box-room end -->
+                                                                                        <ul class="list-room-specs">
+                                                                                            <li>
+                                                                                                <span>Max:</span>
+                                                                                                <%= offer_items.offers[0].guests.adults%>
+                                                                                                    X &nbsp;
+                                                                                                    <i class="fas fa-user-alt"></i>
+                                                                                            </li>
+                                                                                            <li>
+            
+                                                                                                <span>Price:</span>
+                                                                                                <span class="color-dark">
+                                                                                                    <%
+                                                                                                    let price 			 =  parseInt(offer_items.offers[0].price.total);
+                                                                                                    let percent_amount   = ((price/100)*commission);
+                                                                                                    price                = (price+percent_amount);
+                                                                                                    %>
+                                                                                                    <%= offer_items.offers[0].price.currency%>
+                                                                                                    <%= price%>
+                                                                                                </span>
+                                                                                            </li>
+                                                                                            <!-- <li>
+                                                                                                <span>Rooms:</span>
+                                                                                                <span class="color-dark">01</span>
+                                                                                            </li> -->
+                                                                                            <li>
+                                                                                                <!-- <%if(session){%>
+                                                                                                    <a class="btn x-small colorful hover-dark mt-10 hotel-book-now" href="<%=base_url%>hotel/booking-confirmation?<%=params.c_url%>&<%=offer_items.hotel.hotelId%>&offer_id='<%=offer_items.offers[0].id%>">Book Now</a>
+            
+            
+                                                                                                    <%}else{ %>
+                                                                                                        <a class="btn x-small colorful hover-dark mt-10" href="#login" data-toggle="modal">Book Now</a>
+            
+                                                                                                        <%}%> -->
+            
+            
+                                                                                                <a class="btn x-small colorful hover-dark mt-10 hotel-book-now" href="javascript:void(0)" data-hotel-id="<%=offer_items.hotel.hotelId%>" data-offer-id="<%=offer_items.offers[0].id%>">Book Now</a>
+                                                                                            </li>
+            
+                                                                                        </ul>
+                                                                                        <!-- .list-room-specs end -->
+                                                                                    </li>
+                                                                                    <% }); %>
+                                                                            </ul>
+                                                                            <!-- .list-room-types end -->
+                                                                        </div>
+                                                                    
+                                                                </div>
+                                                                <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                                                                   
+                                                                        <div class="block-content-2 style-3">
+                                                                            <div class="block-title">
+                                                                                <h3>General</h3>
+                                                                            </div>
+                                                                            <!-- .block-title end -->
+                                                                            <%=hotel_details.hotel.description.text%>
+                                                                        </div>
+                                                                    <
+                                                                </li>
+                                                                </div>
+                                                                <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+                                                                    
+                                                                        <div class="block-content-2 style-3">
+                                                                            <div class="block-title">
+                                                                                <h3>Facilities</h3>
+                                                                            </div>
+                                                                            <!-- .block-title end -->
+                                                                            <ul class="list dottes row-3">
+                                                                                <% hotel_details.hotel.amenities.forEach((amniItem)=>{ %>
+                                                                                    <li>
+                                                                                        <% let  amnit_item = amniItem.replace(/_/g,' ');%>
+                                                                                            <%=amnit_item%>
+                                                                                    </li>
+                                                                                    <% }) %>
+                                                                            </ul>
+                                                                        </div>
+                                                                    
+                                                                </div>
+                                                                <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
+                                                                    
+                                                                        <div id="" class="block-content-2 style-3">
+                                                                            <span class="location">
+                                                                                <% hotel_details.hotel.address.lines.forEach(function(addItem){ %>
+                                                                                    <%=addItem%>,
+                                                                                <% }); %>
+                                                                                <%=hotel_details.hotel.address.postalCode%>,
+                                                                                <%=hotel_details.hotel.address.cityName%>
+                                                                            </span>
+                                                                        </div>
+                                                                    
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- <ul class="hi-tabs">
+                                                        <li class="active">
+                                                            <a href="javascript:;">
+                                                                <i class="far fa-calendar-alt"></i> Offers
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="javascript:;">
+                                                                <i class="fas fa-info-circle"></i> Description
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="javascript:;">
+                                                                <i class="far fa-compass"></i> Facilities
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="javascript:;">
+                                                                <i class="fas fa-map-marker-alt"></i> Location
+                                                            </a>
+                                                        </li>
+                                                    </ul> -->
+                                                    <!-- .hi-tabs end -->
+
+                                                    <!-- <ul class="hi-tabs-content">
+                                                        <li class="active">
+                                                            <div class="block-content-2 style-3">
+                                                                <div class="block-title">
+                                                                    <h3>Offer Types</h3>
+                                                                </div>
+                                                                <ul class="list-room-types">
+                                                                    <% hotel_offers.forEach(function(offer_items){  %>
+                                                                        <li>
+                                                                            <div class="box-room">
+
+                                                                                <div class="content">
+                                                                                    <h5>
+                                                                                        <a href="javascript:;">
+                                                                                            <%= offer_items.offers[0].description.text%>
+                                                                                        </a>
+                                                                                    </h5>
+
+                                                                                    <p style="font-size:12px;">
+                                                                                        <%= offer_items.offers[0].room.description.text%>
+                                                                                    </p>
+                                                                                </div>
+                                                                               
+                                                                            </div>
+                                                                            
+                                                                            <ul class="list-room-specs">
+                                                                                <li>
+                                                                                    <span>Max:</span>
+                                                                                    <%= offer_items.offers[0].guests.adults%>
+                                                                                        X &nbsp;
+                                                                                        <i class="fas fa-user-alt"></i>
+                                                                                </li>
+                                                                                <li>
+
+                                                                                    <span>Price:</span>
+                                                                                    <span class="color-dark">
+																						<%
+																						let price 			 =  parseInt(offer_items.offers[0].price.total);
+																						let percent_amount   = ((price/100)*commission);
+																						price                = (price+percent_amount);
+																						%>
+																						<%= offer_items.offers[0].price.currency%>
+																						<%= price%>
+																					</span>
+                                                                                </li>
+                                                                               
+                                                                                <li>
+                                                                                 
+                                                                                    <a class="btn x-small colorful hover-dark mt-10 hotel-book-now" href="javascript:void(0)" data-hotel-id="<%=offer_items.hotel.hotelId%>" data-offer-id="<%=offer_items.offers[0].id%>">Book Now</a>
+                                                                                </li>
+
+                                                                            </ul>
+                                                                            
+                                                                        </li>
+                                                                        <% }); %>
+                                                                </ul>
+                                                               
+                                                            </div>
+                                                           
+                                                        </li>
+                                                        <li>
+                                                            <div class="block-content-2 style-3">
+                                                                <div class="block-title">
+                                                                    <h3>General</h3>
+                                                                </div>
+                                                                <%=hotel_details.hotel.description.text%>
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <div class="block-content-2 style-3">
+                                                                <div class="block-title">
+                                                                    <h3>Facilities</h3>
+                                                                </div>
+                                                                <ul class="list dottes row-3">
+                                                                    <% hotel_details.hotel.amenities.forEach((amniItem)=>{ %>
+                                                                        <li>
+                                                                            <% let  amnit_item = amniItem.replace(/_/g,' ');%>
+                                                                                <%=amnit_item%>
+                                                                        </li>
+                                                                        <% }) %>
+                                                                </ul>
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <div id="" class="block-content-2 style-3">
+                                                                <span class="location">
+																	<% hotel_details.hotel.address.lines.forEach(function(addItem){ %>
+																		<%=addItem%>,
+																	<% }); %>
+																	<%=hotel_details.hotel.address.postalCode%>,
+																	<%=hotel_details.hotel.address.cityName%>
+																</span>
+                                                            </div>
+                                                        </li>
+                                                    </ul> -->
+                                                    <!-- .hi-tabs-content end -->
+                                                </div>
+                                                <!-- .hotel-info-tabs end -->
+                                            
+                                            <!-- .content-main end -->
+                                        </div>
+                                        <!-- .col-lg-8 end -->
+                                    </div>
+                                    <!-- .row end -->
+                                </div>
+                                <!-- .page-single-content end -->
+                            </div>
+                            <!-- .col-md-12 end -->
+                        </div>
+                        <!-- .row end -->
+                    </div>
+                    <!-- .container end -->
+                </div>
+                <!-- .section-content end -->
+            </div>
+            <!-- .section-flat end -->
+        </div>
+        <!-- #content-wrap -->
+    </section>
+    <!-- #content end -->
+
+    <%-include('includes/footer')%>
+    <script>
+        $(function() {
+            $('.hotel-book-now').on('click', function() {
+                let offer_id = $(this).attr('data-offer-id');
+                var rurl = window.location.href;
+                var arr_url = rurl.split("?");
+                let url = '<%=base_url%>hotel/booking-confirmation?' + arr_url[1] + '&offer_id=' + offer_id;
+                if ('<%=session%>' != '') {
+                    window.location.href = url;
+                } else {
+                    // swal({
+                    //     title: "Make Login!",
+                    //     text: "Please Make Login!",
+                    //     icon: "warning",
+                    // });
+                    $('#url').val(url)
+                    $('#login').modal('show');
+                }
+            });
+        });
+    </script>
+        <!-- Swiper JS -->
+        <script src='https://k1ngzed.com/dist/swiper/swiper.min.js'></script>
+        <script src='https://k1ngzed.com/dist/EasyZoom/easyzoom.js'></script>
+        <script id="rendered-js" >
+            // product Gallery and Zoom
+            
+            // activation carousel plugin
+            var galleryThumbs = new Swiper('.gallery-thumbs', {
+              spaceBetween: 5,
+              freeMode: true,
+              watchSlidesVisibility: true,
+              watchSlidesProgress: true,
+              breakpoints: {
+                0: {
+                  slidesPerView: 3 },
+            
+                992: {
+                  slidesPerView: 4 } } });
+            
+            
+            
+            var galleryTop = new Swiper('.gallery-top', {
+              spaceBetween: 10,
+              autoHeight: false,
+              calculateHeight:true,
+              navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev' },
+            
+              thumbs: {
+                swiper: galleryThumbs } });
+            
+            
+            // change carousel item height
+            // gallery-top
+            let productCarouselTopWidth = $('.gallery-top').outerWidth();
+            $('.gallery-top').css('height', productCarouselTopWidth);
+            
+            // gallery-thumbs
+            let productCarouselThumbsItemWith = $('.gallery-thumbs .swiper-slide').outerWidth();
+            $('.gallery-thumbs').css('height', productCarouselThumbsItemWith);
+            
+            // activation zoom plugin
+            var $easyzoom = $('.easyzoom').easyZoom();
+            //# sourceURL=pen.js
+        </script>
+     

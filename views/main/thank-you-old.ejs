@@ -1,0 +1,132 @@
+<%-include('includes/header');%>
+
+<style>
+
+
+#thank-row .wrapper-1{
+  width:100%;
+  height:100vh;
+  display: flex;
+flex-direction: column;
+}
+#thank-row .wrapper-2{
+  padding :30px;
+  text-align:center;
+}
+#thank-row h1{
+    font-family: 'Kaushan Script', cursive;
+  font-size:4em;
+  letter-spacing:3px;
+  color:#5892FF ;
+  margin:0;
+  margin-bottom:20px;
+}
+#thank-row .wrapper-2 p{
+  margin:0;
+  font-size:1.3em;
+  color:#aaa;
+  font-family: 'Source Sans Pro', sans-serif;
+  letter-spacing:1px;
+}
+#thank-row .go-home{
+  color:#fff;
+  background:#5892FF;
+  border:none;
+  padding:10px 50px;
+  margin:30px 0;
+  border-radius:30px;
+  text-transform:capitalize;
+  box-shadow: 0 10px 16px 1px rgba(174, 199, 251, 1);
+}
+#thank-row .footer-like{
+  margin-top: auto; 
+  background:#D7E6FE;
+  padding:6px;
+  text-align:center;
+}
+#thank-row .footer-like p{
+  margin:0;
+  padding:4px;
+  color:#5892FF;
+  font-family: 'Source Sans Pro', sans-serif;
+  letter-spacing:1px;
+}
+#thank-row .footer-like p a{
+  text-decoration:none;
+  color:#5892FF;
+  font-weight:600;
+}
+
+@media (min-width:360px){
+ #thank-row h1{
+    font-size:4.5em;
+  }
+  #thank-row .go-home{
+    margin-bottom:20px;
+  }
+}
+
+@media (min-width:600px){
+  #thank-row .content{
+  max-width:1000px;
+  margin:0 auto;
+}
+  #thank-row .wrapper-1{
+  height: initial;
+  max-width:620px;
+  margin:0 auto;
+  margin-top:50px;
+  box-shadow: 4px 8px 40px 8px rgba(88, 146, 255, 0.2);
+}
+  
+}
+
+</style>
+
+
+<link href="https://fonts.googleapis.com/css?family=Kaushan+Script|Source+Sans+Pro" rel="stylesheet">
+
+<section id="content">
+
+  <div id="content-wrap">
+
+      <!-- === Section Flat =========== -->
+      <div class="section-flat">
+          <!-- <div class="banner" style="background:url('<%=base_url%>assets/img/bg_2.jpg') ;" >
+              
+
+          </div> -->
+
+
+          <div class="section-content">
+
+              <div class="container">
+                  <div class="row" id="thank-row">
+                      <div class=content>
+                          <div class="wrapper-1">
+                            <div class="wrapper-2">
+                              <h1>Thank you !</h1>
+                              <p>Thank You For Booking , Please Wait For Booking Confirmation   </p>
+                              <p>you should receive a confirmation email soon</p>
+                              <br>
+                              <a class="go-home" href="<%=base_url%>" >
+                              go home
+                              </a>
+                            </div>
+                            <div class="footer-like">
+                              <p>Is Something Went wrong?
+                              <a href="javascript:void(0)"> <i class="fa fa-phone" ></i> Click here to Contact-Us</a>
+                              </p>
+                            </div>
+                        </div>
+                        </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+      </section>
+
+  
+  
+<%-include('includes/footer');%>

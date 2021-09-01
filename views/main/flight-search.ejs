@@ -1,0 +1,1491 @@
+<%-include('includes/header');%>
+<%
+let totTraveller = parseInt(params.adults)+parseInt(params.children)
+%>
+<style>
+    .more{
+        color: blue;
+        font-weight: 600;
+        text-decoration: underline;
+    }
+</style>
+    <!-- Content
+		============================================= -->
+    <section id="content">
+
+        <div id="content-wrap">
+
+            <!-- === Section Flat =========== -->
+            <div class="section-flat">
+
+                <div class="section-content" style="padding-top: 0px !important;">
+                    <section id="home" class="home-banner-area home-style-three" style="border-top: 1px solid #ccc;box-shadow: 0 -2px 30px 0 rgb(102 102 102 / 9%);">
+                        <div class="container">
+
+                            <div class="search-form" style="bottom:0px;">
+                                <div class="main-form">
+                                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                        <li class="nav-item" role="presentation">
+                                            <a class="nav-link <%=(params.type=='oneway')?'active':''%>" id="home-tab" data-toggle="tab" href="#oneway" role="tab" aria-controls="home" aria-selected="true">ONE-WAY</a>
+                                        </li>
+                                        <li class="nav-item" role="presentation">
+                                            <a class="nav-link <%=(params.type=='round')?'active':''%>" id="profile-tab" data-toggle="tab" href="#round" role="tab" aria-controls="profile" aria-selected="false">ROUND-TRIP</a>
+                                        </li>
+                                        <li class="nav-item" role="presentation">
+                                            <a class="nav-link <%=(params.type=='multicity')?'active':''%>" id="contact-tab" data-toggle="tab" href="#multi" role="tab" aria-controls="contact" aria-selected="false">MULTI-CITY</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="tab-content" id="myTabContent">
+                                    <div class="tab-pane fade <%=(params.type=='oneway')?'show active':''%> " id="oneway" role="tabpanel" aria-labelledby="oneway-tab">
+                                        <form id="onewayForm" action="<%=base_url%>flight/search" method="GET" autocomplete="off">
+                                            <div class="row align-items-center">
+                                                <div class="col-lg-12">
+                                                    <div class="row">
+                                                        <div class="col-lg-3">
+                                                            <div class="select-box">
+                                                                <i class='bx bx-map-alt'></i>
+                                                                <select class="form-control search-airport" name="from">
+                                                                        <option data-display="<%=(params.type=='multicity')?''+params.from[0]:''+params.from%>"><%=(params.type=='multicity')?''+params.from[0]:''+params.from%></option>
+                                                                        
+                                                                    </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-3">
+                                                            <div class="select-box">
+                                                                <i class='bx bx-map-alt'></i>
+                                                                <select class="form-control search-airport" name="to">
+                                                                        <option data-display="<%=(params.type=='multicity')?''+params.to[0]:''+params.to%>" ><%=(params.type=='multicity')?''+params.to[0]:''+params.to%></option>
+                                                                        <option value="<%=(params.type=='multicity')?''+params.to[0]:''+params.to%>"><%=(params.type=='multicity')?''+params.to[0]:''+params.to%></option>
+                                                                    </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-3">
+                                                            <div class="select-box">
+                                                                <i class='far fa-calendar'></i>
+                                                                <input type="text" class="date-select form-control" autocomplete="off" name="departdate" placeholder="Depart Date" required="required" value="<%=params.departdate%>" />
+                                                                <input type="hidden" name="type" value="oneway" />
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-lg-3">
+                                                            <div class="select-box">
+                                                                <label class="search-form-passengers__input show-dropdown-passengers form-control" for="asdf">
+                                                                    <div class="search-form-passengers__input-title">
+                                                                        <span class="noofpassenger">1 passenger</span>,
+                                                                        <span class="flightclass">ECONOMY</span>
+                                                                    </div> 
+                                                                    <div class="search-form-passengers__input-description"><i class="search-form-passengers__icon wl-icon-people"></i>
+                                                                        <span class="nooftarvellers">1 Adult</span> 
+                                                                    </div>
+                                                                    <i class="fas fa-user"></i>
+                                                                </label>
+                                                                        <ul class="list-dropdown-passengers">
+                                                                            <li>
+                                                                                <ul class="list-persons-count">
+                                                                                    <li>
+                                                                                        <span>Adults:</span>
+                                                                                        <div class="counter-add-item">
+                                                                                            <a class="decrease-btn" href="javascript:;">-</a>
+                                                                                            <input type="text" class="adult" name="adults" value="<%=params.adults%>">
+                                                                                            <a class="increase-btn" href="javascript:;">+</a>
+                                                                                        </div><!-- .counter-add-item end -->
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        <span>Childs:</span>
+                                                                                        <div class="counter-add-item">
+                                                                                            <a class="decrease-btn" href="javascript:;">-</a>
+                                                                                            <input type="text"  class="child" name="children" value="<%=params.children%>">
+                                                                                            <a class="increase-btn" href="javascript:;">+</a>
+                                                                                        </div><!-- .counter-add-item end -->
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        <span>Infants:</span>
+                                                                                        <div class="counter-add-item">
+                                                                                            <a class="decrease-btn" href="javascript:;">-</a>
+                                                                                            <input type="text"  class="infants" name="infants" value="<%=params.infants%>">
+                                                                                            <a class="increase-btn" href="javascript:;">+</a>
+                                                                                        </div><!-- .counter-add-item end -->
+                                                                                    </li>
+                                                                                </ul><!-- .list-persons-count end -->
+                                                                            </li>
+                                                                            <li>
+                                                                                <ul class="list-select-grade">
+                                                                                    <li>
+                                                                                        <label class="radio-container radio-default">
+                                                                                            <input type="radio" value="ECONOMY"  name="class" <%=(params.class=='ECONOMY')?'checked="checked"':''%> />
+                                                                                            <span class="checkmark"></span>
+                                                                                            Economy Class
+                                                                                        </label>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        <label class="radio-container radio-default">
+                                                                                            <input type="radio" value="PREMIUM_ECONOMY" name="class" <%=(params.class=='PREMIUM_ECONOMY')?'checked="checked"':''%> />
+                                                                                            <span class="checkmark"></span>
+                                                                                            Premium Economy
+                                                                                        </label>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        <label class="radio-container radio-default">
+                                                                                            <input type="radio"  value="BUSINESS" name="class" <%=(params.class=='BUSINESS')?'checked="checked"':''%> />
+                                                                                            <span class="checkmark"></span>
+                                                                                            Business Class
+                                                                                        </label>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        <label class="radio-container radio-default">
+                                                                                            <input type="radio"  value="FIRST" name="class" <%=(params.class=='FIRST')?'checked="checked"':''%> />
+                                                                                            <span class="checkmark"></span>
+                                                                                            First Class
+                                                                                        </label>
+                                                                                    </li>
+                                                                                </ul><!-- .list-select-grade end -->
+                                                                            </li>
+                                                                            <li>
+                                                                                <ul class="list-reservation-options">
+                                                                                    <li>
+                                                                                        <label class="label-container checkbox-default">
+                                                                                            <span>
+                                                                                                Nonstop
+                                                                                            </span>
+                                                                                            <input type="checkbox" value="true" name="nonStop" <%=(params.nonStop=='true')?'checked':''%> />
+                                                                                            <span class="checkmark"></span>
+                                                                                        </label>
+                                                                                    </li>
+                                                                                </ul><!-- .list-reservation-options end -->
+                                                                            </li>
+                                                                            <li>
+                                                                                <a class="btn-reservation-passengers btn x-small colorful hover-dark"
+                                                                                    href="javascript:;">Done</a>
+                                                                            </li>
+                                                                        </ul>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <div class="row">
+
+                                                        <div class="col-lg-3">
+                                                            <button type="submit" class="btn-search">
+                                                                    <i class='bx bx-search-alt'></i> Search Flight
+                                                                </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="tab-pane fade <%=(params.type=='round')?'show active':''%>" id="round" role="tabpanel" aria-labelledby="round-tab">
+                                        <form id="roundForm" action="<%=base_url%>flight/search" method="GET" autocomplete="off">
+                                            <div class="row align-items-center">
+                                                <div class="col-lg-12">
+                                                    <div class="row">
+                                                        <div class="col-lg-3">
+                                                            <div class="select-box">
+                                                                <i class='bx bx-map-alt'></i>
+                                                                <select class="form-control search-airport" name="from">
+                                                                        <option data-display="<%=(params.type=='multicity')?''+params.from[0]:''+params.from%>"><%=(params.type=='multicity')?''+params.from[0]:''+params.from%></option>
+                                                                        
+                                                                    </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-3">
+                                                            <div class="select-box">
+                                                                <i class='bx bx-map-alt'></i>
+                                                                <select class="form-control search-airport" name="to">
+                                                                        <option data-display="<%=(params.type=='multicity')?''+params.to[0]:''+params.to%>" ><%=(params.type=='multicity')?''+params.to[0]:''+params.to%></option>
+                                                                        <option value="<%=(params.type=='multicity')?''+params.to[0]:''+params.to%>"><%=(params.type=='multicity')?''+params.to[0]:''+params.to%></option>
+                                                                    </select>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-lg-3">
+                                                            <div class="select-box">
+                                                                <i class='far fa-calendar'></i>
+                                                                <input type="text" name="daterange" class="date-select-renge form-control" id="hote_range_datepicker" autocomplete="off" value="<%=params.departdate%> To <%=params.returndate%>" />
+                                                                <input type="hidden" name="type" value="round" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-3">
+                                                            <div class="select-box">
+                                                                <label class="search-form-passengers__input show-dropdown-passengers form-control" for="asdf">
+                                                                    <div class="search-form-passengers__input-title">
+                                                                        <span class="noofpassenger">1 passenger</span>,
+                                                                        <span class="flightclass">ECONOMY</span>
+                                                                    </div> 
+                                                                    <div class="search-form-passengers__input-description"><i class="search-form-passengers__icon wl-icon-people"></i>
+                                                                        <span class="nooftarvellers">1 Adult</span> 
+                                                                    </div>
+                                                                    <i class="fas fa-user"></i>
+                                                                </label>
+                                                                        <ul class="list-dropdown-passengers">
+                                                                            <li>
+                                                                                <ul class="list-persons-count">
+                                                                                    <li>
+                                                                                        <span>Adults:</span>
+                                                                                        <div class="counter-add-item">
+                                                                                            <a class="decrease-btn" href="javascript:;">-</a>
+                                                                                            <input type="text" class="adult" name="adults" value="<%=params.adults%>">
+                                                                                            <a class="increase-btn" href="javascript:;">+</a>
+                                                                                        </div><!-- .counter-add-item end -->
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        <span>Childs:</span>
+                                                                                        <div class="counter-add-item">
+                                                                                            <a class="decrease-btn" href="javascript:;">-</a>
+                                                                                            <input type="text"  class="child" name="children" value="<%=params.children%>">
+                                                                                            <a class="increase-btn" href="javascript:;">+</a>
+                                                                                        </div><!-- .counter-add-item end -->
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        <span>Infants:</span>
+                                                                                        <div class="counter-add-item">
+                                                                                            <a class="decrease-btn" href="javascript:;">-</a>
+                                                                                            <input type="text"  class="infants" name="infants" value="<%=params.infants%>">
+                                                                                            <a class="increase-btn" href="javascript:;">+</a>
+                                                                                        </div><!-- .counter-add-item end -->
+                                                                                    </li>
+                                                                                </ul><!-- .list-persons-count end -->
+                                                                            </li>
+                                                                            <li>
+                                                                                <ul class="list-select-grade">
+                                                                                    <li>
+                                                                                        <label class="radio-container radio-default">
+                                                                                            <input type="radio" value="ECONOMY"  name="class" <%=(params.class=='ECONOMY')?'checked="checked"':''%> />
+                                                                                            <span class="checkmark"></span>
+                                                                                            Economy Class
+                                                                                        </label>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        <label class="radio-container radio-default">
+                                                                                            <input type="radio" value="PREMIUM_ECONOMY" name="class" <%=(params.class=='PREMIUM_ECONOMY')?'checked="checked"':''%> />
+                                                                                            <span class="checkmark"></span>
+                                                                                            Premium Economy
+                                                                                        </label>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        <label class="radio-container radio-default">
+                                                                                            <input type="radio"  value="BUSINESS" name="class" <%=(params.class=='BUSINESS')?'checked="checked"':''%> />
+                                                                                            <span class="checkmark"></span>
+                                                                                            Business Class
+                                                                                        </label>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        <label class="radio-container radio-default">
+                                                                                            <input type="radio"  value="FIRST" name="class" <%=(params.class=='FIRST')?'checked="checked"':''%> />
+                                                                                            <span class="checkmark"></span>
+                                                                                            First Class
+                                                                                        </label>
+                                                                                    </li>
+                                                                                </ul><!-- .list-select-grade end -->
+                                                                            </li>
+                                                                            <li>
+                                                                                <ul class="list-reservation-options">
+                                                                                    <li>
+                                                                                        <label class="label-container checkbox-default">
+                                                                                            <span>
+                                                                                                Nonstop
+                                                                                            </span>
+                                                                                            <input type="checkbox" value="true" name="nonStop" <%=(params.nonStop=='true')?'checked="checked"':''%> />
+                                                                                            <span class="checkmark"></span>
+                                                                                        </label>
+                                                                                    </li>
+                                                                                </ul><!-- .list-reservation-options end -->
+                                                                            </li>
+                                                                            <li>
+                                                                                <a class="btn-reservation-passengers btn x-small colorful hover-dark"
+                                                                                    href="javascript:;">Done</a>
+                                                                            </li>
+                                                                        </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <div class="row">
+
+                                                     
+                                                        <div class="col-lg-3">
+                                                            <button type="submit" class="btn-search">
+                                                                    <i class='bx bx-search-alt'></i> Search Flight
+                                                                </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!--  <div class="col-lg-1">
+                                                        <button type="button" class="btn-search">
+                                                            <i class='bx bx-search-alt'></i>
+                                                        </button>
+                                                    </div> -->
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="tab-pane fade <%=(params.type=='multicity')?'show active':''%>" id="multi" role="tabpanel" aria-labelledby="multi-tab">
+                                        <form id="searchForm">
+                                            <form id="multicityForm" action="<%=base_url%>flight/search" method="GET" autocomplete="off">
+                                                <div class="row align-items-center">
+                                                    <div class="col-lg-12">
+                                                        <div class="row">
+                                                            <div class="col-lg-3">
+                                                                <div class="select-box">
+                                                                    <!-- <i class='fas fa-plane' style="transform: rotate(-90deg);top: 33%;"></i> -->
+                                                                    <i class='bx bx-map-alt'></i>
+                                                                    <select class="form-control search-airport" name="from">
+                                                                        <option data-display="<%=(params.type!='multicity')?''+params.from:''+(params.from.length>0)?''+params.from[0]:''+params.from%>"><%=(params.type!='multicity')?''+params.from:''+(params.from.length>0)?''+params.from[0]:''+params.from%></option>
+                                                                        
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-3">
+                                                                <div class="select-box">
+                                                                    <!-- <i class='fas fa-plane' style="transform: rotate(90deg);top: 33%;"></i> -->
+                                                                    <i class='bx bx-map-alt'></i>
+                                                                    <select class="form-control search-airport" name="to" id="multi_to">
+                                                                        <option data-display="<%=(params.type!='multicity')?''+params.to:''+(params.to.length>0)?''+params.to[0]:''+params.to%>"><%=(params.type!='multicity')?''+params.to:''+(params.to.length>0)?''+params.to[0]:''+params.to%></option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-3">
+                                                                <div class="select-box">
+                                                                    <i class='far fa-calendar'></i>
+                                                                    <input type="text" class="date-select form-control" id="multi_departure1" autocomplete="off" name="departdate" placeholder="Depart Date" required="required" value="<%=(params.type!='multicity')?''+params.departdate:''+(params.departdate.length>0)?''+params.departdate[0]:''+params.departdate%>"
+                                                                    />
+                                                                    <input type="hidden" name="type" value="multicity" />
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-3">
+                                                                <div class="select-box">
+                                                                    <label class="search-form-passengers__input show-dropdown-passengers form-control" for="asdf">
+                                                                        <div class="search-form-passengers__input-title">
+                                                                            <span class="noofpassenger">1 passenger</span>,
+                                                                            <span class="flightclass">ECONOMY</span>
+                                                                        </div> 
+                                                                        <div class="search-form-passengers__input-description"><i class="search-form-passengers__icon wl-icon-people"></i>
+                                                                            <span class="nooftarvellers">1 Adult</span> 
+                                                                        </div>
+                                                                        <i class="fas fa-user"></i>
+                                                                    </label>
+                                                                            <ul class="list-dropdown-passengers">
+                                                                                <li>
+                                                                                    <ul class="list-persons-count">
+                                                                                        <li>
+                                                                                            <span>Adults:</span>
+                                                                                            <div class="counter-add-item">
+                                                                                                <a class="decrease-btn" href="javascript:;">-</a>
+                                                                                                <input type="text" class="adult" name="adults" value="<%=params.adults%>">
+                                                                                                <a class="increase-btn" href="javascript:;">+</a>
+                                                                                            </div><!-- .counter-add-item end -->
+                                                                                        </li>
+                                                                                        <li>
+                                                                                            <span>Childs:</span>
+                                                                                            <div class="counter-add-item">
+                                                                                                <a class="decrease-btn" href="javascript:;">-</a>
+                                                                                                <input type="text"  class="child" name="children" value="<%=params.children%>">
+                                                                                                <a class="increase-btn" href="javascript:;">+</a>
+                                                                                            </div><!-- .counter-add-item end -->
+                                                                                        </li>
+                                                                                        <li>
+                                                                                            <span>Infants:</span>
+                                                                                            <div class="counter-add-item">
+                                                                                                <a class="decrease-btn" href="javascript:;">-</a>
+                                                                                                <input type="text"  class="infants" name="infants" value="<%=params.infants%>">
+                                                                                                <a class="increase-btn" href="javascript:;">+</a>
+                                                                                            </div><!-- .counter-add-item end -->
+                                                                                        </li>
+                                                                                    </ul><!-- .list-persons-count end -->
+                                                                                </li>
+                                                                                <li>
+                                                                                    <ul class="list-select-grade">
+                                                                                        <li>
+                                                                                            <label class="radio-container radio-default">
+                                                                                                <input type="radio" value="ECONOMY"  name="class" <%=(params.class=='ECONOMY')?'checked="checked"':''%> />
+                                                                                                <span class="checkmark"></span>
+                                                                                                Economy Class
+                                                                                            </label>
+                                                                                        </li>
+                                                                                        <li>
+                                                                                            <label class="radio-container radio-default">
+                                                                                                <input type="radio" value="PREMIUM_ECONOMY" name="class" <%=(params.class=='PREMIUM_ECONOMY')?'checked="checked"':''%> />
+                                                                                                <span class="checkmark"></span>
+                                                                                                Premium Economy
+                                                                                            </label>
+                                                                                        </li>
+                                                                                        <li>
+                                                                                            <label class="radio-container radio-default">
+                                                                                                <input type="radio"  value="BUSINESS" name="class" <%=(params.class=='BUSINESS')?'checked="checked"':''%> />
+                                                                                                <span class="checkmark"></span>
+                                                                                                Business Class
+                                                                                            </label>
+                                                                                        </li>
+                                                                                        <li>
+                                                                                            <label class="radio-container radio-default">
+                                                                                                <input type="radio"  value="FIRST" name="class" <%=(params.class=='FIRST')?'checked="checked"':''%> />
+                                                                                                <span class="checkmark"></span>
+                                                                                                First Class
+                                                                                            </label>
+                                                                                        </li>
+                                                                                    </ul><!-- .list-select-grade end -->
+                                                                                </li>
+                                                                                <li>
+                                                                                    <ul class="list-reservation-options">
+                                                                                        <li>
+                                                                                            <label class="label-container checkbox-default">
+                                                                                                <span>
+                                                                                                    Nonstop
+                                                                                                </span>
+                                                                                                <input type="checkbox" value="true" name="nonStop" <%=(params.nonStop=='true')?'checked="checked"':''%> />
+                                                                                                <span class="checkmark"></span>
+                                                                                            </label>
+                                                                                        </li>
+                                                                                    </ul><!-- .list-reservation-options end -->
+                                                                                </li>
+                                                                                <li>
+                                                                                    <a class="btn-reservation-passengers btn x-small colorful hover-dark"
+                                                                                        href="javascript:;">Done</a>
+                                                                                </li>
+                                                                            </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-12">
+                                                        <div class="row">
+                                                            <%
+                                                            if(params.type=='multicity'){
+                                                            for(let i=1;i<params.from.length;i++){%>
+                                                                <div class="col-lg-3">
+                                                                    <div class="select-box">
+                                                                        <!-- <i class='fas fa-plane' style="transform: rotate(-90deg);top: 33%;"></i> -->
+                                                                        <i class='bx bx-map-alt'></i>
+                                                                        <select class="form-control search-airport" name="from" id="multi_from">
+                                                                            <option data-display="<%=params.from[i]%>"><%=params.from[i]%></option>
+                                                                            
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-3">
+                                                                    <div class="select-box">
+                                                                        <!-- <i class='fas fa-plane' style="transform: rotate(90deg);top: 33%;"></i> -->
+                                                                        <i class='bx bx-map-alt'></i>
+                                                                        <select class="form-control search-airport" name="to">
+                                                                            <option data-display="<%=params.to[i]%>" ><%=params.to[i]%></option>
+                                                                            <option value="<%=params.to[i]%>"><%=params.to[i]%></option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-3">
+                                                                    <div class="select-box">
+                                                                        <i class='far fa-calendar'></i>
+                                                                        <input type="text" class="form-control" id="multi_departure2" autocomplete="off" name="departdate" placeholder="Depart Date" required="required" value="<%=params.departdate[i]%>" />
+                                                                    </div>
+                                                                </div>
+                                                                <%}}else{%>
+                                                                    <div class="col-lg-3">
+                                                                        <div class="select-box">
+                                                                            <i class='bx bx-map-alt'></i>
+                                                                            <select class="form-control search-airport" name="from" id="multi_from">
+                                                                            <option value='0'>From</option>
+                                                                            
+                                                                        </select>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-lg-3">
+                                                                        <div class="select-box">
+                                                                            <i class='bx bx-map-alt'></i>
+                                                                            <select class="form-control search-airport" name="to">
+                                                                            <option value='0'>To</option>
+                                                                        </select>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-lg-3">
+                                                                        <div class="select-box">
+                                                                            <i class='far fa-calendar'></i>
+                                                                            <input type="text" class="form-control" id="multi_departure2" name="departdate" placeholder="Depart Date" required="required" />
+
+                                                                        </div>
+                                                                    </div>
+                                                                    <%}%>
+                                                                        <div class="col-lg-3">
+                                                                            <button type="submit" class="btn-search">
+                                                                        <i class='bx bx-search-alt'></i> Search Flight
+                                                                    </button>
+                                                                        </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <div class="container">
+                        <div class="row">
+
+                            <div class="col-md-12">
+
+                                <ul class="breadcrumb">
+                                    <li><a href="<%=base_url%>"><i class="fa fa-home"></i></a></li>
+                                    <li><a href="<%=base_url%>">Flights</a></li>
+                                    <li class="active" style="text-transform: capitalize;">
+                                        <%=params.search%>
+                                    </li>
+
+                                </ul>
+                                <!-- .breadcrumb end -->
+
+                            </div>
+                            <!-- .col-md-12 end -->
+                            <div class="col-md-12">
+
+                                <div class="page-single-content sidebar-left">
+
+                                    <div class="row">
+                                        <div class="col-lg-8 col-md-12 col-lg-push-4">
+
+                                            <div class="content-main">
+                                                <div class="searchResults">
+
+                                                    <%
+                                                        let obj
+                                                        if(data.meta.count!=0){
+                                                            obj = JSON.parse(JSON.stringify(data.dictionaries.carriers))
+                                                        }
+                                                        var carriersName = [];
+                                                        var carriersCode = [];
+                
+                                                        for(var i in obj){
+                                                            
+                                                        carriersName.push(obj[i]);
+                                                        carriersCode.push(i);
+                                                        }
+                                                    %>
+
+                                                        <%
+                                                    let maxPrice = 0
+                                                    let minPrice = 0
+                                                    let minTime = 0
+                                                    let maxTime = 0
+                                                    let currency = ''
+                                                    data.data.forEach(function(item,key){
+                                                        currency = item.price.currency
+                                                        let carrierCode1 = item.itineraries[0].segments[0].carrierCode
+                                                        let carrierCode2 = item.itineraries[0].segments[0].carrierCode
+                                                        let grandTotal=item.price.grandTotal
+                                                        let fair_price=(item.price.grandTotal*air_markup_fair)/100
+                                                        let FinalTot=parseFloat(grandTotal)+parseFloat(fair_price)
+                                                        if(maxPrice<Math.abs(FinalTot)){
+                                                            maxPrice = Math.abs(FinalTot.toFixed(2))
+                                                        }
+                                                        if(key==0){
+                                                            minPrice = Math.abs(FinalTot.toFixed(2))
+                                                        }
+                                                        %>
+                                                            <div class="block-content-2">
+                                                                <div class="box-result">
+                                                                    <ul class="list-search-result">
+                                                                        <% let oneway = (item.itineraries.length==2)?'true':'false' 
+                                                                    let chkH=0
+                                                                    let chkM=0
+                                                                    %>
+                                                                            <%item.itineraries.forEach(function(itinerarie,lps){
+                                                                        let countStops = itinerarie.segments.length-1
+                                                                        let countSegs = itinerarie.segments.length
+                                                                        let Time = itinerarie.duration.substring(2,8)
+
+                                                                        let aa_1 = Time.split('H')
+                                                                        let aa_2 = aa_1[0]
+                                                                        let aa_3 = aa_1[1].substring(0, aa_1[1].length - 1);
+                                                                        let duration = ''
+                                                                        if(aa_2.length>0){duration=aa_2+"h"}
+                                                                        if(aa_3.length>0){duration=duration+" "+aa_3+"m"}
+                                                                       
+                                                                        if(key==0){minTime=duration}
+                                                                        if(chkH<aa_2){
+                                                                            chkH = aa_2
+                                                                            maxTime=aa_2+"h"
+                                                                            if(chkM<aa_3){
+                                                                                chkM = aa_3
+                                                                                maxTime=maxTime+" "+aa_3+"m"
+                                                                            }
+                                                                        }
+
+                                                                        %>
+
+
+                                                                                <li class="segs">
+                                                                                    <ul class="result-single">
+                                                                                        <li>
+                                                                                            <!-- <img src="<%=base_url%>assets/images/files/logo-companies/img-1.png" alt=""> -->
+                                                                                            <span class="date"><%=data.dictionaries.carriers[carrierCode1]%></span>
+                                                                                        </li>
+                                                                                        <li>
+                                                                                            <%=itinerarie.segments[0].departure.iataCode%>
+                                                                                                <span class="date"><%=moment(itinerarie.segments[0].departure.at).format('HH:mm A')%></span>
+                                                                                        </li>
+                                                                                        <li>
+
+                                                                                            <span class="shape-distance">
+                                                                                            <%for(let i=1;i<=countStops;i++){%>
+                                                                                            <span class="fliStopsDisc"></span>
+                                                                                            <%}%>
+                                                                                                </span>
+                                                                                                <span class="text-center more">more</span>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        <%=itinerarie.segments[countSegs-1].arrival.iataCode%> 
+                                                                                        <span class="date"><%=moment(itinerarie.segments[countSegs-1].arrival.at).format('HH:mm A')%></span>
+                                                                                        </li>
+                                                                                        <li>
+                                                                                            <span class="duration"><%=duration%> <span> | <%=(countStops!=0)?countStops+' stop':'nonstop'%></span></span>
+                                                                                        </li>
+                                                                                    </ul>
+                                                                                    <!-- .result-single end -->
+
+
+                                                                                    <%itinerarie.segments.forEach(function(segment,index){
+                                                                                let Time = segment.duration.substring(2,8)
+                                                                                let aa_1 = Time.split('H')
+                                                                                let aa_2 = aa_1[0]
+                                                                                let aa_3 = aa_1[1].substring(0, aa_1[1].length - 1);
+                                                                                let duration = ''
+                                                                                if(aa_2.length>0){duration=aa_2+"h"}
+                                                                                if(aa_3.length>0){duration=duration+" "+aa_3+"m"}
+                                                                            %>
+
+                                                                                        <div class="hide stops">
+                                                                                            <ul class="result-single">
+                                                                                                <li>
+                                                                                                    <!-- <img src="<%=base_url%>assets/images/files/logo-companies/img-1.png" alt=""> -->
+                                                                                                    <span class="date"><%=data.dictionaries.carriers[carrierCode1]%></span>
+                                                                                                </li>
+                                                                                                <li>
+                                                                                                    <%=segment.departure.iataCode%>
+                                                                                                        <span class="date"><%=moment(segment.departure.at).format('HH:mm A')%></span>
+                                                                                                </li>
+                                                                                                <li>
+                                                                                                    <div class="arrow-right"></div>
+                                                                                                </li>
+                                                                                                <li>
+                                                                                                    <%=segment.arrival.iataCode%>
+                                                                                                        <span class="date"><%=moment(segment.arrival.at).format('HH:mm A')%></span>
+                                                                                                </li>
+                                                                                                <li>
+                                                                                                    <span class="duration"><%=duration%> <span> | <%=item.travelerPricings[0].fareDetailsBySegment[index].cabin%></span></span>
+                                                                                                </li>
+                                                                                            </ul>
+                                                                                            <!-- .result-single end -->
+                                                                                        </div>
+                                                                                        <%})%>
+                                                                                </li>
+                                                                                <%})%>
+                                                                    </ul>
+                                                                    <!-- .list-search-result end -->
+                                                                    <div class="result-price">
+                                                                        <span class="description">Price for 1 Passenger</span>
+                                                                        <div class="price">
+                                                                            <%=item.price.currency%> <span class="value">
+                                                                            <%let onepPrice = FinalTot / totTraveller %>
+                                                                            <%=onepPrice.toFixed(2)%>
+                                                                        </span>
+                                                                        </div>
+                                                                        <!-- .price end -->
+                                                                        <%let items = JSON.stringify(item)%>
+                                                                            <a class="btn small colorful-transparent hover-colorful mb-15" onclick="gotobooking('<%=item.id%>','<%=Math.abs(params.adults)+Math.abs(params.children)%>','<%=items%>')">Book Now</a>
+                                                                        <div class="price totprice hide">
+                                                                            <span class="description"><%=onepPrice.toFixed(2) %> X <%=totTraveller%> Passenger(s)</span>
+                                                                            <%=item.price.currency%> 
+                                                                             <span class="value">
+                                                                                <%=FinalTot.toFixed(2) %>
+                                                                            </span>
+                                                                        </div>
+                                                                    </div>
+                                                                    <!-- .result-price end -->
+                                                                </div>
+                                                                <!-- .box-result end -->
+                                                            </div>
+                                                            <!-- .block-content-2 end -->
+                                                            <%})%>
+
+                                                                <%if(data.meta.count==0){%>
+                                                                    <div class="text-center mt-50" style="">
+                                                                        <h4 style="    color: #8c8888;
+                                                        font-family: system-ui;">Sorry, no trips found for this search</h4>
+                                                                    </div>
+                                                                    <%}%>
+
+                                                </div>
+                                            </div>
+                                            <!-- .content-main end -->
+
+                                        </div>
+                                        <!-- .col-lg-8 end -->
+                                        <div class="col-lg-4 col-md-12 col-lg-pull-8">
+
+                                            <div class="sidebar style-1">
+                                                <div class="box-widget">
+                                                    <h5 style="font-weight: 600;
+                                                        border: 3px solid #a59f9f;
+                                                        padding: 8px;">Total Flights: <span id="countFlights"><%=data.meta.count%></span></h5>
+                                                    <h5 class="box-title">Price Range</h5>
+                                                    <div class="box-content">
+                                                        <div class="slider-dragable-range slider-range-price">
+                                                            <input type="text" class="price" id="price">
+                                                            <div class="slider-range " data-slider-min-value="<%=minPrice%>" data-slider-max-value="<%=maxPrice%>" data-range-start-value="<%=minPrice%>" data-range-end-value="<%=maxPrice%>" data-slider-value-sign="<%=currency%> "></div>
+                                                        </div>
+                                                        <!-- .slider-dragable-price end -->
+                                                    </div>
+                                                    <!-- .box-content end -->
+                                                </div>
+                      
+                                                <div class="box-widget">
+                                                    <h5 class="box-title">AirLine</h5>
+                                                    <div class="box-content">
+                                                        <ul class="check-boxes-custom list-checkboxes">
+                                                            <!-- <li>
+																	<label class="label-container checkbox-default">All
+																		<input type="checkbox" class="airline_checkbox_all" id="checkAll" value="All">
+																		<span class="checkmark"></span>
+																	</label>
+																</li> -->
+
+
+                                                            <%carriersName.forEach(function(airline,index){%>
+                                                                <li>
+                                                                    <label class="label-container checkbox-default"><%=airline%>
+                                                                            <input type="checkbox" class="airline_checkbox" value="<%=carriersCode[index]%>" >
+                                                                            <span class="checkmark"></span>
+                                                                        </label>
+                                                                </li>
+                                                                <%})%>
+                                                        </ul>
+                                                        <!-- .check-boxes-custom end -->
+                                                    </div>
+                                                    <!-- .box-content end -->
+                                                </div>
+                                                <!-- .box-widget end -->
+
+                                                <%
+                                                    let lefthoursMin = 0
+                                                    let leftminutesMin = 0
+                                                    let lefthoursMax = 0
+                                                    let leftminutesMax = 0
+                                                    if(data.meta.count!=0){
+
+                                                        let calcMin = minTime.split(' ');
+                                                        lefthoursMin = calcMin[0].substring(0, calcMin[0].length - 1);
+                                                        leftminutesMin = lefthoursMin*60
+                                                        if(calcMin.length>1){
+                                                            let otherminutesMin = calcMin[1].substring(0, calcMin[1].length - 1);
+                                                        
+                                                            leftminutesMin = Math.abs(leftminutesMin)+Math.abs(otherminutesMin)
+                                                        }
+                                                   
+                                                        let calcMax = maxTime.split(' ');
+                                                        lefthoursMax = calcMax[0].substring(0, calcMax[0].length - 1);
+                                                        leftminutesMax = lefthoursMax*60
+                                                        if(calcMax.length>1){
+                                                            let otherminutesMax = calcMax[1].substring(0, calcMax[1].length - 1);
+                                                          
+                                                            leftminutesMax = Math.abs(leftminutesMax)+Math.abs(otherminutesMax)
+                                                            
+                                                        }
+                                                    }
+                                                    %>
+
+
+                                                    <div class="box-widget">
+                                                        <h5 class="box-title">Duration</h5>
+                                                        <div class="box-content">
+                                                            <div class="slider-dragable-range slider-range-time">
+
+                                                                <div class="time">
+                                                                    <span class="slider-time-1"><%=minTime%></span> - <span class="slider-time-2"><%=maxTime%></span>
+                                                                </div>
+                                                                <div class="sliders_step1">
+                                                                    <div class="slider-range" data-time-start-minutes="<%=(leftminutesMin>leftminutesMax)?''+leftminutesMax:''+leftminutesMin%>" data-time-end-minutes="<%=(leftminutesMin>leftminutesMax)?''+leftminutesMin:''+leftminutesMax%>"></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!-- .box-content end -->
+                                                    </div>
+                                                    <!-- .box-widget end -->
+                                            </div>
+                                            <!-- .sidebar end -->
+
+                                        </div>
+                                        <!-- .col-lg-4 end -->
+                                    </div>
+                                    <!-- .row end -->
+
+                                </div>
+                                <!-- .page-single-content end -->
+
+                            </div>
+                            <!-- .col-md-12 end -->
+                        </div>
+                        <!-- .row end -->
+                    </div>
+                    <!-- .container end -->
+
+                </div>
+                <!-- .section-content end -->
+
+            </div>
+            <!-- .section-flat end -->
+
+        </div>
+        <!-- #content-wrap -->
+
+    </section>
+    <!-- #content end -->
+    <input type="hidden" id="searchData" value="<%=JSON.stringify(data)%>">
+    <%-include('includes/footer');%>
+        <script>
+            function gotobooking(id, adc, item) {
+                if ('<%=session%>' == '') {
+                    // swal({
+                    //     title: "Make Login!",
+                    //     text: "You clicked the button!",
+                    //     icon: "warning",
+                    // });
+                    $('#id').val(id)
+                    $('#adc').val(adc)
+                    $('#item').val(item)
+                    $('#search').val("<%=params.search%>")
+                    $('#type').val("<%=params.type%>")
+                    saveFlight2(item, id, adc, "<%=params.search%>", "<%=params.type%>")
+                        // $('#login').modal('show')
+                    show_login_modal();
+
+
+                } else {
+                    saveFlight(item, id, adc, "<%=params.search%>", "<%=params.type%>")
+                }
+            }
+
+            function saveFlight2(item, id, adc, search, type) {
+                let data = JSON.parse(item)
+                data.search = search
+                data.type = type
+                item = JSON.stringify(data)
+                console.log(item);
+                $.ajax({
+                    type: 'POST',
+                    url: "<%=base_url%>saveFlight",
+                    data: item,
+                    dataType: 'json',
+                    contentType: 'application/json',
+                    success: function(data) {
+                        if (data.res == true) {
+                            $('#url').val('<%=base_url%>booking-traveler-info/' + id + '/' + adc)
+                        }else{
+                            $('#url').val('javascript:void(0);')
+                        }
+                    }
+                });
+            }
+
+            function saveFlight(item, id, adc, search, type) {
+                let data = JSON.parse(item)
+                data.search = search
+                data.type = type
+                item = JSON.stringify(data)
+                console.log(item);
+                $.ajax({
+                    type: 'POST',
+                    url: "<%=base_url%>saveFlight",
+                    data: item,
+                    dataType: 'json',
+                    contentType: 'application/json',
+                    success: function(data) {
+                        if (data.res == true) {
+                            window.location.href = '<%=base_url%>booking-traveler-info/' + id + '/' + adc
+                        }
+                    }
+                });
+            }
+
+            $(".search-airport").select2({
+                tags: false,
+                multiple: false,
+                tokenSeparators: [',', ' '],
+                minimumInputLength: 1,
+                minimumResultsForSearch: 20,
+                ajax: {
+                    url: base_url + 'search-IATA',
+                    dataType: "json",
+                    type: "POST",
+                    data: function(params) {
+                        var queryParameters = {
+                            keyword: params.term
+                        }
+                        return queryParameters;
+                    },
+                    processResults: function(data) {
+                        return {
+                            results: $.map(data.data, function(item) {
+                                return {
+                                    text: `(${item.code}), ${item.cityName} ${item.countryName}`,
+                                    id: item.code
+                                }
+                            })
+                        };
+                    }
+                }
+            });
+
+            function segs(tag) {
+                if ($(tag).find('.stops').hasClass('hide')) {
+                    $(tag).find('.stops').removeClass('hide')
+                    $(tag).find('.stops').addClass('show')
+                } else {
+                    $(tag).find('.stops').removeClass('show')
+                    $(tag).find('.stops').addClass('hide')
+                }
+            }
+            $(function() {
+
+                $('.segs').on('click', function() {
+
+                    if ($(this).find('.stops').hasClass('hide')) {
+                        $(this).find('.stops').removeClass('hide')
+                        $(this).find('.stops').addClass('show')
+                    } else {
+                        $(this).find('.stops').removeClass('show')
+                        $(this).find('.stops').addClass('hide')
+                    }
+                    if($(this).parents('.box-result').find('.totprice').hasClass('hide')){
+                        $(this).parents('.box-result').find('.totprice').removeClass('hide')
+                        $(this).parents('.box-result').find('.totprice').addClass('show')
+                    }else{
+                        $(this).parents('.box-result').find('.totprice').removeClass('show')
+                        $(this).parents('.box-result').find('.totprice').addClass('hide')
+                    }
+                })
+
+
+
+                let obj_111 = $('#searchData').val()
+                let SearchData = JSON.parse(obj_111)
+                let Allairlines = []
+                let air_markup_fair = parseInt('<%=air_markup_fair%>')
+
+                $('.airline_checkbox').on('click', function() {
+                    if ($(this).prop('checked') == true) {
+                        Allairlines.push($(this).val())
+                    } else {
+                        Allairlines.remove($(this).val())
+                    }
+
+
+                    let html = ``
+                    let adults = '<%=params.adults%>'
+                    let children = '<%=params.children%>'
+                    let max = 0
+                    let countFlights = 0
+                    SearchData.data.forEach(element => {
+                        let fair_price = (element.price.grandTotal*air_markup_fair)/100;
+                        let price      =  parseFloat(element.price.grandTotal)+parseFloat(fair_price);
+                        price           =  price.toFixed(2)
+                        let check = jQuery.inArray(element.validatingAirlineCodes[0], Allairlines) !== -1
+                        if (check == true || Allairlines.length == 0) {
+                            let carrierCode1 = element.itineraries[0].segments[0].carrierCode
+                            let carrierCode2 = element.itineraries[0].segments[0].carrierCode
+                            if (max < price) {
+                                max = price
+                            }
+
+                            let items = element
+                            html += `<div class="block-content-2">
+                                    <div class="box-result">
+                                        <ul class="list-search-result">`;
+                            let oneway = (element.itineraries.length == 2) ? 'true' : 'false';
+                            element.itineraries.forEach(function(itinerarie, lps) {
+                                let countStops = itinerarie.segments.length - 1
+                                let countSegs = itinerarie.segments.length
+                                let Time = itinerarie.duration.substring(2, 8)
+                                let aa_1 = Time.split('H')
+                                let aa_2 = aa_1[0]
+                                let aa_3 = aa_1[1].substring(0, aa_1[1].length - 1);
+                                let duration = ''
+                                if (aa_2.length > 0) {
+                                    duration = aa_2 + "h"
+                                }
+                                if (aa_3.length > 0) {
+                                    duration = duration + " " + aa_3 + "m"
+                                }
+                                let stops = (countStops != 0) ? countStops + ' stop' : 'nonstop'
+
+                                html += `<li class="segs" onclick="segs(this)">
+                                                        <ul class="result-single">
+                                                            <li>
+                                                                
+                                                                <span class="date">` + SearchData.dictionaries.carriers[carrierCode1] + `</span>
+                                                            </li>
+                                                            <li>
+                                                                ` + itinerarie.segments[0].departure.iataCode + `
+                                                                <span class="date">` + moment(itinerarie.segments[0].departure.at).format('HH:mm A') + `</span>
+                                                            </li>
+                                                            <li>
+                                                            
+                                                                <span class="shape-distance">`
+                                for (let i = 1; i <= countStops; i++) {
+                                    html += `<span class="fliStopsDisc"></span>`
+                                }
+                                html += `</span>
+                                <span class="text-center more">more</span>
+                                                            </li>
+                                                            <li>
+                                                                ` + itinerarie.segments[countSegs - 1].arrival.iataCode + ` 
+                                                                <span class="date">` + moment(itinerarie.segments[countSegs - 1].arrival.at).format('HH:mm A') + `</span>
+                                                            </li>
+                                                            <li>
+                                                                <span class="duration">` + duration + ` <span> | ${stops}</span></span>
+                                                            </li>
+                                                        </ul>`
+
+                                itinerarie.segments.forEach(function(segment, index) {
+                                    let Time = segment.duration.substring(2, 8)
+                                    let aa_1 = Time.split('H')
+                                    let aa_2 = aa_1[0]
+                                    let aa_3 = aa_1[1].substring(0, aa_1[1].length - 1);
+                                    let duration = ''
+                                    if (aa_2.length > 0) {
+                                        duration = aa_2 + "h"
+                                    }
+                                    if (aa_3.length > 0) {
+                                        duration = duration + " " + aa_3 + "m"
+                                    }
+                                    html += `<div class="hide stops" >
+                                                                    <ul class="result-single">
+                                                                        <li>
+                                                                            
+                                                                            <span class="date">` + SearchData.dictionaries.carriers[carrierCode1] + `</span>
+                                                                        </li>
+                                                                        <li>
+                                                                            ` + segment.departure.iataCode + ` 
+                                                                            <span class="date">` + moment(segment.departure.at).format('HH:mm A') + `</span>
+                                                                        </li>
+                                                                        <li>
+                                                                        <div class="arrow-right"></div> 
+                                                                        </li>
+                                                                        <li>
+                                                                            ` + segment.arrival.iataCode + `
+                                                                            <span class="date">` + moment(segment.arrival.at).format('HH:mm A') + `</span>
+                                                                        </li>
+                                                                        <li>
+                                                                            <span class="duration">` + duration + ` <span> | ` + element.travelerPricings[0].fareDetailsBySegment[index].cabin + `</span></span>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>`
+                                })
+                                html += `</li>`
+                            })
+                            html += `</ul>
+                                        
+                                        <div class="result-price">
+                                            <div class="price">
+                                                ` + element.price.currency + ` <span class="value">` + price + `</span>
+                                                <span class="description">Price for <%=totTraveller%> Person(s)</span>
+                                            </div>
+                                            <a class="btn small colorful-transparent hover-colorful" onclick="gotobooking(this.getAttribute('data-id'), this.getAttribute('data-abc'),this.getAttribute('data-item'))" data-id="${element.id}" data-abc="${Math.abs(adults)+Math.abs(children)}"  data-item='${JSON.stringify(items)}' href="javascript:void(0);">Book Now</a>
+                                        </div>
+                                    </div>
+                                </div>`
+                            countFlights++
+                        }
+
+                    });
+
+                    $('.searchResults').empty()
+                    $('.searchResults').html(html)
+                    $('#countFlights').text('')
+                    $('#countFlights').text(countFlights)
+                })
+
+                $('.slider-range-price').on('slidestop', function(event, ui) {
+                    let startPos = ui.values[0]
+                    let endPos   = ui.values[1]
+                    let html = ``
+                    let adults = '<%=params.adults%>'
+                    let children = '<%=params.children%>'
+                    let max = 0
+                    let countFlights = 0
+                    SearchData.data.forEach(element => {
+                        let fair_price = (element.price.grandTotal*air_markup_fair)/100;
+                        let price      =  parseFloat(element.price.grandTotal)+parseFloat(fair_price);
+                        price           =  price.toFixed(2)
+                        if (price >= startPos && price <= endPos) {
+                            let carrierCode1 = element.itineraries[0].segments[0].carrierCode
+                            let carrierCode2 = element.itineraries[0].segments[0].carrierCode
+                            if (max < price) {
+                                max = price
+                            }
+                            let items = element;
+                            // console.log(items); 
+                            html += `<div class="block-content-2">
+                                    <div class="box-result">
+                                        <ul class="list-search-result">`;
+                            let oneway = (element.itineraries.length == 2) ? 'true' : 'false';
+                            element.itineraries.forEach(function(itinerarie, lps) {
+                                let countStops = itinerarie.segments.length - 1
+                                let countSegs = itinerarie.segments.length
+                                let Time = itinerarie.duration.substring(2, 8)
+                                let aa_1 = Time.split('H')
+                                let aa_2 = aa_1[0]
+                                let aa_3 = aa_1[1].substring(0, aa_1[1].length - 1);
+                                let duration = ''
+                                if (aa_2.length > 0) {
+                                    duration = aa_2 + "h"
+                                }
+                                if (aa_3.length > 0) {
+                                    duration = duration + " " + aa_3 + "m"
+                                }
+                                let stops = (countStops != 0) ? countStops + ' stop' : 'nonstop'
+
+                                html += `<li class="segs" onclick="segs(this)">
+                                                        <ul class="result-single">
+                                                            <li>
+                                                                
+                                                                <span class="date">` + SearchData.dictionaries.carriers[carrierCode1] + `</span>
+                                                            </li>
+                                                            <li>
+                                                                ` + itinerarie.segments[0].departure.iataCode + `
+                                                                <span class="date">` + moment(itinerarie.segments[0].departure.at).format('HH:mm A') + `</span>
+                                                            </li>
+                                                            <li>
+                                                            
+                                                                <span class="shape-distance">`
+                                for (let i = 1; i <= countStops; i++) {
+                                    html += `<span class="fliStopsDisc"></span>`
+                                }
+                                html += `</span>
+                                <span class="text-center more">more</span>
+                                                            </li>
+                                                            <li>
+                                                                ` + itinerarie.segments[countSegs - 1].arrival.iataCode + ` 
+                                                                <span class="date">` + moment(itinerarie.segments[countSegs - 1].arrival.at).format('HH:mm A') + `</span>
+                                                            </li>
+                                                            <li>
+                                                                <span class="duration">` + duration + ` <span> | ${stops}</span></span>
+                                                            </li>
+                                                        </ul>`
+
+                                itinerarie.segments.forEach(function(segment, index) {
+                                    let Time = segment.duration.substring(2, 8)
+                                    let aa_1 = Time.split('H')
+                                    let aa_2 = aa_1[0]
+                                    let aa_3 = aa_1[1].substring(0, aa_1[1].length - 1);
+                                    let duration = ''
+                                    if (aa_2.length > 0) {
+                                        duration = aa_2 + "h"
+                                    }
+                                    if (aa_3.length > 0) {
+                                        duration = duration + " " + aa_3 + "m"
+                                    }
+                                    html += `<div class="hide stops" >
+                                                                    <ul class="result-single">
+                                                                        <li>
+                                                                            
+                                                                            <span class="date">` + SearchData.dictionaries.carriers[carrierCode1] + `</span>
+                                                                        </li>
+                                                                        <li>
+                                                                            ` + segment.departure.iataCode + ` 
+                                                                            <span class="date">` + moment(segment.departure.at).format('HH:mm A') + `</span>
+                                                                        </li>
+                                                                        <li>
+                                                                        <div class="arrow-right"></div> 
+                                                                        </li>
+                                                                        <li>
+                                                                            ` + segment.arrival.iataCode + `
+                                                                            <span class="date">` + moment(segment.arrival.at).format('HH:mm A') + `</span>
+                                                                        </li>
+                                                                        <li>
+                                                                            <span class="duration">` + duration + ` <span> | ` + element.travelerPricings[0].fareDetailsBySegment[index].cabin + `</span></span>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>`
+                                })
+                                html += `</li>`
+                            })
+                            html += `</ul>
+                                        
+                                        <div class="result-price">
+                                            <div class="price">
+                                                ` + element.price.currency + ` <span class="value">` + price + `</span>
+                                                <span class="description">Price for <%=totTraveller%> Person(s)</span>
+                                            </div>
+                                            <a class="btn small colorful-transparent hover-colorful " onclick="gotobooking(this.getAttribute('data-id'), this.getAttribute('data-abc'),this.getAttribute('data-item'))" data-id="${element.id}" data-abc="${Math.abs(adults)+Math.abs(children)}"  data-item='${JSON.stringify(items)}' href="javascript:void(0);">Book Now</a>
+                                        </div>
+                                    </div>
+                                </div>`
+                            countFlights++
+                        }
+
+                    });
+
+                    $('.searchResults').empty()
+                    $('.searchResults').html(html)
+                    $('#countFlights').text('')
+                    $('#countFlights').text(countFlights)
+                })
+
+                $('.slider-range-time').on('slidestop', function(event, ui) {
+                    console.log(ui.values);
+                    let startPos = ui.values[0]
+                    let endPos = ui.values[1]
+                    let html = ``
+                    let adults = '<%=params.adults%>'
+                    let children = '<%=params.children%>'
+                    let max = 0
+                    let countFlights = 0
+                    SearchData.data.forEach(element => {
+                        let fair_price = (element.price.grandTotal*air_markup_fair)/100;
+                        let price      =  parseFloat(element.price.grandTotal)+parseFloat(fair_price);
+                        price           =  price.toFixed(2)
+                        let Time = element.itineraries[0].duration.substring(2, 8)
+                        let aa_1 = Time.split('H')
+                        let h = aa_1[0]
+                        let m = aa_1[1].substring(0, aa_1[1].length - 1);
+                        let totMinutes = parseInt(h * 60) + parseInt(m);
+
+                        if (totMinutes >= startPos && totMinutes <= endPos) {
+                            let carrierCode1 = element.itineraries[0].segments[0].carrierCode
+                            let carrierCode2 = element.itineraries[0].segments[0].carrierCode
+                            if (max < price) {
+                                max = price
+                            }
+
+                            let items = element
+                            html += `<div class="block-content-2">
+                                    <div class="box-result">
+                                        <ul class="list-search-result">`;
+                            let oneway = (element.itineraries.length == 2) ? 'true' : 'false';
+                            element.itineraries.forEach(function(itinerarie, lps) {
+                                let countStops = itinerarie.segments.length - 1
+                                let countSegs = itinerarie.segments.length
+                                let Time = itinerarie.duration.substring(2, 8)
+                                let aa_1 = Time.split('H')
+                                let aa_2 = aa_1[0]
+                                let aa_3 = aa_1[1].substring(0, aa_1[1].length - 1);
+                                let duration = ''
+                                if (aa_2.length > 0) {
+                                    duration = aa_2 + "h"
+                                }
+                                if (aa_3.length > 0) {
+                                    duration = duration + " " + aa_3 + "m"
+                                }
+                                let stops = (countStops != 0) ? countStops + ' stop' : 'nonstop'
+
+                                html += `<li class="segs" onclick="segs(this)">
+                                                        <ul class="result-single">
+                                                            <li>
+                                                               
+                                                                <span class="date">` + SearchData.dictionaries.carriers[carrierCode1] + `</span>
+                                                            </li>
+                                                            <li>
+                                                                ` + itinerarie.segments[0].departure.iataCode + `
+                                                                <span class="date">` + moment(itinerarie.segments[0].departure.at).format('HH:mm A') + `</span>
+                                                            </li>
+                                                            <li>
+                                                            
+                                                                <span class="shape-distance">`
+                                for (let i = 1; i <= countStops; i++) {
+                                    html += `<span class="fliStopsDisc"></span>`
+                                }
+                                html += `</span>
+                                <span class="text-center more">more</span>
+                                                            </li>
+                                                            <li>
+                                                                ` + itinerarie.segments[countSegs - 1].arrival.iataCode + ` 
+                                                                <span class="date">` + moment(itinerarie.segments[countSegs - 1].arrival.at).format('HH:mm A') + `</span>
+                                                            </li>
+                                                            <li>
+                                                                <span class="duration">` + duration + ` <span> | ${stops}</span></span>
+                                                            </li>
+                                                        </ul>`
+
+                                itinerarie.segments.forEach(function(segment, index) {
+                                    let Time = segment.duration.substring(2, 8)
+                                    let aa_1 = Time.split('H')
+                                    let aa_2 = aa_1[0]
+                                    let aa_3 = aa_1[1].substring(0, aa_1[1].length - 1);
+                                    let duration = ''
+                                    if (aa_2.length > 0) {
+                                        duration = aa_2 + "h"
+                                    }
+                                    if (aa_3.length > 0) {
+                                        duration = duration + " " + aa_3 + "m"
+                                    }
+                                    html += `<div class="hide stops" >
+                                                                    <ul class="result-single">
+                                                                        <li>
+                                                                           
+                                                                            <span class="date">` + SearchData.dictionaries.carriers[carrierCode1] + `</span>
+                                                                        </li>
+                                                                        <li>
+                                                                            ` + segment.departure.iataCode + ` 
+                                                                            <span class="date">` + moment(segment.departure.at).format('HH:mm A') + `</span>
+                                                                        </li>
+                                                                        <li>
+                                                                        <div class="arrow-right"></div> 
+                                                                        </li>
+                                                                        <li>
+                                                                            ` + segment.arrival.iataCode + `
+                                                                            <span class="date">` + moment(segment.arrival.at).format('HH:mm A') + `</span>
+                                                                        </li>
+                                                                        <li>
+                                                                            <span class="duration">` + duration + ` <span> | ` + element.travelerPricings[0].fareDetailsBySegment[index].cabin + `</span></span>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>`
+                                })
+                                html += `</li>`
+                            })
+                            html += `</ul>
+                                        
+                                        <div class="result-price">
+                                            <div class="price">
+                                                ` + element.price.currency + ` <span class="value">` + price + `</span>
+                                                <span class="description">Price for <%=totTraveller%> Person(s)</span>
+                                            </div>
+                                            <a class="btn small colorful-transparent hover-colorful" onclick="gotobooking(this.getAttribute('data-id'), this.getAttribute('data-abc'),this.getAttribute('data-item'))" data-id="${element.id}" data-abc="${Math.abs(adults)+Math.abs(children)}"  data-item='${JSON.stringify(items)}' href="javascript:void(0);">Book Now</a>
+                                        </div>
+                                    </div>
+                                </div>`
+                            countFlights++
+                        }
+
+                    });
+
+                    $('.searchResults').empty()
+                    $('.searchResults').html(html)
+                    $('#countFlights').text('')
+                    $('#countFlights').text(countFlights)
+                })
+
+
+                Array.prototype.remove = function() {
+                    var what, a = arguments,
+                        L = a.length,
+                        ax;
+                    while (L && this.length) {
+                        what = a[--L];
+                        while ((ax = this.indexOf(what)) !== -1) {
+                            this.splice(ax, 1);
+                        }
+                    }
+                    return this;
+                };
+
+                $('#multi_to').on('change', function() {
+                    let val = $('#multi_to').val()
+                    let val1 = $('#select2-multi_to-container').text()
+                    $('#multi_from').append(`<option value="` + val + `" selected>` + val1 + `</option>`)
+                })
+                $('.btn-search').on('click', function() {
+                    $(this).text(`Loading...`)
+                })
+
+                $('#onewayForm').validate({
+                    rules: {
+                        from: {
+                            required: true,
+                        },
+                        to: {
+                            required: true
+                        },
+                        departdate: {
+                            required: true
+                        },
+                        class: {
+                            required: true
+                        },
+                        adults: {
+                            required: true
+                        },
+                        children: {
+                            required: true
+                        }
+                    },
+                    submitHandler: function(form) {
+                        $('#onewayForm').find('.btn-search').text(`Loading...`)
+                        $('#onewayForm').find('.btn-search').prop('disabled', true)
+                        form.submit();
+                    }
+                })
+
+                $('#roundForm').validate({
+                    rules: {
+                        from: {
+                            required: true,
+                        },
+                        to: {
+                            required: true
+                        },
+                        departdate: {
+                            required: true
+                        },
+                        class: {
+                            required: true
+                        },
+                        adults: {
+                            required: true
+                        },
+                        children: {
+                            required: true
+                        }
+                    },
+                    submitHandler: function(form) {
+                        $('#roundForm').find('.btn-search').text(`Loading...`)
+                        $('#roundForm').find('.btn-search').prop('disabled', true)
+                        form.submit();
+                    }
+                })
+                $('#multicityForm').validate({
+                    rules: {
+                        from: {
+                            required: true,
+                        },
+                        to: {
+                            required: true
+                        },
+                        departdate: {
+                            required: true
+                        },
+                        class: {
+                            required: true
+                        },
+                        adults: {
+                            required: true
+                        },
+                        children: {
+                            required: true
+                        }
+                    },
+                    submitHandler: function(form) {
+                        if($('#multi_from').val()==0){
+                            $('#multi_from').after('<label for="from" class="error">This field is required.</label>')
+                            return false;
+                        }
+                        if($('#multito').val()==0){
+                            $('#multito').after('<label for="to" class="error">This field is required.</label>')
+                            return false;
+                        }
+                        if($('#multi_departure2').val()==''){
+                            $('#multi_departure2').after('<label for="departdate" class="error">This field is required.</label>')
+                            return false;
+                        }
+                        $('#multicityForm').find('.btn-search').text(`Loading...`)
+                        $('#multicityForm').find('.btn-search').prop('disabled', true)
+                        form.submit();
+                    }
+                })
+
+            })
+        </script>

@@ -1,0 +1,77 @@
+<style>
+    #searchForm .custom-label {
+        position: absolute;
+        right: 0%;
+        top: 28px;
+    }
+    
+    #searchForm .error {
+        position: absolute;
+        top: 55px;
+    }
+</style>
+<form id="searchForm" action="/search-hotel">
+    <div class="row align-items-center">
+        <div class="col-lg-11">
+
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="select-box">
+                        <label for="hotel-search-cities" class="custom-label"><i class='bx bx-map-alt'></i></label>
+                        <select class="form-control" id="hotel-search-cities" name="city" required>
+                            <option data-display='Destination' value="">Search Locations</option>
+                            <% if(params.city){  %> <option value="<%=params.city%>"  selected  ><%=params.city%></option> <% } %>
+                        </select>
+                        <!-- <span>Search City</span> -->
+                    </div>
+                </div>
+                <!-- params.checks_date -->
+                <div class="col-lg-4">
+                    <div class="select-box">
+
+                        <label for="hote_range_datepicker" class="custom-label"><i class='bx bx-calendar'></i></label>
+
+                        <input type="text" name="checks_date" class="date-select-renge form-control" id="hote_range_datepicker" value="<%=params.checks_date%>" required />
+                        <!-- <span>Checkin To Checkout Date</span> -->
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="select-box">
+                        <label for="num_of_adults" class="custom-label"><i class='bx bx-user'></i></label>
+                        <select class="form-control" name="num_of_adults" id="num_of_adults" required>
+                            <option value="" disabled  >Adults</option>
+                            <option value="1" <%=(params.num_of_adults==1)?'selected':'';%> >1-Adult</option>
+                            <option value="2" <%=(params.num_of_adults==2)?'selected':'';%> >2-Adults</option>
+                            <option value="3" <%=(params.num_of_adults==3)?'selected':'';%> >3-Adults</option>
+                            <option value="4" <%=(params.num_of_adults==4)?'selected':'';%> >4-Adults</option>
+                            <option value="5" <%=(params.num_of_adults==5)?'selected':'';%> >5-Adults</option>
+                            <option value="6" <%=(params.num_of_adults==6)?'selected':'';%> >6-Adults</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <div class="select-box">
+                        <label for="num_of_rooms" class="custom-label"><i class='bx bx-package'></i></label>
+                        <select class="form-control" name="num_of_rooms" id="num_of_rooms" required>
+                            <!-- <option value="">Rooms</option> -->
+                            <option value="1" <%=(params.num_of_rooms==1)?'selected':'';%> >1-Room</option>
+                            <option value="2" <%=(params.num_of_rooms==2)?'selected':'';%> >2-Room</option>
+                            <option value="3" <%=(params.num_of_rooms==3)?'selected':'';%> >3-Room</option>
+                            <option value="4" <%=(params.num_of_rooms==4)?'selected':'';%> >4-Room</option>
+                            <option value="5" <%=(params.num_of_rooms==5)?'selected':'';%> >5-Room</option>
+                            <option value="6" <%=(params.num_of_rooms==6)?'selected':'';%> >6-Room</option>
+                            <option value="6" <%=(params.num_of_rooms==6)?'selected':'';%> >7-Room</option>
+                            <option value="6" <%=(params.num_of_rooms==6)?'selected':'';%> >8-Room</option>
+                            <option value="6" <%=(params.num_of_rooms==6)?'selected':'';%> >9-Room</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-1">
+            <button type="submit" class="btn-search">
+                <i class='bx bx-search-alt'></i>
+            </button>
+        </div>
+    </div>
+</form>

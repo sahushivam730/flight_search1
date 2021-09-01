@@ -1,0 +1,1006 @@
+<%-include('includes/header');%>
+<link rel="stylesheet" href="../assets/css/intlTelInput.css" />
+
+    <style>
+        .home-banner-area.home-style-three .search-form {
+            bottom: 125px;
+        }
+        
+        .home-banner-area.home-style-three .search-form {
+            position: absolute;
+        }
+        .home-banner-area.home-style-three .banner-content {
+            padding: 20px 0 350px;
+        }
+        /* .intl-tel-input {
+        display: table-cell !important;
+        }
+        .intl-tel-input .selected-flag {
+        z-index: 4 !important;
+        }
+        .intl-tel-input .country-list {
+        z-index: 5 !important;
+        }
+        .input-group .intl-tel-input .form-control {
+        border-top-left-radius: 4px !important;
+        border-top-right-radius: 0 !important;
+        border-bottom-left-radius: 4px !important;
+        border-bottom-right-radius: 0 !important;
+        } */
+    </style>
+    <div id="home" id="section1" class="section home-banner-area home-style-three">
+        <div class="container-fluid p-0">
+            <div class="banner-slider-three owl-carousel">
+                <div class="slider-item item-two">
+                    <div class="container text-center">
+                        <div class="banner-content">
+                            <h1>
+                                Book The Best Travel Deals Online Or Via Text!
+                            </h1>
+                            <!-- <span class="sub-title">Work with agents one on one via sms, email, phone call, and Facebook Messenger</span> -->
+                            <p class="first-text">
+                                <!-- Work with agents one on one via sms, email, phone call, and Facebook Messenger -->
+                                Real Agents. Real Easy. Real Savings.
+                            </p>
+                            <p class="second-text">
+                                <!-- Save up to 70% on airfare and hotels around the world -->
+                                Text or Call Us @ 555-555-5555
+                            </p>
+                            <!-- <a href="destination-details.html" class="btn-primary">Destinations</a> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="search-form mb-5" style="bottom:0px;">
+                <div class="main-form">
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#oneway" role="tab" aria-controls="home" aria-selected="true">ONE-WAY</a>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link " id="profile-tab" data-toggle="tab" href="#round" role="tab" aria-controls="profile" aria-selected="false">ROUND-TRIP</a>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link " id="contact-tab" data-toggle="tab" href="#multi" role="tab" aria-controls="contact" aria-selected="false">MULTI-CITY</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active " id="oneway" role="tabpanel" aria-labelledby="oneway-tab">
+                        <form id="onewayForm" action="<%=base_url%>flight/search" method="GET" autocomplete="off">
+                            <div class="alert alert-success" style="display: <%=(bookviatext.length>0)?'block':'none';%>;">
+                                <%=bookviatext%>
+                            </div>
+                            <div class="row align-items-center">
+                                <div class="col-lg-12">
+                                    <div class="row">
+                                        <div class="col-lg-3">
+                                            <div class="select-box">
+                                                <!-- <i class='fas fa-plane' style="transform: rotate(-90deg);top: 33%;"></i> -->
+                                                <i class='bx bx-map-alt'></i>
+                                                <select class="form-control search-airport from"  name="from" required>
+                                                <option value=''>From</option>
+                                            </select>
+                                                <label class="error" style="display: none;">This field is required</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <div class="select-box">
+                                                <!-- <i class='fas fa-plane' style="transform: rotate(90deg);top: 33%;"></i> -->
+                                                <i class='bx bx-map-alt'></i>
+                                                <select class="form-control search-airport to" name="to" required> 
+                                                <option value=''>To</option>
+                                            </select>
+                                                <label class="error" style="display: none;">This field is required</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <div class="select-box">
+                                                <i class='far fa-calendar'></i>
+                                                <input type="text" class="date-select form-control" autocomplete="off" id="rounddate" name="departdate" placeholder="Depart Date" required="required" value="<%=today%>" />
+                                                <input type="hidden" name="type" value="oneway" />
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <div class="select-box">
+                                                <label class="search-form-passengers__input show-dropdown-passengers form-control" for="asdf">
+                                                    <div class="search-form-passengers__input-title">
+                                                        <span class="noofpassenger">1 passenger</span>,
+                                                        <span class="flightclass">ECONOMY</span>
+                                                    </div> 
+                                                    <div class="search-form-passengers__input-description"><i class="search-form-passengers__icon wl-icon-people"></i>
+                                                        <span class="nooftarvellers">1 Adult</span> 
+                                                    </div>
+                                                    <i class="fas fa-user"></i>
+                                                </label>
+                                                		<ul class="list-dropdown-passengers">
+															<li>
+																<ul class="list-persons-count">
+																	<li>
+																		<span>Adults:</span>
+																		<div class="counter-add-item">
+																			<a class="decrease-btn" href="javascript:;">-</a>
+																			<input type="text" class="adult" name="adults" value="1">
+																			<a class="increase-btn" href="javascript:;">+</a>
+																		</div><!-- .counter-add-item end -->
+																	</li>
+																	<li>
+																		<span>Childs:</span>
+																		<div class="counter-add-item">
+																			<a class="decrease-btn" href="javascript:;">-</a>
+																			<input type="text"  class="child" name="children" value="0">
+																			<a class="increase-btn" href="javascript:;">+</a>
+																		</div><!-- .counter-add-item end -->
+																	</li>
+                                                                    <li>
+																		<span>Infants:</span>
+																		<div class="counter-add-item">
+																			<a class="decrease-btn" href="javascript:;">-</a>
+																			<input type="text"  class="infants" name="infants" value="0">
+																			<a class="increase-btn" href="javascript:;">+</a>
+																		</div><!-- .counter-add-item end -->
+																	</li>
+																</ul><!-- .list-persons-count end -->
+															</li>
+															<li>
+																<ul class="list-select-grade">
+																	<li>
+																		<label class="radio-container radio-default">
+																			<input type="radio" checked="checked" value="ECONOMY"  name="class">
+																			<span class="checkmark"></span>
+																			Economy Class
+																		</label>
+																	</li>
+                                                                    <li>
+																		<label class="radio-container radio-default">
+																			<input type="radio" value="PREMIUM_ECONOMY" name="class">
+																			<span class="checkmark"></span>
+																			Premium Economy
+																		</label>
+																	</li>
+																	<li>
+																		<label class="radio-container radio-default">
+																			<input type="radio"  value="BUSINESS" name="class">
+																			<span class="checkmark"></span>
+																			Business Class
+																		</label>
+																	</li>
+																	<li>
+																		<label class="radio-container radio-default">
+																			<input type="radio"  value="FIRST" name="class">
+																			<span class="checkmark"></span>
+																			First Class
+																		</label>
+																	</li>
+																</ul><!-- .list-select-grade end -->
+															</li>
+															<li>
+																<ul class="list-reservation-options">
+																	<li>
+																		<label class="label-container checkbox-default">
+																			<span>
+																				Nonstop
+																			</span>
+																			<input type="checkbox" value="true" name="nonStop">
+																			<span class="checkmark"></span>
+																		</label>
+																	</li>
+																</ul><!-- .list-reservation-options end -->
+															</li>
+															<li>
+																<a class="btn-reservation-passengers btn x-small colorful hover-dark"
+																	href="javascript:;">Done</a>
+															</li>
+														</ul>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <button type="submit" class="btn-search">
+                                                <i class='bx bx-send'></i> Send enquiry
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="tab-pane fade" id="round" role="tabpanel" aria-labelledby="round-tab">
+                        <form id="roundForm" action="<%=base_url%>flight/search" method="GET" autocomplete="off">
+                            <div class="alert alert-success" style="display: <%=(bookviatext.length>0)?'block':'none';%>;">
+                                <%=bookviatext%>
+                            </div>
+                            <div class="row align-items-center">
+                                <div class="col-lg-12">
+                                    <div class="row">
+                                        <div class="col-lg-3">
+                                            <div class="select-box">
+                                                <!-- <i class='fas fa-plane' style="transform: rotate(-90deg);top: 33%;"></i> -->
+                                                <i class='bx bx-map-alt'></i>
+                                                <select class="form-control search-airport from" name="from">
+                                                <option value="">From</option>
+                                                
+                                            </select>
+                                                <label class="error" style="display: none;">This field is required</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <div class="select-box">
+                                                <!-- <i class='fas fa-plane' style="transform: rotate(90deg);top: 33%;"></i> -->
+                                                <i class='bx bx-map-alt'></i>
+                                                <select class="form-control search-airport to" name="to">
+                                                <option value="">To</option>
+                                            </select>
+                                                <label class="error" style="display: none;">This field is required</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <div class="select-box">
+                                                <i class='far fa-calendar'></i>
+                                                <input type="text" name="daterange" class="date-select-renge form-control" id="hote_range_datepicker" autocomplete="off" />
+                                                <input type="hidden" name="type" value="round" />
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <div class="select-box">
+                                                <label class="search-form-passengers__input show-dropdown-passengers form-control" for="asdf">
+                                                    <div class="search-form-passengers__input-title">
+                                                        <span class="noofpassenger">1 passenger</span>,
+                                                        <span class="flightclass">ECONOMY</span>
+                                                    </div> 
+                                                    <div class="search-form-passengers__input-description"><i class="search-form-passengers__icon wl-icon-people"></i>
+                                                        <span class="nooftarvellers">1 Adult</span> 
+                                                    </div>
+                                                    <i class="fas fa-user"></i>
+                                                </label>
+                                                		<ul class="list-dropdown-passengers">
+															<li>
+																<ul class="list-persons-count">
+																	<li>
+																		<span>Adults:</span>
+																		<div class="counter-add-item">
+																			<a class="decrease-btn" href="javascript:;">-</a>
+																			<input type="text" class="adult" name="adults" value="1">
+																			<a class="increase-btn" href="javascript:;">+</a>
+																		</div><!-- .counter-add-item end -->
+																	</li>
+																	<li>
+																		<span>Childs:</span>
+																		<div class="counter-add-item">
+																			<a class="decrease-btn" href="javascript:;">-</a>
+																			<input type="text"  class="child" name="children" value="0">
+																			<a class="increase-btn" href="javascript:;">+</a>
+																		</div><!-- .counter-add-item end -->
+																	</li>
+                                                                    <li>
+																		<span>Infants:</span>
+																		<div class="counter-add-item">
+																			<a class="decrease-btn" href="javascript:;">-</a>
+																			<input type="text"  class="infants" name="infants" value="0">
+																			<a class="increase-btn" href="javascript:;">+</a>
+																		</div><!-- .counter-add-item end -->
+																	</li>
+																</ul><!-- .list-persons-count end -->
+															</li>
+															<li>
+																<ul class="list-select-grade">
+																	<li>
+																		<label class="radio-container radio-default">
+																			<input type="radio" checked="checked" value="ECONOMY"  name="class">
+																			<span class="checkmark"></span>
+																			Economy Class
+																		</label>
+																	</li>
+                                                                    <li>
+																		<label class="radio-container radio-default">
+																			<input type="radio" value="PREMIUM_ECONOMY" name="class">
+																			<span class="checkmark"></span>
+																			Premium Economy
+																		</label>
+																	</li>
+																	<li>
+																		<label class="radio-container radio-default">
+																			<input type="radio"  value="BUSINESS" name="class">
+																			<span class="checkmark"></span>
+																			Business Class
+																		</label>
+																	</li>
+																	<li>
+																		<label class="radio-container radio-default">
+																			<input type="radio"  value="FIRST" name="class">
+																			<span class="checkmark"></span>
+																			First Class
+																		</label>
+																	</li>
+																</ul><!-- .list-select-grade end -->
+															</li>
+															<li>
+																<ul class="list-reservation-options">
+																	<li>
+																		<label class="label-container checkbox-default">
+																			<span>
+																				Nonstop
+																			</span>
+																			<input type="checkbox" value="true" name="nonStop">
+																			<span class="checkmark"></span>
+																		</label>
+																	</li>
+																</ul><!-- .list-reservation-options end -->
+															</li>
+															<li>
+																<a class="btn-reservation-passengers btn x-small colorful hover-dark"
+																	href="javascript:;">Done</a>
+															</li>
+														</ul>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <button type="submit" class="btn-search">
+                                                <i class='bx bx-send'></i> Send enquiry
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </form>
+                    </div>
+                    <div class="tab-pane fade " id="multi" role="tabpanel" aria-labelledby="multi-tab">
+                        <form id="multicityForm" action="<%=base_url%>flight/search" method="GET" autocomplete="off">
+                            <div class="alert alert-success" style="display: <%=(bookviatext.length>0)?'block':'none';%>;">
+                                <%=bookviatext%>
+                            </div>
+                            <div class="row align-items-center">
+                                <div class="col-lg-12">
+                                    <div class="row">
+                                        <div class="col-lg-3">
+                                            <div class="select-box">
+                                                <!-- <i class='fas fa-plane' style="transform: rotate(-90deg);top: 33%;"></i> -->
+                                                <i class='bx bx-map-alt'></i>
+                                                <select class="form-control search-airport" name="from">
+                                                <option value=''>From</option>
+                                                
+                                            </select>
+                                                <label class="error" style="display: none;">This field is required</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <div class="select-box">
+                                                <!-- <i class='fas fa-plane' style="transform: rotate(90deg);top: 33%;"></i> -->
+                                                <i class='bx bx-map-alt'></i>
+                                                <select class="form-control search-airport" name="to" id="multi_to">
+                                                <option value=''>To</option>
+                                            </select>
+                                                <label class="error" style="display: none;">This field is required</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <div class="select-box">
+                                                <i class='far fa-calendar'></i>
+                                                <input type="text" class="date-select form-control" name="departdate" id="multi_departure1" placeholder="Depart Date" required="required" value="<%=today%>" autocomplete="off" />
+                                                <input type="hidden" name="type" value="multicity" />
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-3">
+                                            <div class="select-box">
+                                                <label class="search-form-passengers__input show-dropdown-passengers form-control" for="asdf">
+                                                    <div class="search-form-passengers__input-title">
+                                                        <span class="noofpassenger">1 passenger</span>,
+                                                        <span class="flightclass">ECONOMY</span>
+                                                    </div> 
+                                                    <div class="search-form-passengers__input-description"><i class="search-form-passengers__icon wl-icon-people"></i>
+                                                        <span class="nooftarvellers">1 Adult</span> 
+                                                    </div>
+                                                    <i class="fas fa-user"></i>
+                                                </label>
+                                                		<ul class="list-dropdown-passengers">
+															<li>
+																<ul class="list-persons-count">
+																	<li>
+																		<span>Adults:</span>
+																		<div class="counter-add-item">
+																			<a class="decrease-btn" href="javascript:;">-</a>
+																			<input type="text" class="adult" name="adults" value="1">
+																			<a class="increase-btn" href="javascript:;">+</a>
+																		</div><!-- .counter-add-item end -->
+																	</li>
+																	<li>
+																		<span>Childs:</span>
+																		<div class="counter-add-item">
+																			<a class="decrease-btn" href="javascript:;">-</a>
+																			<input type="text"  class="child" name="children" value="0">
+																			<a class="increase-btn" href="javascript:;">+</a>
+																		</div><!-- .counter-add-item end -->
+																	</li>
+                                                                    <li>
+																		<span>Infants:</span>
+																		<div class="counter-add-item">
+																			<a class="decrease-btn" href="javascript:;">-</a>
+																			<input type="text"  class="infants" name="infants" value="0">
+																			<a class="increase-btn" href="javascript:;">+</a>
+																		</div><!-- .counter-add-item end -->
+																	</li>
+																</ul><!-- .list-persons-count end -->
+															</li>
+															<li>
+																<ul class="list-select-grade">
+																	<li>
+																		<label class="radio-container radio-default">
+																			<input type="radio" checked="checked" value="ECONOMY"  name="class">
+																			<span class="checkmark"></span>
+																			Economy Class
+																		</label>
+																	</li>
+                                                                    <li>
+																		<label class="radio-container radio-default">
+																			<input type="radio" value="PREMIUM_ECONOMY" name="class">
+																			<span class="checkmark"></span>
+																			Premium Economy
+																		</label>
+																	</li>
+																	<li>
+																		<label class="radio-container radio-default">
+																			<input type="radio"  value="BUSINESS" name="class">
+																			<span class="checkmark"></span>
+																			Business Class
+																		</label>
+																	</li>
+																	<li>
+																		<label class="radio-container radio-default">
+																			<input type="radio"  value="FIRST" name="class">
+																			<span class="checkmark"></span>
+																			First Class
+																		</label>
+																	</li>
+																</ul><!-- .list-select-grade end -->
+															</li>
+															<li>
+																<ul class="list-reservation-options">
+																	<li>
+																		<label class="label-container checkbox-default">
+																			<span>
+																				Nonstop
+																			</span>
+																			<input type="checkbox" value="true" name="nonStop">
+																			<span class="checkmark"></span>
+																		</label>
+																	</li>
+																</ul><!-- .list-reservation-options end -->
+															</li>
+															<li>
+																<a class="btn-reservation-passengers btn x-small colorful hover-dark"
+																	href="javascript:;">Done</a>
+															</li>
+														</ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="row">
+                                        <div class="col-lg-3">
+                                            <div class="select-box">
+                                                <!-- <i class='fas fa-plane' style="transform: rotate(-90deg);top: 33%;"></i> -->
+                                                <i class='bx bx-map-alt'></i>
+                                                <select class="form-control search-airport" name="from" id="multi_from">
+                                                <option value='0'>From</option>
+                                            </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <div class="select-box">
+                                                <!-- <i class='fas fa-plane' style="transform: rotate(90deg);top: 33%;"></i> -->
+                                                <i class='bx bx-map-alt'></i>
+                                                <select class="form-control search-airport" name="to" id="multito">
+                                                    <option value='0'>To</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <div class="select-box">
+                                                <i class='far fa-calendar'></i>
+                                                <input type="text" class="form-control" name="departdate" id="multi_departure2" placeholder="Depart Date" required="required" />
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <button type="submit" class="btn-search">
+                                                <i class='bx bx-send'></i> Send enquiry
+                                        </button>
+                                        </div>
+                                    </div>
+                                </div>
+                             
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+    <section id="lastOffer" id="about" id="section2" class="section last-offer-section about-section about-style-three pt-100 pb-70 bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="section-title">
+                        <h2>How it works</h2>
+                        <!-- <p>Booking a hotel is now as easy as messaging a friend. Use Snaptravel over Facebook Messenger or SMS.</p> -->
+                    </div>
+                    <img src="<%=base_url%>assets/img/featured/img1.svg" style="width: 42em">
+                </div>
+                <div class="col-lg-12 pt-100">
+                    
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 filtr-item">
+                            <div class="item-single mb-30">
+                                <!-- <div class="image">
+                                <img src="<%=base_url%>assets/img/destination1.jpg" alt="Demo Image">
+                            </div> -->
+                                <div class="content">
+                                    <span class="location"><i class='bx bx-search'></i></span>
+                                    <!-- <h3>
+                                    Easy Search
+                                </h3> -->
+                                    <div class="review" style="line-height: 1;padding-top: 10px;">
+                                        <!--  <i class='bx bx-smile'></i>
+                                    <span>8.5</span> -->
+                                        <span> If you don't want to book on Monder's Search Engine, text us your trip details instead!</span>
+                                    </div>
+                                    <!-- <p>
+                                    A wonderful little cottage right on the seashore - perfect for exploring.
+                                </p>
+                                <hr>
+                                <ul class="list">
+                                    <li><i class='bx bx-time'></i>3 Days</li>
+                                    <li><i class='bx bx-group'></i>160+</li>
+                                    <li>$500</li>
+                                </ul> -->
+                                    <div class="discount">
+                                        <span>1</span>
+                                        <!-- <span>10%</span> -->
+                                    </div>
+                                </div>
+                                <div class="spacer"></div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 filtr-item">
+                            <div class="item-single mb-30">
+                                <!-- <div class="image">
+                                <img src="<%=base_url%>assets/img/destination2.jpg" alt="Demo Image">
+                            </div> -->
+                                <div class="content">
+                                    <span class="location"><i class='bx bxs-offer'></i></span>
+                                    <!--  <h3>
+                                     Get Deal
+                                </h3> -->
+                                    <div class="review" style="line-height: 1;padding-top: 10px;">
+                                        <!-- <i class='bx bx-smile'></i> -->
+                                        <!-- <span>9</span> -->
+                                        <span>Our experienced agents will quickly run the best searches and message you back within minutes.</span>
+                                    </div>
+                                    <!-- <p>
+                                    A wonderful little cottage right on the seashore - perfect for exploring.
+                                </p>
+                                <hr>
+                                <ul class="list">
+                                    <li><i class='bx bx-time'></i>7 Days</li>
+                                    <li><i class='bx bx-group'></i>65+</li>
+                                    <li>$2000</li>
+                                </ul> -->
+                                    <div class="discount">
+                                        <span>2</span>
+                                        <!-- <span>30%</span> -->
+                                    </div>
+                                </div>
+                                <div class="spacer"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="shape shape-1"><img src="<%=base_url%>assets/img/shape1.png" alt="Background Shape"></div>
+        <div class="shape shape-2"><img src="<%=base_url%>assets/img/shape2.png" alt="Background Shape"></div>
+        <div class="shape shape-3"><img src="<%=base_url%>assets/img/shape3.png" alt="Background Shape"></div>
+        <div class="shape shape-4"><img src="<%=base_url%>assets/img/shape4.png" alt="Background Shape"></div>
+    </section>
+
+
+    <section id="section3" class="section features-section pt-100 pb-70">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6">
+                    <div class="item-single mb-30">
+                        <img src="<%=base_url%>assets/img/featured/expert.png" alt="experts">
+                        <!-- <i class='bx bx-money'></i> -->
+                        <h3>Work With Experts</h3>
+                        <p>We'll help book you the best airlines and hotels at the best discounted rates. From requesting a seat change to making last minute changes to your reservations, we're just a text message or call away.</p>
+                        <!-- <div class="cta-btn">
+                        <a href="#" class="btn-primary">Read More</a>
+                    </div> -->
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="item-single mb-30">
+                        <img src="<%=base_url%>assets/img/featured/support.png" alt="support">
+                        <!-- <i class='bx bx-time'></i> -->
+                        <h3>Live Support</h3>
+                        <p>Here at Monder we don't believe in waiting on long hold times. Call or text us at any hour. We're here for you 24/7.</p><br>
+                        <!-- <div class="cta-btn">
+                        <a href="#" class="btn-primary">Read More</a>
+                    </div> -->
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 m-auto">
+                    <div class="item-single mb-30">
+                        <img src="<%=base_url%>assets/img/featured/cancel.png" alt="cancel">
+                        <!-- <i class='bx bxs-plane-take-off'></i> -->
+                        <h3>24 Hour Cancellation</h3>
+                        <p>We understand if you need to cancel your trip. Call, text or email your agent within 24 hours of your booking and we'll make sure you're fully refunded.</p><br>
+                        <!-- <div class="cta-btn">
+                        <a href="#" class="btn-primary">Read More</a>
+                    </div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+    <section id="section4" id="testimonial" class="section testimonial-section ptb-100">
+        <div class="container">
+            <div class="section-title">
+                <h2>What're Our Clients Say</h2>
+                <p>Travel has helped us to understand the meaning of life and it has helped us become better people. Each time we travel, we see the world with new eyes.</p>
+            </div>
+            <div class="row">
+                <div class="col-lg-8 m-auto">
+                    <div class="testimonial-slider owl-carousel">
+                        <div class="slider-item">
+                            <div class="client-img">
+                                <img src="<%=base_url%>assets/img/client1.jpg" alt="client-1" />
+                            </div>
+                            <div class="content">
+                                <div class="client-info">
+                                    <h3>Jordan Alin</h3>
+                                    <span>Bloger & Youtuber</span>
+                                </div>
+                                <div class="quote">
+                                    <i class='bx bxs-quote-left'></i>
+                                </div>
+                                <p style="font-size:12px;">
+                                    The Personal Travel Agents Academy is a 12-month training programme allowing anyone with no previous travel experience to start their own travel business. This is an advanced course to help build knowledge in travel and develop sales skills.
+                                </p>
+                                <div class="review">
+                                    <i class='bx bxs-star'></i>
+                                    <i class='bx bxs-star'></i>
+                                    <i class='bx bxs-star'></i>
+                                    <i class='bx bxs-star'></i>
+                                    <i class='bx bxs-star'></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slider-item">
+                            <div class="client-img">
+                                <img src="<%=base_url%>assets/img/client2.jpg" alt="client-1" />
+                            </div>
+                            <div class="content">
+                                <div class="client-info mb-30">
+                                    <h3>David Milan</h3>
+                                    <span>Photographer</span>
+                                </div>
+                                <div class="quote">
+                                    <i class='bx bxs-quote-left'></i>
+                                </div>
+                                <p style="font-size:12px;">
+                                    The Personal Travel Agents Academy is a 12-month training programme allowing anyone with no previous travel experience to start their own travel business. This is an advanced course to help build knowledge in travel and develop sales skills.
+                                </p>
+                                <div class="review mt-15">
+                                    <i class='bx bxs-star'></i>
+                                    <i class='bx bxs-star'></i>
+                                    <i class='bx bxs-star'></i>
+                                    <i class='bx bxs-star'></i>
+                                    <i class='bx bxs-star'></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slider-item">
+                            <div class="client-img">
+                                <img src="<%=base_url%>assets/img/client3.jpg" alt="client-1" />
+                            </div>
+                            <div class="content">
+                                <div class="client-info mb-30">
+                                    <h3>Thomas Alva</h3>
+                                    <span>Journalist</span>
+                                </div>
+                                <div class="quote">
+                                    <i class='bx bxs-quote-left'></i>
+                                </div>
+                                <p style="font-size:12px;">
+                                    The Personal Travel Agents Academy is a 12-month training programme allowing anyone with no previous travel experience to start their own travel business. This is an advanced course to help build knowledge in travel and develop sales skills.
+                                </p>
+                                <div class="review mt-15">
+                                    <i class='bx bxs-star'></i>
+                                    <i class='bx bxs-star'></i>
+                                    <i class='bx bxs-star'></i>
+                                    <i class='bx bxs-star'></i>
+                                    <i class='bx bxs-star'></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class='clients-img'>
+                <img class="image image-1" src="<%=base_url%>assets/img/client1.jpg" alt="Demo Image">
+                <img class="image image-2" src="<%=base_url%>assets/img/client2.jpg" alt="Demo Image">
+                <img class="image image-3" src="<%=base_url%>assets/img/client3.jpg" alt="Demo Image">
+                <img class="image image-4" src="<%=base_url%>assets/img/client4.jpg" alt="Demo Image">
+                <img class="image image-5" src="<%=base_url%>assets/img/client5.jpg" alt="Demo Image">
+            </div>
+        </div>
+        <div class="shape">
+            <img src="<%=base_url%>assets/img/shape1.png" alt="Background Shape">
+        </div>
+    </section>
+
+
+
+
+
+    <section id="team" id="section5" class="section team-section ptb-100 bg-light">
+        <div class="container">
+            <div class="section-title">
+                <h2>PARTNERS</h2>
+                <!-- <p>Travel has helped us to understand the meaning of life and it has helped us become better people. Each time we travel, we see the world with new eyes.</p> -->
+            </div>
+            <div class="row">
+                <div class=" col-lg-4 col-sm-6 col-md-6">
+                    <div class="item-single mb-30">
+                        <div class="image">
+                            <img src="<%=base_url%>assets/img/featured/p1.png" alt="Demo Image" style="padding:30px">
+                        </div>
+                    </div>
+                </div>
+                <div class=" col-lg-4 col-sm-6 col-md-6">
+                    <div class="item-single mb-30">
+                        <div class="image" style="text-align: center;">
+                            <img src="<%=base_url%>assets/img/featured/p2.png" alt="Demo Image" style="padding:30px">
+                        </div>
+                    </div>
+                </div>
+                <div class=" col-lg-4 col-sm-6 col-md-6">
+                    <div class="item-single mb-30">
+                        <div class="image">
+                            <img src="<%=base_url%>assets/img/featured/p3.png" alt="Demo Image" style="padding:30px">
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+
+    <%-include('includes/footer');%>
+
+
+        <script>
+            $(".search-airport").select2({
+                tags: false,
+                multiple: false,
+                tokenSeparators: [',', ' '],
+                minimumInputLength: 1,
+                minimumResultsForSearch: 20,
+                ajax: {
+                    url: base_url + 'search-IATA',
+                    dataType: "json",
+                    type: "POST",
+                    data: function(params) {
+                        var queryParameters = {
+                            keyword: params.term
+                        }
+                        return queryParameters;
+                    },
+                    processResults: function(data) {
+                        return {
+                            results: $.map(data.data, function(item) {
+                                return {
+                                    text: `(${item.code}), ${item.cityName} ${item.countryName}`,
+                                    id: item.code
+                                }
+                            })
+                        };
+                    }
+                }
+            });
+
+            $(function() {
+                $('#multi_to').on('change', function() {
+                        let val = $('#multi_to').val()
+                        let val1 = $('#select2-multi_to-container').text()
+                        $('#multi_from').append(`<option value="` + val + `" selected>` + val1 + `</option>`)
+                    })
+                    // $('.btn-search').on('click',function(){
+                    //     let fromVal = $(this).closest('form').find('.from').val()
+                    //     if(fromVal==''){
+                    //         $(this).closest('form').find('.from').parent().find('.error').css('display','block')
+                    //         return false;
+                    //     }else{
+                    //         $(this).closest('form').find('.from').parent().find('.error').css('display','none')
+                    //     }
+                    //     let toVal = $(this).closest('form').find('.to').val()
+                    //     if(toVal==''){
+                    //         $(this).closest('form').find('.to').parent().find('.error').css('display','block')
+                    //         return false;
+                    //     }else{
+                    //         $(this).closest('form').find('.to').parent().find('.error').css('display','none')
+                    //     }
+                    //     $(this).text(`Loading...`)
+                    // })
+
+                $('#onewayForm').validate({
+                    rules: {
+                        from: {
+                            required: true,
+                        },
+                        to: {
+                            required: true
+                        },
+                        departdate: {
+                            required: true
+                        },
+                        class: {
+                            required: true
+                        },
+                        adults: {
+                            required: true
+                        },
+                        children: {
+                            required: true
+                        },
+                        code: {
+                            required: true
+                        } ,
+                        mobile: {
+                            required: true
+                        }
+                    },
+                    submitHandler: function(form) {
+                        $('#onewayForm').find('.btn-search').text(`Loading...`)
+                        $('#onewayForm').find('.btn-search').prop('disabled', true)
+                        form.submit();
+                    }
+                })
+
+                $('#roundForm').validate({
+                    rules: {
+                        from: {
+                            required: true,
+                        },
+                        to: {
+                            required: true
+                        },
+                        departdate: {
+                            required: true
+                        },
+                        class: {
+                            required: true
+                        },
+                        adults: {
+                            required: true
+                        },
+                        children: {
+                            required: true
+                        },
+                        code: {
+                            required: true
+                        } ,
+                        mobile: {
+                            required: true
+                        }
+                    },
+                    submitHandler: function(form) {
+                        $('#roundForm').find('.btn-search').text(`Loading...`)
+                        $('#roundForm').find('.btn-search').prop('disabled', true)
+                        form.submit();
+                    }
+                })
+                $('#multicityForm').validate({
+                    rules: {
+                        from: {
+                            required: true,
+                        },
+                        to: {
+                            required: true
+                        },
+                        departdate: {
+                            required: true
+                        },
+                        class: {
+                            required: true
+                        },
+                        adults: {
+                            required: true
+                        },
+                        children: {
+                            required: true
+                        },
+                        code: {
+                            required: true
+                        } ,
+                        mobile: {
+                            required: true
+                        }
+                    },
+                    submitHandler: function(form) {
+                        
+                        if($('#multi_from').val()==0){
+                            $('#multi_from').after('<label for="from" class="error">This field is required.</label>')
+                            return false;
+                        }
+                        if($('#multito').val()==0){
+                            $('#multito').after('<label for="to" class="error">This field is required.</label>')
+                            return false;
+                        }
+                        if($('#multi_departure2').val()==''){
+                            $('#multi_departure2').after('<label for="departdate" class="error">This field is required.</label>')
+                            return false;
+                        }
+                        $('#multicityForm').find('.btn-search').text(`Loading...`)
+                        $('#multicityForm').find('.btn-search').prop('disabled', true)
+                        form.submit();
+                    }
+                });
+
+                $('#bookviatextBtn1').on('click',function(){
+                    if($('#bookviatextBtn1').prop('checked')==true){
+                        $('#bookviatext1').css('display','block')
+                    }else{
+                        $('#bookviatext1').css('display','none')
+                    }
+                })
+                $('#bookviatextBtn2').on('click',function(){
+                    if($('#bookviatextBtn2').prop('checked')==true){
+                        $('#bookviatext2').css('display','block')
+                    }else{
+                        $('#bookviatext2').css('display','none')
+                    }
+                })
+                $('#bookviatextBtn3').on('click',function(){
+                    if($('#bookviatextBtn3').prop('checked')==true){
+                        $('#bookviatext3').css('display','block')
+                    }else{
+                        $('#bookviatext3').css('display','none')
+                    }
+                })
+            })
+
+            $(function() {
+                if ('<%=verified_msg%>' != '') {
+                    if ('<%=verified_msg%>' == 'Link expired.') {
+                        swal({
+                            title: "<%=verified_msg%>",
+                            text: "",
+                            icon: "warning",
+                        });
+                    } else {
+                        swal({
+                            title: "<%=verified_msg%>",
+                            text: "",
+                            icon: "success",
+                        });
+                    }
+                }
+            })
+            
+        </script>
+
+        
+   

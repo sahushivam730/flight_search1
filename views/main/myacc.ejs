@@ -1,0 +1,565 @@
+<%-include('includes/header');%>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css">
+<style>
+    .nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+        color: #fff;
+        background-color: #4141a5;
+    }
+    .thcss{
+        font-size: 12px;
+    white-space: nowrap;
+    }
+</style>
+<section id="content">
+
+    <div id="content-wrap">
+
+        <!-- === Section Flat =========== -->
+        <div class="section-flat">
+
+            <div class="section-content">
+
+                <div class="container">
+                    <div class="row">
+                        <div class="col-3">
+                            <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical" style="    background-color: #fff;
+                            padding: 5px;">
+                                <a class="nav-link <%=(tb==1)?'active':''%>" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true"><i class="fas fa-user"></i> Profile</a>
+                                <a class="nav-link <%=(tb==2)?'active':''%>" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false"><i class="fas fa-plane"></i> Flight Bookings</a>
+                                <a class="nav-link <%=(tb==3)?'active':''%>" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false"><i class="fas fa-hotel"></i> Hotel Bookings</a>
+                                <a class="nav-link <%=(tb==4)?'active':''%>" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false"><i class="fas fa-lock"></i> Change Password</a>
+                            </div>
+                        </div>
+                        <div class="col-9">
+                            <div class="tab-content" id="v-pills-tabContent">
+                                <div class="tab-pane fade <%=(tb==1)?'active show':''%>" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+                                   
+                                    <%  let css = ''
+                                        let text = ''
+                                        if(session[0].type=='guest'){
+                                            css="filter: brightness(0.8);opacity: 0.6;";
+                                            text = 'This is a guest user.'
+                                        }
+                                    %>
+                                    <div class="content-main" style="<%=css%>">
+                                        <h4 style="position: absolute;
+                                        left: 40%;
+                                        top: 25%;
+                                        color: #ff0000eb;"><%=text%></h4>
+                                        <div class="block-content-2 style-3">
+                                            <div class="block-title wide-bottom">
+                                                <h3>Profile</h3>
+                                            </div><!-- .block-title end -->
+                                            <form id="form-car-booking-confirmation">
+                                                <div class="form-content">
+                                                    <div class="form-group">
+                                                        <div class="fields-row fields-2">
+                                                            <div class="box-field">
+                                                                <label for="cbFirstName">Username</label>
+                                                                <input type="text" name="cbFirstName" id="cbFirstName" value="<%=session[0].username%>" class="form-control" placeholder="">
+                                                            </div>
+                                                            <div class="box-field">
+                                                                <label for="cbEmail">Email</label>
+                                                                <input type="text" name="cbEmail" id="cbEmail" value="<%=session[0].email%>" class="form-control" placeholder="">
+                                                            </div><!-- .box-field end -->
+                                                        </div><!-- .fields-row end -->
+                                                    </div><!-- .form-group end -->
+                                                </div><!-- .form-content end -->
+                                            </form><!-- #form-car-booking end -->
+                                        </div><!-- .block-content-2 end -->
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade <%=(tb==2)?'active show':''%>" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                                    <div class="block-content-2 style-3">
+                                        <div class="block-title">
+                                            <h3>Flight Bookings</h3>
+                                        </div>
+                                        <!-- .block-title end -->
+                                        <div class="table-responsive table-car-booking-extras">
+                                            <table id="dtBasicExample" class="table table-bordered">
+                                            <thead class="thcss">
+                                                <tr>
+                                                <th scope="col" class="sort" data-sort="name">Sr.</th>
+                                                <th scope="col" class="sort" data-sort="status">Date</th>
+                                                <th scope="col" class="sort" data-sort="status">Trip</th>
+                                                <th scope="col" class="sort" data-sort="status">Type</th>
+                                                <th scope="col" class="sort" data-sort="status">Pax</th>
+                                                <th scope="col" class="sort" data-sort="status">Status</th>
+                                                <th scope="col" class="sort" data-sort="status">Action</th>
+                                        
+                                                </tr>
+                                            </thead>
+                                            <tbody class="thcss">
+                                            <%bookings.forEach(function(booking,index){
+                                                let blob = JSON.parse(booking.flight_blob)
+                                                let trvrl = booking.travellers.split(',')
+                                                %>
+                                                <tr>
+                                                
+                                                    <td><%=index+1%></td>
+                                                    <td><%=moment(booking.datetime).format('lll')%></td>
+                                                    <td><%=blob[0].search%></td>
+                                                    <td><%=blob[0].type%></td>
+                                                    <td><%=trvrl.length%></td>
+                                                    <td><span class="colored" style="font-weight: 700;"><%=(booking.status==1)?'Confirmed':'Pending'%></span></td>
+                                                    <td><a href="<%=base_url%>booking-details/booking-<%=booking.booking_id%>">View</a></td>
+                                                </tr>
+                                            <%})%>
+                                            <%if(bookings.length==0){%>
+                                                <tr>
+                                                    <td colspan="7"><div class="alert alert-warning text-center">bookings not found</div></td>
+                                                </tr>
+                                                <%}%>
+                                            </tbody>
+                                            </table>
+                                        </div>
+                                            <!-- .list-room-types end -->
+                                        </div>
+                                        <!-- .block-content-2 end -->
+                                    </li>
+                                </div>
+                                <div class="tab-pane fade <%=(tb==3)?'active show':''%>" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+                                    <div class="block-content-2 style-3">
+                                        <div class="block-title">
+                                            <h3>Hotel Bookings</h3>
+                                        </div>
+                                        <!-- .block-title end -->
+                                        <div class="table-responsive table-car-booking-extras">
+                                            <table id="dtBasicExample1">
+                                            <thead class="thcss">
+                                                <tr>
+                                                <th scope="col" class="sort" data-sort="name">Sr.</th>
+                                                <th scope="col" class="sort" data-sort="status">Name</th>
+                                                <th scope="col" class="sort" data-sort="status">City</th>
+                                                <th scope="col" class="sort" data-sort="status">Price</th>
+                                                <th scope="col" class="sort" data-sort="status">Status</th>
+                                                <th scope="col" class="sort" data-sort="status">Action</th>
+                                        
+                                                </tr>
+                                            </thead>
+                                            <tbody class="thcss">
+                                            <%hotelbookings.forEach(function(booking,index){
+                                                
+                                                %>
+                                                <tr>
+                                                
+                                                    <td><%=index+1%></td>
+                                                    <td><%=booking.first_name+' '+booking.last_name%></td>
+                                                    <td><%=booking.city%></td>
+                                                    <td><%=booking.booking_price%></td>
+                                                    <td><span class="colored"><%=(booking.status==0)?'Confirmed':'Pending'%></span></td>
+                                                    <td><a href="<%=base_url%>hotel/booking-details/booking-<%=booking.hb_id%>">View</a></td>
+                                                </tr>
+                                            <%})%>
+                                            <%if(hotelbookings.length==0){%>
+                                                <tr>
+                                                    <td colspan="10">
+                                                        <div class="alert alert-warning text-center">bookings not found</div>
+                                                    </td>
+                                                </tr>
+                                                <%}%>
+                                            </tbody>
+                                            </table>
+                                        </div>
+                                            <!-- .list-room-types end -->
+                                        </div>
+                                </div>
+                                <div class="tab-pane fade <%=(tb==4)?'active show':''%>" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
+                                    <div class="content-main">
+                                        <div class="block-content-2 style-3">
+                                            <div class="block-title wide-bottom">
+                                                <h3>Change Password</h3>
+                                            </div><!-- .block-title end -->
+                                            <form action="#" id="ChangePassword">
+                                                <div id="err-div"></div>
+                                                <div class="form-content">
+                                                    <div class="form-group">
+                                                        <div class="fields-row">
+                                                            <div class="box-field">
+                                                                <label for="cbFirstName">Old Password</label>
+                                                                <input type="password" name="oldpwd" id="oldpwd"  class="form-control" placeholder="********">
+                                                                <label class="label-container checkbox-default">
+                                                                    Show Password
+                                                                    <input type="checkbox"  onclick="ShowPassword('oldpwd')" >
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </div>
+                                                        </div><!-- .fields-row end -->
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="fields-row">
+                                                            <div class="box-field">
+                                                                <label for="cbFirstName">New Password</label>
+                                                                <input type="password" name="newpwd" id="newpwd"  class="form-control" placeholder="********">
+                                                                <label class="label-container checkbox-default">
+                                                                    Show Password
+                                                                    <input type="checkbox"  onclick="ShowPassword('newpwd')" >
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </div>
+                                                        </div><!-- .fields-row end -->
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="fields-row">
+                                                            <div class="box-field">
+                                                                <label for="cbFirstName">Confirm New Password</label>
+                                                                <input type="password" name="cnewpwd" id="cnewpwd"  class="form-control" placeholder="********">
+                                                                <label class="label-container checkbox-default">
+                                                                    Show Password
+                                                                    <input type="checkbox"  onclick="ShowPassword('cnewpwd')" >
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </div>
+                                                        </div><!-- .fields-row end -->
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <input type="submit" class="form-control btn" value="Update"/>
+                                                    </div>
+                                                    
+                                                </div><!-- .form-content end -->
+                                            </form><!-- #form-car-booking end -->
+                                        </div><!-- .block-content-2 end -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+
+                        <!-- <div class="page-single-content">
+                                    
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12">
+
+                                    <div class="content-main">
+
+
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                            <a class="dropdown-item" href="<%=base_url%>myaccount?tb=1" style="padding-left: 10px;">Profile</a>
+                                            <a class="dropdown-item" href="<%=base_url%>myaccount?tb=2" style="padding-left: 10px;">Flight Bookings</a>
+                                            <a class="dropdown-item" href="<%=base_url%>myaccount?tb=3" style="padding-left: 10px;">Hotel Bookings</a>
+                                            <a class="dropdown-item" href="<%=base_url%>myaccount?tb=4" style="padding-left: 10px;">Change Password</a>
+                                            <a class="dropdown-item" href="<%=base_url%>logout" style="padding-left: 10px;">Logout</a>
+                                        </div>
+                                        
+                                        <div class="hotel-info-tabs">
+                                            <ul class="hi-tabs">
+                                                <li class="<%=(tb==1)?'active':''%>">
+                                                    <a href="javascript:void(0);">
+                                                        <i class="fas fa-user"></i> Profile 
+                                                    </a>
+                                                </li>
+                                                <li class="<%=(tb==2)?'active':''%>">
+                                                    <a href="javascript:void(0);">
+                                                        <i class="fas fa-shopping-cart"></i> Flight Bookings
+                                                    </a>
+                                                </li>
+                                                <li class="<%=(tb==3)?'active':''%>">
+                                                    <a href="javascript:void(0);">
+                                                        <i class="fas  fa-sign-out-alt"></i> Hotel Bookings
+                                                    </a>
+                                                </li>
+                                                <li class="<%=(tb==4)?'active':''%>">
+                                                    <a href="javascript:void(0);">
+                                                        <i class="fas fa-lock"></i> Change Password
+                                                    </a>
+                                                </li>
+                                            </ul>
+
+                                            <ul class="hi-tabs" style="display:none" >
+                                                <li class="<%=(tb==1)?'active':''%>">
+                                                    <a href="javascript:;">
+                                                        <i class="fas fa-user"></i> Profile 
+                                                    </a>
+                                                </li>
+                                                <li class="<%=(tb==2)?'active':''%>">
+                                                    <a href="javascript:;">
+                                                        <i class="fas fa-shopping-cart"></i> Flight Bookings
+                                                    </a>
+                                                </li>
+                                                <li class="<%=(tb==3)?'active':''%>">
+                                                    <a href="javascript:;">
+                                                        <i class="fas  fa-sign-out-alt"></i> Hotel Bookings
+                                                    </a>
+                                                </li>
+                                                <li class="<%=(tb==4)?'active':''%>">
+                                                    <a href="javascript:;">
+                                                        <i class="fas fa-lock"></i> Change Password
+                                                    </a>
+                                                </li>
+                                            </ul>
+
+                                            <ul class="hi-tabs-content">
+                                                <li class="<%=(tb==1)?'active':''%>">
+                                                    <div class="content-main">
+                                                        <div class="block-content-2 style-3">
+                                                            <div class="block-title wide-bottom">
+                                                                <h3>Profile</h3>
+                                                            </div>
+                                                            <form id="form-car-booking-confirmation">
+                                                                <div class="form-content">
+                                                                    <div class="form-group">
+                                                                        <div class="fields-row fields-2">
+                                                                            <div class="box-field">
+                                                                                <label for="cbFirstName">Username</label>
+                                                                                <input type="text" name="cbFirstName" id="cbFirstName" value="<%=session[0].username%>" class="form-control" placeholder="">
+                                                                            </div>
+                                                                            <div class="box-field">
+                                                                                <label for="cbEmail">Email</label>
+                                                                                <input type="text" name="cbEmail" id="cbEmail" value="<%=session[0].email%>" class="form-control" placeholder="">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li class="<%=(tb==2)?'active':''%>">
+                                                    <div class="block-content-2 style-3">
+                                                        <div class="block-title">
+                                                            <h3>Flight Bookings</h3>
+                                                        </div>
+                                                       
+                                                        <div class="table-responsive table-car-booking-extras">
+                                                            <table >
+                                                              <thead>
+                                                                <tr>
+                                                                  <th scope="col" class="sort" data-sort="name">Booking Id</th>
+                                                                  <th scope="col" class="sort" data-sort="status">Date</th>
+                                                                  <th scope="col" class="sort" data-sort="status">Trip</th>
+                                                                  <th scope="col" class="sort" data-sort="status">Type</th>
+                                                                  <th scope="col" class="sort" data-sort="status">No. of Travelers</th>
+                                                                  <th scope="col" class="sort" data-sort="status">Status</th>
+                                                                  <th scope="col" class="sort" data-sort="status">Action</th>
+                                                        
+                                                                </tr>
+                                                              </thead>
+                                                              <tbody >
+                                                              <%bookings.forEach(function(booking){
+                                                                  let blob = JSON.parse(booking.flight_blob)
+                                                                  let trvrl = booking.travellers.split(',')
+                                                                  %>
+                                                                <tr>
+                                                                   
+                                                                    <td>#<%=booking.booking_id%></td>
+                                                                    <td><%=moment(booking.datetime).format('LLL')%></td>
+                                                                    <td><%=blob[0].search%></td>
+                                                                    <td><%=blob[0].type%></td>
+                                                                    <td><%=trvrl.length%></td>
+                                                                    <td><span class="colored" style="font-weight: 700;"><%=(booking.status==1)?'Confirmed':'Pending'%></span></td>
+                                                                    <td><a href="<%=base_url%>booking-details/booking-<%=booking.booking_id%>">View</a></td>
+                                                                </tr>
+                                                              <%})%>
+                                                              <%if(bookings.length==0){%>
+                                                                <tr>
+                                                                    <td colspan="6"><div class="alert alert-warning text-center">bookings not found</div></td>
+                                                                </tr>
+                                                                <%}%>
+                                                              </tbody>
+                                                            </table>
+                                                          </div>
+                                                            
+                                                        </div>
+                                                       
+                                                    </li>
+                                                    <li class="<%=(tb==3)?'active':''%>">
+                                                        <div class="block-content-2 style-3">
+                                                            <div class="block-title">
+                                                                <h3>Hotel Bookings</h3>
+                                                            </div>
+                                                          
+                                                            <div class="table-responsive table-car-booking-extras">
+                                                                <table >
+                                                                  <thead>
+                                                                    <tr>
+                                                                      <th scope="col" class="sort" data-sort="name">Booking Id</th>
+                                                                      <th scope="col" class="sort" data-sort="status">Name</th>
+                                                                      <th scope="col" class="sort" data-sort="status">City</th>
+                                                                      <th scope="col" class="sort" data-sort="status">Price</th>
+                                                                      <th scope="col" class="sort" data-sort="status">Status</th>
+                                                                      <th scope="col" class="sort" data-sort="status">Action</th>
+                                                            
+                                                                    </tr>
+                                                                  </thead>
+                                                                  <tbody >
+                                                                  <%hotelbookings.forEach(function(booking){
+                                                                      
+                                                                      %>
+                                                                    <tr>
+                                                                       
+                                                                        <td>#<%=booking.hb_id%></td>
+                                                                        <td><%=booking.first_name+' '+booking.last_name%></td>
+                                                                        <td><%=booking.city%></td>
+                                                                        <td><%=booking.booking_price%></td>
+                                                                        <td><span class="colored"><%=(booking.status==0)?'Confirmed':'Pending'%></span></td>
+                                                                        <td><a href="<%=base_url%>hotel/booking-details/booking-<%=booking.hb_id%>">View</a></td>
+                                                                    </tr>
+                                                                  <%})%>
+                                                                  <%if(hotelbookings.length==0){%>
+                                                                    <tr>
+                                                                        <td colspan="10">
+                                                                            <div class="alert alert-warning text-center">bookings not found</div>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <%}%>
+                                                                  </tbody>
+                                                                </table>
+                                                              </div>
+                                                            
+                                                            </div>
+                                                           
+                                                        </li>
+                                               
+                                                <li class="<%=(tb==4)?'active':''%>">
+                                                    <div class="content-main">
+                                                        <div class="block-content-2 style-3">
+                                                            <div class="block-title wide-bottom">
+                                                                <h3>Change Password</h3>
+                                                            </div>
+                                                            <form action="#" id="ChangePassword">
+                                                                <div id="err-div"></div>
+                                                                <div class="form-content">
+                                                                    <div class="form-group">
+                                                                        <div class="fields-row">
+                                                                            <div class="box-field">
+                                                                                <label for="cbFirstName">Old Password</label>
+                                                                                <input type="password" name="oldpwd" id="oldpwd"  class="form-control" placeholder="********">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <div class="fields-row">
+                                                                            <div class="box-field">
+                                                                                <label for="cbFirstName">New Password</label>
+                                                                                <input type="password" name="newpwd" id="newpwd"  class="form-control" placeholder="********">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <div class="fields-row">
+                                                                            <div class="box-field">
+                                                                                <label for="cbFirstName">Confirm New Password</label>
+                                                                                <input type="password" name="cnewpwd" id="cnewpwd"  class="form-control" placeholder="********">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                     <div class="form-group">
+                                                                        <input type="submit" class="form-control btn" value="Update"/>
+                                                                    </div>
+                                                                    
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                           
+                                        </div>
+                                      
+                                    </div>
+                                    
+                                </div>
+                                
+                            </div>
+                            
+                        </div> -->
+                    <!-- .row end -->
+                </div>
+
+            </div><!-- .section-content end -->
+
+        </div><!-- .section-flat end -->
+
+    </div><!-- #content-wrap -->
+
+</section>
+<%-include('includes/footer');%>
+<script src="<%=base_url%>assets/js/js1/jquery.js"></script>
+<script src="<%=base_url%>assets/js/js1/jquery.fitvids.js"></script>
+<script src="<%=base_url%>assets/js/js1/slick.min.js"></script>
+<script src="<%=base_url%>assets/js/js1/jquery.magnific-popup.min.js"></script>
+<script src="<%=base_url%>assets/js/js1/scrollIt.min.js"></script>
+<script src='<%=base_url%>assets/js/js1/functions.js'></script>
+<script src="<%=base_url%>assets/js/jquery.validate.min.js"></script>
+<script>
+    $(function(){
+       
+        $('#ChangePassword').validate({
+            rules: {
+                oldpwd: {
+                    required: true
+                },
+                newpwd: {
+                    required: true,
+                    minlength: 8
+                },
+                cnewpwd: {
+                    required: true,
+                    minlength: 8,
+                    equalTo: "#newpwd"
+                }
+            },
+            messages: {
+                cnewpwd: {
+                    equalTo: "password din't match"
+                }
+            }
+        })
+        // SignupForm
+        $('#ChangePassword').on('submit', function(event) {
+            event.preventDefault();
+            if ($('#ChangePassword').valid() == true) {
+                $('#err-div').html(``);
+                $('#ChangePassword').find('.btn').val('Loading...')
+                $('#ChangePassword').find('.btn').prop('disabled',true)
+                $.ajax({
+                    url: '<%=base_url%>change-password',
+                    type: 'POST',
+                    data: $('#ChangePassword').serialize(),
+                    success: function(response) {
+                        if (response.status == true) {
+                            $('#ChangePassword #err-div').html(`<p class=" text-success text-center">${response.msg}</p>`);
+                        } else {
+                            $('#ChangePassword #err-div').html(`<p class="text-error text-danger text-center">${response.msg}</p>`);
+                        }
+                        $('#ChangePassword').find('.btn').val('Update')
+                        $('#ChangePassword').find('.btn').prop('disabled',false)
+                        $('#ChangePassword').trigger("reset");
+                    },
+                    error: function(error) {
+                        console.log(error);
+                    }
+                });
+            }
+        });
+    })
+</script>
+<script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+<script>
+       
+  $(document).ready(function () {
+     $('#dtBasicExample').DataTable( {
+        "order": [[ 0, "desc" ]],
+     });
+     $('.dataTables_length').addClass('bs-select');
+  });
+  $(document).ready(function () {
+     $('#dtBasicExample1').DataTable( {
+        "order": [[ 0, "desc" ]],
+     });
+     $('.dataTables_length').addClass('bs-select');
+  });
+  function ShowPassword(id) {
+                var x = document.getElementById(id);
+                if (x.type === "password") {
+                    x.type = "text";
+                } else {
+                    x.type = "password";
+                }
+            }
+</script>
+<style>
+    .bs-select > label{
+        width: 50px;
+    }
+</style>

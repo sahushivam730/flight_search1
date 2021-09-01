@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Author: HiBootstrap, Category: Tourism, Multipurpose, HTML, SASS, Bootstrap" />
+
+    <title>Book My Trip</title>
+
+    <link rel="stylesheet" href="<%=base_url%>assets/css/bootstrap.min.css" />
+
+    <link rel="stylesheet" href="<%=base_url%>assets/css/fontawesome.css" />
+
+    <link rel="stylesheet" href="<%=base_url%>assets/css/boxicons.min.css">
+
+    <link rel="stylesheet" href="<%=base_url%>assets/css/animate.min.css" />
+
+    <link rel="stylesheet" href="<%=base_url%>assets/css/bootstrap-datepicker.min.css">
+
+    <link rel="stylesheet" href="<%=base_url%>assets/css/nice-select.css">
+
+    <link rel="stylesheet" href="<%=base_url%>assets/css/magnific-popup.min.css" />
+
+    <link rel="stylesheet" href="<%=base_url%>assets/css/owl.carousel.min.css" />
+
+    <link rel="stylesheet" href="<%=base_url%>assets/css/meanmenu.min.css" />
+
+    <link rel="stylesheet" href="<%=base_url%>assets/css/style.css" />
+
+    <link rel="stylesheet" href="<%=base_url%>assets/css/responsive.css" />
+    <link rel="stylesheet" type="text/css" href="<%=base_url%>assets/css/chatbot.css">
+    <link rel="stylesheet" href="<%=base_url%>assets/css/ionicons.min.css">
+    <link rel="stylesheet" href="<%=base_url%>assets/css/flaticon.css">
+    <link rel="stylesheet" href="<%=base_url%>assets/css/modal.css">
+    <link href="<%=base_url%>assets/css/css1/css-assets.css" rel="stylesheet">
+    <link href="<%=base_url%>assets/css/css1/style.css" rel="stylesheet">
+
+    <!-- Favicon Icon -->
+    <link rel="icon" href="<%=base_url%>assets/img/favicon.png" type="image/png" />
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <!-- <link rel="stylesheet" href="<%=base_url%>assets/css/login.scss" /> -->
+
+    <style>
+        .top-header {
+            background-color: #090031;
+            color: #fff;
+            font-size: 14px;
+            font-weight: 700;
+        }
+        
+        .top-header span a {
+            color: #FFF01F;
+        }
+        
+        .home-banner-area .banner-content p.first-text {
+            font-size: 18px;
+            color: #4141a5;
+            line-height: 0;
+        }
+        
+        .home-banner-area .banner-content p.second-text {
+            font-size: 18px;
+        }
+        
+        .home-banner-area.home-style-three .banner-content h1 {
+            color: #4141a5;
+        }
+        
+        .home-banner-area.home-style-three .banner-content {
+            padding: 70px 0 300px;
+        }
+        
+        .home-banner-area .search-form p.terms-text {
+            color: #ccc;
+            font-size: 12px;
+        }
+        
+        .fliStopsDisc {
+            width: 8px;
+            height: 8px;
+            border: 2px solid #e7e7e7;
+            display: inline-block;
+            background-color: #959595;
+            position: relative;
+            z-index: 2;
+            margin: 0 2px;
+            border-radius: 20px;
+        }
+        
+        .home-banner-area.home-style-three .search-form .btn-search,
+        .home-banner-area.home-style-three .search-form .btn-search:hover {
+            padding: 5px 0;
+        }
+        
+        .form-control::-webkit-input-placeholder {
+            color: #000 !important;
+            -webkit-transition: 0.5s;
+            transition: 0.5s;
+        }
+        
+        .form-control:-ms-input-placeholder {
+            color: #000 !important;
+            -webkit-transition: 0.5s;
+            transition: 0.5s;
+        }
+        
+        .form-control::-ms-input-placeholder {
+            color: #000 !important;
+            -webkit-transition: 0.5s;
+            transition: 0.5s;
+        }
+        
+        .form-control::placeholder {
+            color: #000 !important;
+            -webkit-transition: 0.5s;
+            transition: 0.5s;
+        }
+    </style>
+
+    <script>
+        let base_url = '<%=base_url%>';
+    </script>
+
+</head>
+
+<body class="page-single with-sidebar page-search footer-dark">
+    <div class="header-area top-header">
+        <div class="container text-center p-1">
+            <div class="col-lg-12">
+                <span>COVID-19: Read about our policies<a href="https://www.tripsguard.com"> here</a></span>
+            </div>
+        </div>
+    </div>
+    <!-- <div id="full-container"> -->
+    <header class="header-area">
+        <div class="main-navbar-area">
+            <div class="main-responsive-nav">
+                <div class="container">
+                    <div class="main-responsive-menu">
+                        <div class="logo">
+                            <a href="<%=base_url%>>">
+                                <img src="<%=base_url%>assets/img/logo1.png" alt="Logo">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="main-nav">
+                <div class="container">
+                    <nav class="navbar navbar-expand-md navbar-light">
+                        <a class="navbar-brand" href="<%=base_url%>">
+                                <img src="<%=base_url%>assets/img/logo1.png" alt="Logo">
+                            </a>
+                        <div class="collapse navbar-collapse mean-menu">
+                            <ul class="navbar-nav ml-auto" id="main-navbar">
+
+                                <li class="nav-item">
+                                    <a href="<%=base_url%>" class="nav-link">Flight</a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a href="<%=base_url%>hotel" class="nav-link">Hotel</a>
+                                </li>
+
+
+                                <li class="nav-item">
+                                    <a href="javascript:void(0)" data-toggle="modal" data-target="#exampleModalCenter" class="nav-link">Car Rental</a>
+                                </li>
+                               
+                                <li class="nav-item">
+                                    <%if(session){%>
+                                        <div class="dropdown">
+                                            <a href="<%=base_url%>myaccount" class="nav-link dropdown-toggle" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">My Account</a>
+                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                                <a class="dropdown-item" href="<%=base_url%>myaccount?tb=1" style="padding-left: 10px;">Profile</a>
+                                                <a class="dropdown-item" href="<%=base_url%>myaccount?tb=2" style="padding-left: 10px;">Flight Bookings</a>
+                                                <a class="dropdown-item" href="<%=base_url%>myaccount?tb=3" style="padding-left: 10px;">Hotel Bookings</a>
+                                                <a class="dropdown-item" href="<%=base_url%>myaccount?tb=4" style="padding-left: 10px;">Change Password</a>
+                                                <a class="dropdown-item" href="<%=base_url%>logout" style="padding-left: 10px;">Logout</a>
+                                            </div>
+                                        </div>
+                                        <%}else{%>
+                                            <a href="#login" class="nav-link" data-toggle="modal" class="nav-link">Login</a>
+                                            <%}%>
+                                </li>
+
+                            </ul>
+                            <div class="cart">
+                                <a href="https://wa.me/911111111111" class="cart-btn" target="_blank"><i class='bx bxl-whatsapp'></i> Whatsapp
+                                    </a>
+                                <a href="https://m.me" class="cart-btn1" target="_blank"><i class='bx bx-message-rounded'></i> Messanger
+                                    </a>
+                                <a href="tel:0233023923" class="cart-btn2"><i class='bx bx-phone' ></i> Call
+                                    </a>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+
+    </header>
