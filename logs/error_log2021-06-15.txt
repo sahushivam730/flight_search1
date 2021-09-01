@@ -1,0 +1,1 @@
+ReferenceError: resolve is not defined
